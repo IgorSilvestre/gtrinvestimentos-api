@@ -1,5 +1,5 @@
 import { expect, it, test } from 'vitest'
-import { sum } from '.'
+import { sum } from '../server'
 
 test('index.ts sum function', () => {
     it('tests function with correct inputs types', () => {
