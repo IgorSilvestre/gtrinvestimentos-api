@@ -5,6 +5,7 @@ const stringOptions = {
 }
 
 export const companyValidation = z.object({
+    _id: z.any().optional(),
     name: z.string({
         required_error: "Name is required",
         invalid_type_error: "Name must be a string",

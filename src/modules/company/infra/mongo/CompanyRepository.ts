@@ -1,14 +1,15 @@
 import { AppError } from '../../../../shared/AppError'
+import { IAppError } from '../../../../shared/interfaces/IAppError'
 import { IUpdateCompany } from '../../interfaces-validation/IUpdateCompany'
 import { ZCompany } from '../../interfaces-validation/ZCompany'
 import { companyModel } from './companySchema'
 
 export const CompanyRepository = {
-  create: async (companyDTO: ZCompany): Promise<ZCompany> => {
+  create: async (companyDTO: ZCompany): Promise<ZCompany | IAppError | null> => {
     try {
       return await companyModel.create(companyDTO)
     } catch (err) {
-      throw new AppError(err)
+      return new AppError(err)
     }
   },
 
@@ -16,7 +17,11 @@ export const CompanyRepository = {
     
   // },
 
-  // getById: async (id: string): Promise<any> => {
-  //   return await companyModel.findById(id)
+  // getById: async (id: string): Promise<ZCompany | IAppError | null> => {
+  //   try {
+  //     return await companyModel.findById(id)
+  //   } catch (err) {
+  //     return new AppError({ clientMessage: 'Company not found!', appError: err}, 404)
+  //   }
   // }
 }

@@ -5,7 +5,7 @@ export const companyRouter = Router()
 
 companyRouter.post('/', CompanyController.create)
 
-companyRouter.get('/', () => (''))
+// companyRouter.get('/:id', CompanyController.getById)
 
 companyRouter.put('/', () => (''))
 

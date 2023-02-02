@@ -1,15 +1,16 @@
 import { AppError } from '../../shared/AppError'
+import { IAppError } from '../../shared/interfaces/IAppError'
 import { CompanyRepository } from './infra/mongo/CompanyRepository'
 import { IUpdateCompany } from './interfaces-validation/IUpdateCompany'
 import { ZCompany } from './interfaces-validation/ZCompany'
 
 export const CompanyService = {
-  store: async (companyDTO: ZCompany): Promise<ZCompany> => {
+  store: async (companyDTO: ZCompany): Promise<ZCompany | IAppError> => {
       const company = await CompanyRepository.create(companyDTO)
-      if (!company) throw new AppError('Company not created')
+      if (!company) return new AppError('Company not created')
       
       return company
-    }
+    },
 
 //   update: async ({
 //     id,
@@ -30,9 +31,9 @@ export const CompanyService = {
 //     }
 //   },
 
-//   getById: async (id: string): Promise<ZCompany> => {
-//     try {
-//       return await CompanyRepository.getById(id)
-//     } catch (err) {}
+//   getById: async (id: string): Promise<any> => {
+//     return await CompanyRepository.getById(id)
+//     // if (!company) return new AppError('Company not found', 404)
+//     // return company
 //   }, 
 }
