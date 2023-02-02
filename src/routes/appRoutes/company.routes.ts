@@ -1,8 +1,9 @@
-import { Router } from "express";
+import { Router } from "express"
+import { CompanyController } from '../../modules/company/infra/express/companyController'
 
 export const companyRouter = Router()
 
-companyRouter.post('/', () => (''))
+companyRouter.post('/', CompanyController.create)
 
 companyRouter.get('/', () => (''))
 
