@@ -9,7 +9,7 @@ export const CompanyRepository = {
     try {
       return await companyModel.create(companyDTO)
     } catch (err) {
-      return new AppError(err)
+      return new AppError({ clientMessage: 'Company not created', appError: err})
     }
   },
 

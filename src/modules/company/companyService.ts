@@ -5,11 +5,8 @@ import { IUpdateCompany } from './interfaces-validation/IUpdateCompany'
 import { ZCompany } from './interfaces-validation/ZCompany'
 
 export const CompanyService = {
-  store: async (companyDTO: ZCompany): Promise<ZCompany | IAppError> => {
-      const company = await CompanyRepository.create(companyDTO)
-      if (!company) return new AppError('Company not created')
-      
-      return company
+  store: async (companyDTO: ZCompany): Promise<ZCompany | IAppError | null> => {
+      return await CompanyRepository.create(companyDTO)
     },
 
 //   update: async ({
@@ -33,7 +30,5 @@ export const CompanyService = {
 
 //   getById: async (id: string): Promise<any> => {
 //     return await CompanyRepository.getById(id)
-//     // if (!company) return new AppError('Company not found', 404)
-//     // return company
 //   }, 
 }
