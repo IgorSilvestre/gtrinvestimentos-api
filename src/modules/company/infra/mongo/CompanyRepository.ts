@@ -17,11 +17,11 @@ export const CompanyRepository = {
     
   // },
 
-  // getById: async (id: string): Promise<ZCompany | IAppError | null> => {
-  //   try {
-  //     return await companyModel.findById(id)
-  //   } catch (err) {
-  //     return new AppError({ clientMessage: 'Company not found!', appError: err}, 404)
-  //   }
-  // }
+  getById: async (id: string): Promise<ZCompany | IAppError | null> => {
+    try {
+      return await companyModel.findById(id)
+    } catch (err) {
+      return new AppError({ clientMessage: 'Company not found!', appError: err}, 404)
+    }
+  }
 }

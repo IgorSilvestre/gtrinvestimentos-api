@@ -20,15 +20,15 @@ export const CompanyController = {
     return res.status(200).send(company)
   },
 
-  // getById: async (req: Request, res: Response) => {
-  //   const { id } = req.params
-  //   const company = await CompanyService.getById(id)
-  //   if (company instanceof AppError) {
-  //     return res.status(company.status).json({ error: company.message })
-  //   }
+  getById: async (req: Request, res: Response) => {
+    const { id } = req.params
+    const company = await CompanyService.getById(id)
+    if (company instanceof AppError) {
+      return res.status(company.status).json({ error: company.message })
+    }
 
-  //   return res.status(200).send(company) 
-  // }
+    return res.status(200).send(company) 
+  }
     // update: async (req: Request, res: Response) => {
     //   const { id } = req.params
     //   const {data} = req.body

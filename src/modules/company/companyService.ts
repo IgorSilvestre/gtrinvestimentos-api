@@ -28,7 +28,7 @@ export const CompanyService = {
 //     }
 //   },
 
-//   getById: async (id: string): Promise<any> => {
-//     return await CompanyRepository.getById(id)
-//   }, 
+  getById: async (id: string): Promise<any> => {
+    return await CompanyRepository.getById(id)
+  }, 
 }
