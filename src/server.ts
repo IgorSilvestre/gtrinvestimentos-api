@@ -1,6 +1,6 @@
 import express from 'express'
 import cors from 'cors'
-import { routes } from './routes/routes'
+import { router } from './http/router'
 
 const app = express()
 
@@ -12,7 +12,7 @@ app.use(
 
 app.use(express.json())
 
-app.use(routes)
+app.use(router)
 
 const PORT = 3005
 
