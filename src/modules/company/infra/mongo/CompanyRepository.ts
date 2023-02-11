@@ -22,9 +22,9 @@ export const CompanyRepository = {
 
   // },
 
-  getById: async (id: string): Promise<ZCompany | IAppError | null> => {
+  getById: async (id: string): Promise<ZCompany | IAppError> => {
     try {
-      return await companyModel.findById(id)
+      return await companyModel.findById(id) as ZCompany
     } catch (err) {
       return new AppError(
         { clientMessage: errorMessageKeys.company.notFound, error: err },
