@@ -13,7 +13,7 @@ export const CompanyRepository = {
     } catch (err) {
       return new AppError({
         clientMessage: errorMessageKeys.company.notCreated,
-        error: err,
+        apiError: err,
       })
     }
   },
@@ -27,7 +27,7 @@ export const CompanyRepository = {
       return await companyModel.findById(id) as ZCompany
     } catch (err) {
       return new AppError(
-        { clientMessage: errorMessageKeys.company.notFound, error: err },
+        { clientMessage: errorMessageKeys.company.notFound, apiError: err },
         404,
       )
     }
