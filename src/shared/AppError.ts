@@ -6,7 +6,7 @@ export class AppError implements IAppError {
   public readonly status
 
   constructor(message: IAppErrorMessage, status = 500) {
-    console.log({ status, message })
+    console.log('Request ERROR:', { status, message })
     this.message = message
     this.status = status
   }
