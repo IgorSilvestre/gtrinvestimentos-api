@@ -7,7 +7,7 @@ import { errorMessageKeys } from '../../../../shared/keys/errorMessageKeys'
 export const CompanyRepository = {
   create: async (
     companyDTO: ZCompany,
-  ): Promise<ZCompany | IAppError | null> => {
+  ): Promise<ZCompany | IAppError> => {
     try {
       return await companyModel.create(companyDTO)
     } catch (err) {

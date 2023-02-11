@@ -3,7 +3,7 @@ import { CompanyRepository } from './infra/mongo/CompanyRepository'
 import { ZCompany } from './interfaces-validation/ZCompany'
 
 export const CompanyService = {
-  store: async (companyDTO: ZCompany): Promise<ZCompany | IAppError | null> => {
+  store: async (companyDTO: ZCompany): Promise<ZCompany | IAppError> => {
     return await CompanyRepository.create(companyDTO)
   },
 
