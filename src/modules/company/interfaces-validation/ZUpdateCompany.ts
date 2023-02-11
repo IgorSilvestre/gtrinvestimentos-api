@@ -1,8 +1,9 @@
 import { z } from 'zod'
+import { companyValidation } from './ZCompany'
 
 export const updateCompanyValidation = z.object({
-  _id: z.string(),
-  data: z.any()
+  id: z.string(),
+  data: companyValidation
 })
 
 export type ZUpdateCompany = z.infer<typeof updateCompanyValidation>

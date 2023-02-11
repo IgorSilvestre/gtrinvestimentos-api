@@ -32,25 +32,27 @@ export const CompanyController = {
 
     return res.status(200).send(company)
   },
-  // update: async (req: Request, res: Response) => {
-  //   const { id } = req.params
-  //   const {data} = req.body
 
-  //   const validatedCompanyDTO = companyValidation.safeParse(data)
-  //   if (!validatedCompanyDTO.success) {
-  //     return res.status(400).send(validatedCompanyDTO.error.errors)
-  //   }
+  update: async (req: Request, res: Response) => {
+    const { id } = req.params
+    const {data} = req.body
 
-  //   try {
-  //     const company = await CompanyService.update({ id, data })
+    // TO CHECK IF EXISTS, USING findAndUpdate NOW - SO NO NEED FOR THIS
+    // const validatedCompanyDTO = companyValidation.safeParse(data)
+    // if (!validatedCompanyDTO.success) {
+    //   return res.status(400).send(validatedCompanyDTO.error.errors)
+    // }
 
-  //     if (company instanceof AppError) {
-  //       return res.status(company.status).json({ error: company.message });
-  //     }
+    try {
+      const companyUpdateResult = await CompanyService.update({ id, data })
 
-  //     return res.status(200).send(company)
-  //   } catch (err) {
-  //       return res.status(500).send(err)
-  //   }
-  // },
+      if (companyUpdateResult instanceof AppError) {
+        return res.status(companyUpdateResult.status).json({ error: companyUpdateResult.message });
+      }
+
+      return res.status(200).send(companyUpdateResult)
+    } catch (err) {
+        return res.status(500).send(err)
+    }
+  },
 }

@@ -7,6 +7,6 @@ companyRouter.post('/', CompanyController.create)
 
 companyRouter.get('/:id', CompanyController.getById)
 
-companyRouter.put('/', () => '')
+companyRouter.put('/:id', CompanyController.update)
 
 companyRouter.delete('/', () => '')

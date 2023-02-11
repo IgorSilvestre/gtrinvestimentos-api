@@ -1,30 +1,20 @@
 import { IAppError } from '../../shared/interfaces/appError/IAppError'
 import { CompanyRepository } from './infra/mongo/CompanyRepository'
 import { ZCompany } from './interfaces-validation/ZCompany'
+import { ZUpdateCompany } from './interfaces-validation/ZUpdateCompany'
 
 export const CompanyService = {
   store: async (companyDTO: ZCompany): Promise<ZCompany | IAppError> => {
     return await CompanyRepository.create(companyDTO)
   },
 
-  //   update: async ({
-  //     id,
-  //     data,
-  //   }: IUpdateCompany): Promise<ZCompany | unknown> => {
-  //     // check if company exists
-  //     try {
-  //         const company = await CompanyRepository.getById(id)
-  //         if (!company) throw new AppError('No company found by that ID', 404)
-  //     } catch (err) {
-  //         throw new AppError(err)
-  //     }
-  //     // update company data
-  //     try {
-  //       return await CompanyRepository.update({ id, data })
-  //     } catch (err) {
-  //         throw new AppError(err)
-  //     }
-  //   },
+  update: async ({
+    id,
+    data,
+  }: ZUpdateCompany): Promise<ZCompany | IAppError> => {
+    // update company data
+    return await CompanyRepository.update({ id, data })
+  },
 
   getById: async (id: string): Promise<any> => {
     return await CompanyRepository.getById(id)
