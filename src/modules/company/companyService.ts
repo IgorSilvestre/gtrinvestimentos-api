@@ -1,4 +1,4 @@
-import { IAppError } from '../../shared/interfaces/IAppError'
+import { IAppError } from '../../shared/interfaces/appError/IAppError'
 import { CompanyRepository } from './infra/mongo/CompanyRepository'
 import { ZCompany } from './interfaces-validation/ZCompany'
 
