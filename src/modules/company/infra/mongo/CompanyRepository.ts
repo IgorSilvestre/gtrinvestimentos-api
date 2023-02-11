@@ -1,7 +1,8 @@
 import { AppError } from '../../../../shared/AppError'
-import { IAppError } from '../../../../shared/interfaces/IAppError'
+import { IAppError } from '../../../../shared/interfaces/appError/IAppError'
 import { ZCompany } from '../../interfaces-validation/ZCompany'
 import { companyModel } from './companySchema'
+import { errorMessageKeys } from '../../../../shared/keys/errorMessageKeys'
 
 export const CompanyRepository = {
   create: async (
@@ -11,8 +12,8 @@ export const CompanyRepository = {
       return await companyModel.create(companyDTO)
     } catch (err) {
       return new AppError({
-        clientMessage: 'Company not created',
-        appError: err,
+        clientMessage: errorMessageKeys.company.notCreated,
+        error: err,
       })
     }
   },
@@ -26,7 +27,7 @@ export const CompanyRepository = {
       return await companyModel.findById(id)
     } catch (err) {
       return new AppError(
-        { clientMessage: 'Company not found!', appError: err },
+        { clientMessage: errorMessageKeys.company.notFound, error: err },
         404,
       )
     }
