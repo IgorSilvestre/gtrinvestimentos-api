@@ -8,11 +8,11 @@ export function sum(a: Znumber, b: Znumber) {
   if (!result.success) {
     // handle error then return
     console.log('GOT ERROR>>>', result.error.errors[0].message)
-		return result.error.errors[0].message
+    return result.error.errors[0].message
   } else {
     // do something
     console.log(result.data)
-		return a + b
+    return a + b
   }
 }
 console.log(sum('2', 2)) // ERROR

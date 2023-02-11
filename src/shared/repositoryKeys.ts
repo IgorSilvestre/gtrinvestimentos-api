@@ -1,3 +1,3 @@
 export const repositoryKeys = {
-    CompanyRepositoryKey: 'CompanyRepository'
+  CompanyRepositoryKey: 'CompanyRepository',
 }

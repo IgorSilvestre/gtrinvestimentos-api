@@ -1,4 +1,4 @@
 export interface IAppError {
-    message: string
-    status: number
+  message: string
+  status: number
 }

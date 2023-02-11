@@ -1,4 +1,5 @@
 import { Router } from 'express'
+
 import { companyRouter } from './routes/company.routes'
 
 export const router = Router()

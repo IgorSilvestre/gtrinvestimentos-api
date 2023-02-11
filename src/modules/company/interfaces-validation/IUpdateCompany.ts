@@ -1,6 +1,6 @@
-import { ZCompany } from "./ZCompany";
+import { ZCompany } from './ZCompany'
 
 export interface IUpdateCompany {
-    id: string,
-    data: ZCompany
+  id: string
+  data: ZCompany
 }
