@@ -60,6 +60,6 @@ export const CompanyController = {
 
     if (result instanceof AppError) return res.status(result.status).json({ error: result.message });
     console.log(result)
-    return res.status(204)
+    return res.status(204).json(result)
   }
 }
