@@ -3,7 +3,6 @@ import { IAppError } from '../../../../shared/interfaces/appError/IAppError'
 import { ZCompany } from '../../interfaces-validation/ZCompany'
 import { companyModel } from './companySchema'
 import { errorMessageKeys } from '../../../../shared/keys/errorMessageKeys'
-import { ZUpdateCompany } from '../../interfaces-validation/ZUpdateCompany'
 import { DeleteResult } from 'mongodb'
 
 export const CompanyRepository = {
@@ -20,9 +19,9 @@ export const CompanyRepository = {
     }
   },
 
-  update: async ({ id, data }: ZUpdateCompany): Promise<ZCompany | IAppError> => {
+  update: async (_id: string, data: ZCompany): Promise<ZCompany | IAppError> => {
     try {
-      const company = await companyModel.findOneAndUpdate({ _id: id }, { $set: data }, { new: true })
+      const company = await companyModel.findOneAndUpdate({ _id }, { $set: data }, { new: true })
       if (company === null) return new AppError({ clientMessage: 'returned: NULL' })
       return company
     } catch (err) {

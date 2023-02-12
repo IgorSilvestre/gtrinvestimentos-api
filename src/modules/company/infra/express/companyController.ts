@@ -37,7 +37,7 @@ export const CompanyController = {
     const { id } = req.params
     const {data} = req.body
     try {
-      const companyUpdateResult = await CompanyService.update({ id, data })
+      const companyUpdateResult = await CompanyService.update(id, data)
 
       if (companyUpdateResult instanceof AppError) {
         return res.status(companyUpdateResult.status).json({ error: companyUpdateResult.message });
