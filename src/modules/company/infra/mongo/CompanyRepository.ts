@@ -4,6 +4,7 @@ import { ZCompany } from '../../interfaces-validation/ZCompany'
 import { companyModel } from './companySchema'
 import { errorMessageKeys } from '../../../../shared/keys/errorMessageKeys'
 import { ZUpdateCompany } from '../../interfaces-validation/ZUpdateCompany'
+import { DeleteResult } from 'mongodb'
 
 export const CompanyRepository = {
   create: async (
@@ -19,14 +20,13 @@ export const CompanyRepository = {
     }
   },
 
-  update: async ({ id, data }: ZUpdateCompany): Promise< ZCompany | IAppError> => {
+  update: async ({ id, data }: ZUpdateCompany): Promise<ZCompany | IAppError> => {
     try {
       const company = await companyModel.findOneAndUpdate({ _id: id }, { $set: data }, { new: true })
       if (company === null) throw new Error('returned: null')  // Intentionally throwing error, so it won't return NULL
       return company
-    }
-    catch (err) {
-      return new AppError({ clientMessage: errorMessageKeys.company.notUpdated, apiError: err})
+    } catch (err) {
+      return new AppError({ clientMessage: errorMessageKeys.company.notUpdated, apiError: err })
     }
   },
 
@@ -39,5 +39,14 @@ export const CompanyRepository = {
         404,
       )
     }
+  },
+
+  delete: async (_id: string): Promise<DeleteResult | IAppError> => {
+    try {
+      return companyModel.deleteOne({ _id })
+    } catch (err) {
+      return new AppError({ clientMessage: errorMessageKeys.company.notDeleted, apiError: err })
+    }
+
   },
 }

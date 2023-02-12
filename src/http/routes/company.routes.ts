@@ -9,4 +9,4 @@ companyRouter.get('/:id', CompanyController.getById)
 
 companyRouter.put('/:id', CompanyController.update)
 
-companyRouter.delete('/', () => '')
+companyRouter.delete('/:id', CompanyController.delete)

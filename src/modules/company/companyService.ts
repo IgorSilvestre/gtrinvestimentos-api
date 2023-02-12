@@ -2,6 +2,7 @@ import { IAppError } from '../../shared/interfaces/appError/IAppError'
 import { CompanyRepository } from './infra/mongo/CompanyRepository'
 import { ZCompany } from './interfaces-validation/ZCompany'
 import { ZUpdateCompany } from './interfaces-validation/ZUpdateCompany'
+import { DeleteResult } from 'mongodb'
 
 export const CompanyService = {
   store: async (companyDTO: ZCompany): Promise<ZCompany | IAppError> => {
@@ -19,4 +20,8 @@ export const CompanyService = {
   getById: async (id: string): Promise<any> => {
     return await CompanyRepository.getById(id)
   },
+
+  delete: async (id: string): Promise<DeleteResult | IAppError> => {
+    return await CompanyRepository.delete(id)
+  }
 }
