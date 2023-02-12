@@ -1,7 +1,15 @@
 {
     "parser": "@typescript-eslint/parser",
     "env": {
+        "jest": true,
         "node": true
+    },
+    "globals": {
+        "describe": "readonly",
+        "it": "readonly",
+        "expect": "readonly",
+        "beforeEach": "readonly",
+        "afterEach": "readonly"
     },
     "parserOptions": {
         "project": "./tsconfig.json",
@@ -15,5 +23,8 @@
     "plugins": [
         "eslint-plugin-prettier"
     ],
-    "rules": {}
+    "rules": {},
+    "overrides": [{
+        "files": ["jest.config.js"]
+    }]
 }
