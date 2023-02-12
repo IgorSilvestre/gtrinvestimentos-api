@@ -23,7 +23,7 @@ export const CompanyRepository = {
   update: async ({ id, data }: ZUpdateCompany): Promise<ZCompany | IAppError> => {
     try {
       const company = await companyModel.findOneAndUpdate({ _id: id }, { $set: data }, { new: true })
-      if (company === null) throw new Error('returned: null')  // Intentionally throwing error, so it won't return NULL
+      if (company === null) return new AppError({ clientMessage: 'returned: NULL' })
       return company
     } catch (err) {
       return new AppError({ clientMessage: errorMessageKeys.company.notUpdated, apiError: err })
