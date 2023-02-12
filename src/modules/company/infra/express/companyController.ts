@@ -36,11 +36,6 @@ export const CompanyController = {
   update: async (req: Request, res: Response) => {
     const { id } = req.params
     const {data} = req.body
-    // TO CHECK IF EXISTS, USING findAndUpdate NOW - SO NO NEED FOR THIS
-    // const validatedCompanyDTO = companyValidation.safeParse(data)
-    // if (!validatedCompanyDTO.success) {
-    //   return res.status(400).send(validatedCompanyDTO.error.errors)
-    // }
     try {
       const companyUpdateResult = await CompanyService.update({ id, data })
 
