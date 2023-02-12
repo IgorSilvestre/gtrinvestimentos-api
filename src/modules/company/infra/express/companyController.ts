@@ -12,7 +12,7 @@ export const CompanyController = {
 
     const validatedCompanyDTO = companyValidation.safeParse(companyDTO)
     if (!validatedCompanyDTO.success) {
-      return res.status(400).send(validatedCompanyDTO.error.errors)
+      return res.status(400).json(validatedCompanyDTO.error.errors)
     }
 
     const company = await CompanyService.store(companyDTO)
@@ -20,7 +20,7 @@ export const CompanyController = {
       return res.status(company.status).json({ error: company.message })
     }
 
-    return res.status(200).send(company)
+    return res.status(200).json(company)
   },
 
   getById: async (req: Request, res: Response) => {
@@ -30,7 +30,7 @@ export const CompanyController = {
       return res.status(company.status).json({ error: company.message })
     }
 
-    return res.status(200).send(company)
+    return res.status(200).json(company)
   },
 
   update: async (req: Request, res: Response) => {
@@ -48,9 +48,9 @@ export const CompanyController = {
         return res.status(companyUpdateResult.status).json({ error: companyUpdateResult.message });
       }
 
-      return res.status(200).send(companyUpdateResult)
+      return res.status(200).json(companyUpdateResult)
     } catch (err) {
-        return res.status(500).send(err)
+        return res.status(500).json(err)
     }
   },
 
