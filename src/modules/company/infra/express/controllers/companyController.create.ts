@@ -11,10 +11,10 @@ export async function create (req: Request, res: Response) {
     return res.status(400).json(validatedCompanyDTO.error.errors)
   }
 
-  const company = await CompanyService.create(companyDTO)
+  const company: ZCompany | AppError = await CompanyService.create(companyDTO)
+
   if (company instanceof AppError) {
     return res.status(company.status).json({ error: company.message })
   }
-
-  return res.status(200).json(company)
+  return res.status(200).json(company as ZCompany)
 }

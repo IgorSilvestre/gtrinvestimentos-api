@@ -1,4 +1,3 @@
-import { IAppError } from '../../../../shared/interfaces/appError/IAppError'
 import { ZCompany } from '../../interfaces-validation/ZCompany'
 import { companyModel } from './companySchema'
 import { DeleteResult } from 'mongodb'
@@ -6,7 +5,7 @@ import { DeleteResult } from 'mongodb'
 export const CompanyRepository = {
   create: async (
     companyDTO: ZCompany,
-  ): Promise<ZCompany | IAppError> => {
+  ): Promise<ZCompany> => {
     try {
       return await companyModel.create(companyDTO)
     }
