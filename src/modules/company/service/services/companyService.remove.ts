@@ -1,5 +1,5 @@
 import { DeleteResult } from 'mongodb'
-import { CompanyRepository } from '../../infra/mongo/CompanyRepository'
+import { CompanyRepository } from '../../infra/mongo/repository/CompanyRepository'
 import { AppError } from '../../../../shared/AppError'
 import { errorMessageKeys } from '../../../../shared/keys/errorMessageKeys'
 
