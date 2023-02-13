@@ -11,7 +11,7 @@ export async function create (req: Request, res: Response) {
     return res.status(400).json(validatedCompanyDTO.error.errors)
   }
 
-  const company = await CompanyService.store(companyDTO)
+  const company = await CompanyService.create(companyDTO)
   if (company instanceof AppError) {
     return res.status(company.status).json({ error: company.message })
   }
