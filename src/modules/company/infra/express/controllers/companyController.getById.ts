@@ -1,5 +1,5 @@
 import { Request, Response } from 'express'
-import { CompanyService } from '../../../companyService'
+import { CompanyService } from '../../../service/companyService'
 import { AppError } from '../../../../../shared/AppError'
 
 export async function getById (req: Request, res: Response) {

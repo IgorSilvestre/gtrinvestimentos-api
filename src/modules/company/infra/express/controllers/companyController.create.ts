@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
 import { companyValidation, ZCompany } from '../../../interfaces-validation/ZCompany'
-import { CompanyService } from '../../../companyService'
+import { CompanyService } from '../../../service/companyService'
 import { AppError } from '../../../../../shared/AppError'
 
 export async function create (req: Request, res: Response) {
