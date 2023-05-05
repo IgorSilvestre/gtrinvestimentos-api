@@ -5,9 +5,8 @@ import { ZCompany } from '../../../interfaces-validation/ZCompany'
 
 export async function update (req: Request, res: Response) {
   const { id } = req.params
-  const {data} = req.body
   try {
-    const companyUpdateResult: ZCompany | AppError = await CompanyService.update(id, data)
+    const companyUpdateResult: ZCompany | AppError = await CompanyService.update(id, req.body)
 
     if (companyUpdateResult instanceof AppError) {
       return res.status(companyUpdateResult.status).json({ error: companyUpdateResult.message });

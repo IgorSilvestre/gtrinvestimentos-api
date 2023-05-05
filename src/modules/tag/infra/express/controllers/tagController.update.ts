@@ -5,9 +5,8 @@ import { ZTag } from '../../../interfaces-validation/ZTag'
 
 export async function update (req: Request, res: Response) {
   const { id } = req.params
-  const {data} = req.body
   try {
-    const tagUpdateResult: ZTag | AppError = await TagService.update(id, data)
+    const tagUpdateResult: ZTag | AppError = await TagService.update(id, req.body)
 
     if (tagUpdateResult instanceof AppError) {
       return res.status(tagUpdateResult.status).json({ error: tagUpdateResult.message });

@@ -8,7 +8,13 @@ export const errorMessageKeys = {
   tag: {
     notCreated: 'Não foi possível criar tag',
     notFound: 'Tag não encontrada!',
-    notUpdated: 'Não foi possível atualizartag',
+    notUpdated: 'Não foi possível atualizar tag',
     notRemoved: 'Não foi possível remover tag'
+  },
+  person: {
+    notCreated: 'Não foi possível criar pessoa',
+    notFound: 'Pessoa não encontrada!',
+    notUpdated: 'Não foi possível atualizar pessoa',
+    notRemoved: 'Não foi possível remover pessoa'
   }
 }
