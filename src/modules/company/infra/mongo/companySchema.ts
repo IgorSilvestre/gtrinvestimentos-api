@@ -1,4 +1,6 @@
 import mongo from '../../../../shared/database/database'
+import { Document } from 'mongoose'
+import { ZCompany } from '../../interfaces-validation/ZCompany'
 
 const companySchema = new mongo.Schema({
     name: {
@@ -30,3 +32,4 @@ const companySchema = new mongo.Schema({
 })
 
 export const companyModel = mongo.model('Company', companySchema)
+export interface ZCompanyModel extends Document, ZCompany {}

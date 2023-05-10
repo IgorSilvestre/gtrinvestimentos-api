@@ -1,9 +1,8 @@
-import { ZCompany } from '../../../../interfaces-validation/ZCompany'
-import { companyModel } from '../../companySchema'
+import { companyModel, ZCompanyModel } from '../../companySchema'
 
-export async function getById (id: string): Promise<ZCompany> {
+export async function getById (id: string): Promise<ZCompanyModel> {
   try {
-    return await companyModel.findById(id) as ZCompany
+    return await companyModel.findById(id) as ZCompanyModel
   }
   catch (err) {
     throw new Error(err as string)

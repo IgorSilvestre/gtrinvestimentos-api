@@ -14,7 +14,10 @@ export const companyValidation = z.object({
             invalid_type_error: 'Name must be a string',
         })
         .min(2),
-    tags: z.array(z.string(stringOptions('tags'))).optional(),
+    tags: z.array(z.string(stringOptions('tags'))).optional() || z.array(z.object({
+        value: z.string(stringOptions('value')),
+        label: z.string(stringOptions('label'))
+    })),
     description: z.string(stringOptions('description')).optional(),
     target: z.string(stringOptions('target')).optional(),
     lastUpdated: z.date().optional(),
