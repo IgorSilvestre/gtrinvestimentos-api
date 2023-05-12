@@ -5,7 +5,12 @@ export const tagRouter = Router()
 
 tagRouter.post('/', TagController.create)
 
+
+// GET REQUESTS
+tagRouter.get('/all', TagController.getAll)
+tagRouter.get('/forSelect', TagController.getForSelect)
 tagRouter.get('/:id', TagController.getById)
+
 
 tagRouter.put('/:id', TagController.update)
 
