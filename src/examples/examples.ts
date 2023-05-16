@@ -15,5 +15,4 @@ export function sum(a: Znumber, b: Znumber) {
     return a + b
   }
 }
-console.log(sum('2', 2)) // ERROR
 sum(2, 2) // SUCCESS
