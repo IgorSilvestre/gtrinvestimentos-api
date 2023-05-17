@@ -1,7 +1,8 @@
 import { ZTag } from './ZTag'
 import { IOption } from '../../../shared/interfaces/IOption'
 
-export function normalizeTags (tags: ZTag[]): IOption[] {
+export function normalizeTags (tags: ZTag | ZTag[]): IOption[] {
   if (!tags) return []
-  return tags.map((tag) => ({ value: tag._id, label: tag.name } as IOption))
+  tags = Array.isArray(tags) ? tags : [tags]
+  return tags.map((tag: ZTag) => ({ value: tag._id, label: tag.label } as IOption))
 }

@@ -1,7 +1,7 @@
 import mongo from '../../../../shared/database/database'
 
 const tagSchema = new mongo.Schema({
-    name: {
+    label: {
         type: String,
         required: true,
     },
@@ -17,4 +17,4 @@ const tagSchema = new mongo.Schema({
     },
 })
 
-export const tagModel = mongo.model('Tag', tagSchema)
+export const tagModel = mongo.model('tags', tagSchema)

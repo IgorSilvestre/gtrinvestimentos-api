@@ -7,10 +7,10 @@ const companySchema = new mongo.Schema({
         type: String,
         required: true,
     },
-    tags: {
-        type: [String],
-        required: false,
-    },
+    tags: [{
+        type: mongo.Schema.Types.ObjectId,
+        ref: 'tags',
+    }],
     description: {
         type: String,
         required: false,
@@ -21,15 +21,15 @@ const companySchema = new mongo.Schema({
     },
     createdAt: {
         type: Date,
-        default: Date.now(),
+        default: Date.now,
         required: true,
     },
     lastUpdated: {
         type: Date,
         required: true,
-        default: Date.now(),
-    },
+        default: Date.now,
+    }
 })
 
-export const companyModel = mongo.model('Company', companySchema)
+export const companyModel = mongo.model('companies', companySchema)
 export interface ZCompanyModel extends Document, ZCompany {}
