@@ -19,6 +19,11 @@ const companySchema = new mongo.Schema({
         type: String,
         required: false,
     },
+    employees: {
+        type: mongo.Schema.Types.ObjectId,
+        ref: 'people',
+        required: false,
+    },
     createdAt: {
         type: Date,
         default: Date.now,

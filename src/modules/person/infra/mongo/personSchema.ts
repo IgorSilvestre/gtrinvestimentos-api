@@ -25,4 +25,4 @@ const personSchema = new mongo.Schema({
     },
 })
 
-export const personModel = mongo.model('Person', personSchema)
+export const personModel = mongo.model('person', personSchema)
