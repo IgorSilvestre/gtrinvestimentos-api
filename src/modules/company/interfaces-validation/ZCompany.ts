@@ -18,7 +18,7 @@ export const companyValidation = z.object({
         })
         .min(2),
     tags: z.union([tagStringValidation, tagValidation]).optional(),
-    employees: z.string(stringOptions('people')).optional(),
+    employees: z.array(z.string(stringOptions('people'))).optional(),
     description: z.string(stringOptions('description')).optional(),
     target: z.string(stringOptions('target')).optional(),
     lastUpdated: z.date().optional(),
