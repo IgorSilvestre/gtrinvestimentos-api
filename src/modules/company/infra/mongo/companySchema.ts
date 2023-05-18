@@ -9,7 +9,7 @@ const companySchema = new mongo.Schema({
     },
     tags: [{
         type: mongo.Schema.Types.ObjectId,
-        ref: 'tags',
+        ref: 'tag',
     }],
     description: {
         type: String,
@@ -21,7 +21,7 @@ const companySchema = new mongo.Schema({
     },
     employees: [{
         type: mongo.Schema.Types.ObjectId,
-        ref: 'people',
+        ref: 'person',
         required: false,
     }],
     createdAt: {
@@ -36,5 +36,5 @@ const companySchema = new mongo.Schema({
     }
 })
 
-export const companyModel = mongo.model('companies', companySchema)
+export const companyModel = mongo.model('company', companySchema, 'companies')
 export interface ZCompanyModel extends Document, ZCompany {}
