@@ -5,6 +5,8 @@ export const personRouter = Router()
 
 personRouter.post('/', PersonController.create)
 
+personRouter.get('/getAll', PersonController.getAll)
+
 personRouter.get('/:id', PersonController.getById)
 
 personRouter.put('/:id', PersonController.update)
