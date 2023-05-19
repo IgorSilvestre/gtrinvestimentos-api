@@ -1,5 +1,5 @@
 import { ZCompanyModel } from '../infra/mongo/companySchema'
-import { parseISODateToBrazilSTD } from '../../../shared/utils/parseISODateToBrazilSTD'
+import { parseISODateToBrazilSTD } from '../../../shared/functions/parseISODateToBrazilSTD'
 import { normalizeTags } from '../../tag/interfaces-validation/normalizeTags'
 import { ZTag } from '../../tag/interfaces-validation/ZTag'
 
