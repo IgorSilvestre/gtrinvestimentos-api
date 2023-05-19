@@ -1,14 +1,15 @@
 import mongo from '../../../../shared/database/database'
+import { ZPerson } from '../../interfaces-validation/ZPerson'
 
 const personSchema = new mongo.Schema({
     name: {
         type: String,
         required: true,
     },
-    tags: {
-        type: [String],
-        required: false,
-    },
+    tags: [{
+        type: mongo.Schema.Types.ObjectId,
+        ref: 'tag',
+    }],
     email: {
         type: String,
         required: false,
@@ -26,3 +27,4 @@ const personSchema = new mongo.Schema({
 })
 
 export const personModel = mongo.model('person', personSchema, 'people')
+export interface ZPersonModel extends mongo.Document, ZPerson {}
