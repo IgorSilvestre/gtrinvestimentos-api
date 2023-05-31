@@ -5,14 +5,21 @@ import { ZPersonModel } from '../infra/mongo/personSchema'
 
 
 export function serializePerson(personOrPeople: ZPersonModel | ZPersonModel[]) {
-  personOrPeople = Array.isArray(personOrPeople) ? personOrPeople : [personOrPeople]
-
-  let peopleSerialized = personOrPeople.map((person) =>  ({
-    ...person.toObject(),
-    tags: normalizeTags(person.tags as unknown as ZTag[]),
-    createdAt: parseISODateToBrazilSTD(person?.createdAt?.toISOString()),
-    lastUpdated: parseISODateToBrazilSTD(person?.lastUpdated?.toISOString())
-  }))
-
+  let peopleSerialized
+  if(Array.isArray(personOrPeople)) {
+    peopleSerialized = personOrPeople.map((person) =>  ({
+      ...person.toObject(),
+      tags: normalizeTags(person.tags as unknown as ZTag[]),
+      createdAt: parseISODateToBrazilSTD(person?.createdAt?.toISOString()),
+      lastUpdated: parseISODateToBrazilSTD(person?.lastUpdated?.toISOString())
+    }))
+  }
+  else {
+    peopleSerialized = {
+      ...personOrPeople.toObject(),
+      tags: normalizeTags(personOrPeople.tags as unknown as ZTag[]),
+      createdAt: parseISODateToBrazilSTD(personOrPeople?.createdAt?.toISOString()),
+      lastUpdated: parseISODateToBrazilSTD(personOrPeople?.lastUpdated?.toISOString())
+    }}
   return peopleSerialized
 }
