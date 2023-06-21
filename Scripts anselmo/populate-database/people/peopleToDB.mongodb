@@ -1,0 +1,16 @@
+// use ('test')
+
+// const { nodeModuleNameResolver } = require("typescript")
+// const { peoples } = require("./peoples")
+
+// peoples.forEach(people => {
+//     const objCompany = 
+//     {
+//     name : nome,
+//     Empresa : people.Empresa,
+//     description : company.OqueBuscão +','+ company.Observação
+//     }
+//     db.companies.insert(objCompany)
+//  }
+// )
+
