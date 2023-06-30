@@ -2,6 +2,8 @@ import {areaToArray } from '/home/orotel/dev/scripts/scripts/populate-database/u
 import { sheetToObject } from '/home/orotel/dev/scripts/scripts/populate-database/utils/sheetToObject.js';
 import { normalizedObj } from '/home/orotel/dev/scripts/scripts/populate-database/empresas/CreateObj.js';
 import {arrIncludeRegex} from "/home/orotel/dev/scripts/scripts/populate-database/utils/arrIncludeRegex.js"
+import { filterArea } from './ArrArea.js';
+
 
 // --------------------------------------------
 export function normalizedCompanies () {
@@ -17,13 +19,13 @@ export function normalizedCompanies () {
           if(!arrIncludeRegex(columKey,areaArr)){
             areaArr.push(companyKeys)
           }
-                  
+          
         })
+        
       }
     }
-    normalizedCompanies.push(normalizedObj(company.nome,company.area, company.teseInvestimento, company.Descrição))
+    normalizedCompanies.push(normalizedObj(company.nome,areaArr, company.teseInvestimento, company.Descrição))
   })
-  return(normalizedCompanies)
+  return normalizedCompanies
 }
-
-// console.log(normalizedCompanies())
+// normalizedCompanies()

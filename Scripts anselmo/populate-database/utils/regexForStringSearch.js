@@ -6,9 +6,8 @@ function regexForStringSearch(query) {
     .replace(/o/gi, '[OÓÒÔÕ]')
     .replace(/u/gi, '[UÚÙÛ]')
     .replace(/c/gi, '[CÇ]')
-    .replace(/(s|)/gi, '(s|)')
+    .replace(/s\((?=\|)/gi, '(s|)');
 
-    
   return new RegExp(query, 'gmi');
 }
 
