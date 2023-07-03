@@ -1,4 +1,4 @@
-function regexForStringSearch(query) {
+export function regexForSearch(query: string): RegExp {
   query = query
     .replace(/a/gi, '[AÁÀÂÃ]')
     .replace(/e/gi, '[EÉÈÊ]')
@@ -10,10 +10,3 @@ function regexForStringSearch(query) {
 
   return new RegExp(query, 'gmi');
 }
-
-
-// tenho que colocar para ser palavra e arr
-export const testRegex = (regexWord, wordToMatch) => regexForStringSearch(regexWord).test(wordToMatch)
-
-
-
