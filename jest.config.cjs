@@ -1,3 +1,4 @@
+// @ts-ignore
 module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'node',
@@ -7,4 +8,5 @@ module.exports = {
   },
   testRegex: '(./src/tests/.*|(\\.|/)(test|spec))\\.tsx?$',
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
+  extensionsToTreatAsEsm: ['.ts'],
 }
