@@ -25,6 +25,7 @@
     ],
     "rules": {},
     "overrides": [{
-        "files": ["jest.config.js"]
-    }]
+        "files": ["jest.config.js", "./scripts/**/*.js"]
+    }],
+    "ignorePatterns": ["scripts/"]
 }

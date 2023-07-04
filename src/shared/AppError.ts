@@ -11,3 +11,14 @@ export class AppError implements IAppError {
     this.status = status
   }
 }
+
+// TODO change all AppError to this one
+// export class AppError extends Error {
+//   public readonly status: number;
+
+//   constructor(message: string, status = 500) {
+//     super(message);
+//     this.status = status;
+//   }
+// }
+

@@ -1,5 +1,5 @@
-const { parseISO, format } = require('date-fns');
-const { utcToZonedTime } = require('date-fns-tz');
+import { parseISO, format } from 'date-fns'
+import { utcToZonedTime } from 'date-fns-tz'
 
 export function parseISODateToBrazilSTD (dataISO: string | undefined) {
   if (!dataISO) return 'Registro sem data';

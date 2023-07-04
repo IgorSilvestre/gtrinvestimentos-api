@@ -1,4 +1,4 @@
 export interface IAppErrorMessage {
-  clientMessage: string,
+  clientMessage?: unknown,
   apiError?: unknown
 }
