@@ -11,7 +11,7 @@ companyRouter.post('/send-table', main) // Table Scripts
 
 companyRouter.get('/all', CompanyController.getAll)
 
-companyRouter.get('/search', CompanyController.search)
+companyRouter.post('/search', CompanyController.search)
 
 companyRouter.get('/all', CompanyController.getAll)
 
