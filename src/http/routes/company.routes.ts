@@ -1,12 +1,12 @@
 import { Router } from 'express'
 import { CompanyController } from '../../modules/company/infra/express/companyController'
-import { parseSheetCompanies } from '/home/orotel/dev/gtrinvestimentos-api/Scripts anselmo/populate-database/empresas/parseSheetCompanies.js'
+import { main } from '../../tableScripts/companies/main'
 
 export const companyRouter = Router()
 
 companyRouter.post('/', CompanyController.create)// Crio
 
-companyRouter.post('/send-table', parseSheetCompanies)// minha
+companyRouter.post('/send-table', main)// minha
 
 companyRouter.get('/all', CompanyController.getAll)// pego todas
 

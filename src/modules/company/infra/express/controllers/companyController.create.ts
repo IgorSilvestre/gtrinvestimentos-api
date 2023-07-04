@@ -11,6 +11,8 @@ export async function create (req: Request, res: Response) {
     return res.status(400).json(validatedCompanyDTO.error.errors)
   }
 
+  // TODO check if company already exists - need to create a service for this (getByName)
+
   const company: ZCompany | AppError = await CompanyService.create(companyDTO)
 
   if (company instanceof AppError) {
