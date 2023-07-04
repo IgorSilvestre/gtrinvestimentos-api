@@ -1,13 +1,14 @@
 import { Router } from 'express'
 import { TagController } from '../../modules/tag/infra/express/tagController'
-import { createTags } from "/home/orotel/dev/gtrinvestimentos-api/Scripts anselmo/populate-database/tag./createTags.js"
+import { createTags } from '../../tableScripts/tags/createTags'
 
 
 export const tagRouter = Router()
 
 tagRouter.post('/', TagController.create)
-// PostTags
-tagRouter.post('/send-tag',createTags )
+
+// TABLE SCRIPTS
+tagRouter.get('/createTags', createTags)
 
 // GET REQUESTS
 tagRouter.get('/all', TagController.getAll)
