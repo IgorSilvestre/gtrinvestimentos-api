@@ -26,12 +26,10 @@ export async function searchTagIds(
     listOfTagLabels.flatMap((tagName) => {
       if (testRegexForSearch(tagName, tag.label)) {
         if (!tagIDs.includes(tag._id)) {
-          console.log('TAG', tag, tagName)
           tagIDs.push(tag._id)
         }
       }
     }),
-    console.log('-----------------------------')
   )
   return tagIDs
 }
