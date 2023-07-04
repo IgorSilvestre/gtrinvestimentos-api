@@ -12,5 +12,5 @@ export async function getById (req: Request, res: Response) {
     return res.status(person.status).json({ error: person.message })
   }
 
-  return res.status(200).json(serializePerson(person as ZPersonModel[]))
+  return res.status(200).json(serializePerson(person as ZPersonModel))
 }

@@ -12,7 +12,7 @@ tagRouter.get('/createTags', createTags)
 
 // GET REQUESTS
 tagRouter.get('/all', TagController.getAll)
-tagRouter.get('/forSelect', TagController.getForSelect)
+tagRouter.get('/all-for-select', TagController.getForSelect)
 tagRouter.get('/:id', TagController.getById)
 
 

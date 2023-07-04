@@ -14,6 +14,11 @@ const personSchema = new mongo.Schema({
         type: String,
         required: false,
     },
+    company: {
+        type: mongo.Schema.Types.ObjectId,
+        ref: 'company',
+        required: false,
+    },
     createdAt: {
         type: Date,
         default: Date.now(),

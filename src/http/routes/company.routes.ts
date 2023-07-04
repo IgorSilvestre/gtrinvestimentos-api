@@ -4,14 +4,19 @@ import { main } from '../../tableScripts/companies/main'
 
 export const companyRouter = Router()
 
-companyRouter.post('/', CompanyController.create)// Crio
+companyRouter.post('/', CompanyController.create)
 
-companyRouter.post('/send-table', main)// minha
 
-companyRouter.get('/all', CompanyController.getAll)// pego todas
+companyRouter.post('/send-table', main) // Table Scripts
 
-companyRouter.get('/:id', CompanyController.getById)// pego pelo ID
+companyRouter.get('/all', CompanyController.getAll)
 
-companyRouter.put('/:id', CompanyController.update)// atualizo
+companyRouter.get('/search', CompanyController.search)
 
-companyRouter.delete('/:id', CompanyController.remove) // remove
+companyRouter.get('/all', CompanyController.getAll)
+
+companyRouter.get('/:id', CompanyController.getById)
+
+companyRouter.put('/:id', CompanyController.update)
+
+companyRouter.delete('/:id', CompanyController.remove)
