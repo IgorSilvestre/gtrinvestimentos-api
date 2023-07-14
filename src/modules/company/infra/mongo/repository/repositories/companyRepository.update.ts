@@ -1,15 +1,20 @@
 import { ZCompany } from '../../../../interfaces-validation/ZCompany'
 import { companyModel } from '../../companySchema'
 
-export async function update (_id: string, data: ZCompany): Promise<ZCompany | null> {
+export async function update(
+  _id: string,
+  data: ZCompany,
+): Promise<ZCompany | null> {
   try {
-    return companyModel.findOneAndUpdate(
-      { _id },
-      { $set: { ...data, lastUpdated: Date.now() } },
-      { new: true }
-    )
-  }
-  catch (err) {
+    return companyModel
+      .findOneAndUpdate(
+        { _id },
+        { $set: { ...data, lastUpdated: Date.now() } },
+        { new: true },
+      )
+      .populate('tags')
+      .populate('employees')
+  } catch (err) {
     throw new Error(err as string)
   }
 }
