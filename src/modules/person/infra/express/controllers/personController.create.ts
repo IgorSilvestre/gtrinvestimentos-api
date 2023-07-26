@@ -5,7 +5,6 @@ import { AppError } from '../../../../../shared/AppError'
 
 export async function create (req: Request, res: Response) {
   const personDTO = req.body as ZPerson
-  console.log('personDTO', personDTO)
   const validatedPersonDTO = personValidation.safeParse(personDTO)
   if (!validatedPersonDTO.success) {
     return res.status(400).json(validatedPersonDTO.error.errors)

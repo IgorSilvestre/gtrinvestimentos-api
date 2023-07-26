@@ -2,14 +2,17 @@ import { regexForSearch } from '../../../../../../shared/functions/regexForSearc
 import { ISearchParams } from '../../../../../../shared/interfaces/ISearchParams'
 import { personModel } from '../../personSchema'
 
-export async function search(queryParams: ISearchParams) {
+export async function search(queryParams: ISearchParams, isFullMatch = false) {
   const { tags, query } = queryParams
 
   try {
     const searchParams: any = {}
 
     if (tags) searchParams.tags = { $all: tags }
-    if(query) searchParams.name = { $regex: regexForSearch(query) }
+    if (query)
+      isFullMatch
+        ? (searchParams.name = { $regex: regexForSearch(query, true) })
+        : (searchParams.name = { $regex: regexForSearch(query) })
 
     const people = await personModel
       .find(searchParams)
