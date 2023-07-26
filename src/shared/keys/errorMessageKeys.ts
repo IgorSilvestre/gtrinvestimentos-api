@@ -1,4 +1,6 @@
 export const errorMessageKeys = {
+  searchFailed: 'Não foi possível validar se registro ja existe',
+  alreadyExists: 'Registro já existe',
   company: {
     notCreated: 'Não foi possível criar empresa',
     notFound: 'Empresa não encontrada!',
