@@ -2,8 +2,9 @@ import { CompanyRepository } from '../../infra/mongo/repository/CompanyRepositor
 import { AppError } from '../../../../shared/AppError'
 import { errorMessageKeys } from '../../../../shared/keys/errorMessageKeys'
 import { ZCompanyModel } from '../../infra/mongo/companySchema'
+import { ISearchParams } from '../../../../shared/interfaces/ISearchParams'
 
-export async function search (searchParams: unknown): Promise<ZCompanyModel[] | AppError> {
+export async function search (searchParams: ISearchParams): Promise<ZCompanyModel[] | AppError> {
   try {
     const companies: ZCompanyModel[] | null = await CompanyRepository.search(searchParams)
 

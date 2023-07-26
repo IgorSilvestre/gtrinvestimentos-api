@@ -7,6 +7,8 @@ personRouter.post('/', PersonController.create)
 
 personRouter.get('/all', PersonController.getAll)
 
+personRouter.post('/search', PersonController.search)
+
 personRouter.get('/:id', PersonController.getById)
 
 personRouter.put('/:id', PersonController.update)
