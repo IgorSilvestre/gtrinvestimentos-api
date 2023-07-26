@@ -1,4 +1,4 @@
-export function regexForSearch(query: string): RegExp {
+export function regexForSearch(query: string, isFullMatch = false): RegExp {
   query = query
     .replace(/a/gi, '[AÁÀÂÃ]')
     .replace(/e/gi, '[EÉÈÊ]')
@@ -6,7 +6,9 @@ export function regexForSearch(query: string): RegExp {
     .replace(/o/gi, '[OÓÒÔÕ]')
     .replace(/u/gi, '[UÚÙÛ]')
     .replace(/c/gi, '[CÇ]')
-    .replace(/s\((?=\|)/gi, '(s|)');
+    .replace(/s\((?=\|)/gi, '(s|)')
 
-  return new RegExp(query, 'gmi');
+  return isFullMatch
+    ? new RegExp(`^${query}$`, 'gmi')
+    : new RegExp(query, 'gmi')
 }

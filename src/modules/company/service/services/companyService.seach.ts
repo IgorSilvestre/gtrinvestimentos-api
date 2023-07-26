@@ -11,7 +11,7 @@ export async function search (searchParams: ISearchParams): Promise<ZCompanyMode
     if (companies === null) return new AppError(
       { clientMessage: errorMessageKeys.company.notFound },
       404)
-    return companies as ZCompanyModel[]
+    return companies
   } catch (err) {
     return new AppError(
       { clientMessage: errorMessageKeys.company.notFound, apiError: err },

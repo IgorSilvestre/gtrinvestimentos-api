@@ -1,18 +1,18 @@
 import { regexForSearch } from '../../../../../../shared/functions/regexForSearch'
+import { ISearchParams } from '../../../../../../shared/interfaces/ISearchParams'
 import { companyModel } from '../../companySchema'
 
-interface ISearchParams {
-  tags: string[]
-  query: string
-}
-export async function search(queryParams: ISearchParams) {
+export async function search(queryParams: ISearchParams, isFullMatch = false) {
   const { tags, query } = queryParams
 
   try {
     const searchParams: any = {}
 
     if (tags) searchParams.tags = { $all: tags }
-    if(query) searchParams.name = { $regex: regexForSearch(query) }
+    if (query)
+      isFullMatch
+        ? (searchParams.name = { $regex: regexForSearch(query, true) })
+        : (searchParams.name = { $regex: regexForSearch(query) })
 
     const companies = await companyModel
       .find(searchParams)
