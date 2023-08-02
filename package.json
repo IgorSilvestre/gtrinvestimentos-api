@@ -9,7 +9,7 @@
     "dev:run": "tsx src/server.ts",
     "test": "jest",
     "build": "tsup src",
-    "start": "node dist/server.js",
+    "start": "node dist/src/server.js",
     "lint": "eslint . --ext .ts",
     "lint:fix": "npm run lint -- --fix",
     "format": "prettier --write '**/*.{ts,tsx}'"
