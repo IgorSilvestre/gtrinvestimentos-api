@@ -9,6 +9,7 @@
     "dev:run": "tsx src/server.ts",
     "test": "jest",
     "build": "tsup src",
+    "vercel-build": "echo hello",
     "start": "node dist/src/server.js",
     "lint": "eslint . --ext .ts",
     "lint:fix": "npm run lint -- --fix",
