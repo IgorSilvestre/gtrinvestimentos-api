@@ -12,7 +12,7 @@ export async function search(queryParams: ISearchParams, isFullMatch = false) {
     if (query)
       isFullMatch
         ? (searchParams.name = { $regex: regexForSearch(query, true) })
-        : (searchParams.name = { $regex: regexForSearch(query) })
+        : (searchParams.$text = { $search: query })
 
     const companies = await companyModel
       .find(searchParams)

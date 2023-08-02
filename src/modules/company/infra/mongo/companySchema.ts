@@ -36,5 +36,7 @@ const companySchema = new mongo.Schema({
     }
 })
 
+companySchema.index({'$**': 'text'})
+
 export const companyModel = mongo.model('company', companySchema, 'companies')
 export interface ZCompanyModel extends Document, ZCompany {}
