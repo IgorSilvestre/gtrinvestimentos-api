@@ -1,5 +1,5 @@
 node_modules
 .env
 dist
-src/table-scripts
+table-scripts
 src/tableScripts
