@@ -31,5 +31,7 @@ const personSchema = new mongo.Schema({
     },
 })
 
+personSchema.index({'$**': 'text'})
+
 export const personModel = mongo.model('person', personSchema, 'people')
 export interface ZPersonModel extends mongo.Document, ZPerson {}
