@@ -13,6 +13,7 @@ export async function search(queryParams: ISearchParams, isFullMatch = false) {
       isFullMatch
         ? (searchParams.name = { $regex: regexForSearch(query, true) })
         : (searchParams.$text = { $search: query })
+        // TODO add escapeRegex function to query PERSON
 
     const people = await personModel
       .find(searchParams)
