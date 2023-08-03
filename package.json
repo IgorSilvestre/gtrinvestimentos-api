@@ -3,14 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "type": "commonjs",
-  "main": "index.js",
   "scripts": {
     "dev": "tsx --watch src/server.ts ",
     "dev:run": "tsx src/server.ts",
     "test": "jest",
     "build": "tsup src",
-    "vercel-build": "echo hello",
-    "start": "node dist/src/server.js",
+    "start": "node dist/server.js",
     "lint": "eslint . --ext .ts",
     "lint:fix": "npm run lint -- --fix",
     "format": "prettier --write '**/*.{ts,tsx}'"
