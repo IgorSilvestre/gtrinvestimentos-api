@@ -16,7 +16,7 @@ app.use('api/v1', router)
 
 const PORT = process.env.PORT || 5000
 app.listen(PORT, () =>
-  console.log(`GTRINVESTIMENTOS-API running on http://localhost:${PORT}`),
+  console.log(`GTRINVESTIMENTOS-API running on PORT=${PORT}`),
 )
 
 export { app }
