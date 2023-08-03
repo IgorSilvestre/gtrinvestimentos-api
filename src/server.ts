@@ -12,7 +12,7 @@ app.use(
 
 app.use(express.json())
 
-app.use('api/v1', router)
+app.use('/api/v1', router)
 
 const PORT = process.env.PORT || 5000
 app.listen(PORT, () =>
