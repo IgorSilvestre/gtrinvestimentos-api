@@ -5,6 +5,7 @@ import { remove } from './services/companyService.remove'
 import { getAll } from './services/companyService.getAll'
 import { search } from './services/companyService.seach'
 import { unregisterEmployee } from './services/companyService.unregisterEmployee'
+import { registerEmployee } from './services/companyService.registerEmployee'
 
 export const CompanyService = {
   create,
@@ -14,4 +15,5 @@ export const CompanyService = {
   search,
   remove,
   unregisterEmployee,
+  registerEmployee,
 }
