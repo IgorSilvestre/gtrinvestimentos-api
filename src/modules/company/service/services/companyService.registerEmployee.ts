@@ -2,7 +2,7 @@ import { AppError } from "../../../../shared/AppError"
 import { errorMessageKeys } from "../../../../shared/keys/errorMessageKeys"
 import { CompanyService } from "../companyService"
 
-export async function registerEmployee (employeeId: string, companyId: string) {
+export async function registerEmployee (employeeId: string, companyId: string): Promise<true | AppError> {
     try {
         const company = await CompanyService.getById(companyId)
         if (company instanceof AppError) {
