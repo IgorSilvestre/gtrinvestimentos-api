@@ -8,7 +8,7 @@ export async function create (req: Request, res: Response) {
 
   const validatedCompanyDTO = companyValidation.safeParse(companyDTO)
   if (!validatedCompanyDTO.success) {
-    return res.status(400).json(validatedCompanyDTO.error.errors)
+    return res.status(422).json(validatedCompanyDTO.error.errors)
   }
 
   // TODO check if company already exists - need to create a service for this (getByName)
@@ -18,5 +18,5 @@ export async function create (req: Request, res: Response) {
   if (company instanceof AppError) {
     return res.status(company.status).json({ error: company.message })
   }
-  return res.status(200).json(company as ZCompany)
+  return res.status(201).json(company as ZCompany)
 }
