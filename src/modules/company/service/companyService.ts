@@ -4,6 +4,7 @@ import { getById } from './services/companyService.getById'
 import { remove } from './services/companyService.remove'
 import { getAll } from './services/companyService.getAll'
 import { search } from './services/companyService.seach'
+import { unregisterEmployee } from './services/companyService.unregisterEmployee'
 
 export const CompanyService = {
   create,
@@ -12,4 +13,5 @@ export const CompanyService = {
   getAll,
   search,
   remove,
+  unregisterEmployee,
 }
