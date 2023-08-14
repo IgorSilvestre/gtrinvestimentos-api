@@ -3,7 +3,7 @@ import { companyModel } from '../../companySchema'
 
 export async function update(
   _id: string,
-  data: ZCompany,
+  data: {},
 ): Promise<ZCompany | null> {
   try {
     return companyModel

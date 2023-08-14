@@ -5,12 +5,13 @@ export const companyRouter = Router()
 
 companyRouter.post('/', CompanyController.create)
 
-
 companyRouter.get('/all', CompanyController.getAll)
 
 companyRouter.post('/search', CompanyController.search)
 
 companyRouter.get('/all', CompanyController.getAll)
+
+companyRouter.post('/registerEmployee', CompanyController.registerEmployee)
 
 companyRouter.get('/all-for-select', CompanyController.getAllForSelect)
 
