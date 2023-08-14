@@ -1,7 +1,5 @@
 import { Router } from 'express'
 import { TagController } from '../../modules/tag/infra/express/tagController'
-import { createTags } from '../../tableScripts/tags/createTags'
-
 
 export const tagRouter = Router()
 

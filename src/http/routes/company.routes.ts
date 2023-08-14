@@ -1,6 +1,5 @@
 import { Router } from 'express'
 import { CompanyController } from '../../modules/company/infra/express/companyController'
-import { main } from '../../tableScripts/companies/main'
 
 export const companyRouter = Router()
 
