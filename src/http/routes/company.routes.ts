@@ -6,9 +6,6 @@ export const companyRouter = Router()
 
 companyRouter.post('/', CompanyController.create)
 
-
-companyRouter.post('/send-table', main) // Table Scripts
-
 companyRouter.get('/all', CompanyController.getAll)
 
 companyRouter.post('/search', CompanyController.search)

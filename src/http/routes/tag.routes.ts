@@ -7,9 +7,6 @@ export const tagRouter = Router()
 
 tagRouter.post('/', TagController.create)
 
-// TABLE SCRIPTS
-tagRouter.get('/createTags', createTags)
-
 // GET REQUESTS
 tagRouter.get('/all', TagController.getAll)
 tagRouter.get('/all-for-select', TagController.getForSelect)
