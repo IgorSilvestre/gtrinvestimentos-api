@@ -15,6 +15,7 @@ export const personValidation = z.object({
     company: z.string(stringOptions('company')).optional(),
     lastUpdated: z.date().optional(),
     createdAt: z.date().optional(),
+    error: z.string().optional(),
 })
 
 export type ZPerson = z.infer<typeof personValidation>
