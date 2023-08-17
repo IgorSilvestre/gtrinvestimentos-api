@@ -19,9 +19,9 @@ export function serializeCompanyFromSheet(
   }
 
   return {
-    name: typeof company.nome === 'string' ? company.nome : '',
+    name: typeof company.nome === 'string' ? company.nome.trim() : '',
     tagLabels: Array.isArray(tagLabelsArray) ? tagLabelsArray : [],
-    target: typeof company.teseInvestimento === 'string' ? company.teseInvestimento : '',
-    description: typeof company.Descrição === 'string' ? company.Descrição : '',
+    target: typeof company.teseInvestimento === 'string' ? company.teseInvestimento.trim() : '',
+    description: typeof company.Descrição === 'string' ? company.Descrição.trim() : '',
   }
 }

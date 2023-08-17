@@ -1,7 +1,7 @@
 import { Request, Response } from 'express'
 import { parseSheetToArrayOfObjects } from '../utils/parseSheetToObject'
 import { serializeCompanyFromSheet } from './serializeCompanyFromSheet'
-import { searchTagIds } from './searchTagIds'
+import { searchTagIds } from '../utils/searchTagIds'
 import { createCompanyOnDatabase } from './createCompanyOnDatabase'
 
 export async function main(req: Request, res: Response) {

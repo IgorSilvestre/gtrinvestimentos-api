@@ -2,6 +2,7 @@ import { CompanyService } from '../../modules/company/service/companyService'
 import { IParsedCompany } from '../interfaces/IParsedCompany'
 
 export async function createCompanyOnDatabase(company: IParsedCompany) {
+  console.log('company', company)
   try {
     if (typeof company.name !== 'string') {
       // console.log('BROKEN COMPANY >>>>')
