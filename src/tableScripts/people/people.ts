@@ -1,10 +1,11 @@
-import { parseSheetToArrayOfObjects } from '/home/user/ff/gtrinvestimentos-api/src/tableScripts/utils/parseSheetToObject.ts'
-import { arrIncludeRegex } from '/home/user/ff/gtrinvestimentos-api/src/tableScripts/utils/arrIncludeRegex.ts'
-import { normalizedPeople } from '/home/user/ff/gtrinvestimentos-api/src/tableScripts/people/parsePeople.ts'
-import { formatPhoneNumber } from '/home/user/ff/gtrinvestimentos-api/src/tableScripts/utils/formatPhoneNumber.ts'
+import { arrIncludeRegex } from '../utils/arrIncludeRegex'
+import { formatPhoneNumber } from '../utils/formatPhoneNumber'
+import { parseSheetToArrayOfObjects } from '../utils/parseSheetToObject'
+import { IPersonSheet } from './IPersonSheet'
+import { normalizedPeople } from './parsePeople'
 
-export async function sendPeopleToDB(req: Request, res: Response) {
-  const people = []
+export async function parsePeopleFromSheet(): Promise<IPersonSheet[]> {
+  const people: IPersonSheet[] = []
   parseSheetToArrayOfObjects('Pessoas').forEach((pessoa) => {
     const areaAtuacao = ('' + pessoa.AreaAtuacao).split(',')
     const addToArrOfAreaAtuacao = []
@@ -29,34 +30,31 @@ export async function sendPeopleToDB(req: Request, res: Response) {
       })
     }
 
+    // ajeitando nome
+    if(pessoa.Nome && typeof pessoa.Nome == 'string') pessoa.Nome = pessoa.Nome.trim()
+
+    // ajeitando empresa
+    if (pessoa.empresa && typeof pessoa.empresa == 'string') pessoa.empresa = pessoa.empresa.trim()
+
     //ajeitando os emails
     const emails = []
     const { Email1, Email2 } = pessoa
-    if (Email1) emails.push(Email1)
-    if (Email2) emails.push(Email2)
+    if (Email1 && typeof Email1 == 'string') emails.push(Email1.trim())
+    if (Email2 && typeof Email2 == 'string') emails.push(Email2.trim())
+    pessoa.emails = emails
 
     //ajeitando os telefones
     const telefones = []
     const { Telefone1, Telefone2 } = pessoa
-    if (Telefone1) telefones.push(formatPhoneNumber(Telefone1))
-    if (Telefone2) telefones.push(formatPhoneNumber(Telefone2))
+    if (Telefone1 && typeof Telefone1 == 'string') telefones.push(formatPhoneNumber(Telefone1.trim()))
+    if (Telefone2 && typeof Telefone2 == 'string') telefones.push(formatPhoneNumber(Telefone2.trim()))
+    pessoa.telefones = telefones
 
     // ajeitando a AreaAtuacao
-    if(areaAtuacao.includes('undefined')) areaAtuacao.splice(areaAtuacao.indexOf('undefined'), 1)
+    if (areaAtuacao.includes('undefined'))
+      areaAtuacao.splice(areaAtuacao.indexOf('undefined'), 1)
 
-    // criando objFormatado
-    const { Nome, empresa, target } = pessoa
-
-    people.push(
-      normalizedPeople(
-        Nome,
-        empresa,
-        emails.length > 0 ? emails : undefined,
-        telefones.length > 0 ? telefones : undefined,
-        areaAtuacao.length > 0 ? areaAtuacao : undefined,
-        target,
-      ),
-    )
+    people.push(normalizedPeople(pessoa))
   })
-  res.status(200).json(people)
+  return people
 }

@@ -1,25 +1,14 @@
+import { IPersonSheet } from './IPersonSheet'
 
-export function normalizedPeople(Nome,Empresa,emails,telefones,areaAtuacao,target){ 
+export function normalizedPeople(person: IPersonSheet) {
+  let obj: IPersonSheet = {}
 
-  let obj = {};
-  if (Nome) {
-    obj.Nome = Nome;
-  }
-  if (Empresa) {
-    obj.Empresa = Empresa;
-  }
-  if (emails) {
-    obj.emails = emails;
-  }
-  if (telefones) {
-    obj.telefones = telefones;
-  }
-  if (areaAtuacao) {
-    obj.areaAtuacao = areaAtuacao;
-  }
-  if (target) {
-    obj.target = target;
-  }
-  return obj;
+  if (person.Nome) obj.Nome = person.Nome
+  if (person.empresa) obj.empresa = person.empresa
+  if (person.emails) obj.emails = person.emails
+  if (person.telefones) obj.telefones = person.telefones
+  if (person.areaAtuacao) obj.areaAtuacao = person.areaAtuacao
+  if (person.target) obj.target = person.target
 
-  }
+  return obj
+}
