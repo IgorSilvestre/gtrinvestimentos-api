@@ -1,11 +1,11 @@
+import { ZPerson } from '../../modules/person/interfaces-validation/ZPerson'
 import { arrIncludeRegex } from '../utils/arrIncludeRegex'
 import { formatPhoneNumber } from '../utils/formatPhoneNumber'
 import { parseSheetToArrayOfObjects } from '../utils/parseSheetToObject'
-import { IPersonSheet } from './IPersonSheet'
 import { normalizedPeople } from './parsePeople'
 
-export async function parsePeopleFromSheet(): Promise<IPersonSheet[]> {
-  const people: IPersonSheet[] = []
+export async function parsePeopleFromSheet(): Promise<ZPerson[]> {
+  const people: ZPerson[] = []
   parseSheetToArrayOfObjects('Pessoas').forEach((pessoa) => {
     const tags: string[] = []
     const addToTagsArr = []
