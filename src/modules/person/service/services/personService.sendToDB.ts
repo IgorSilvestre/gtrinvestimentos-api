@@ -10,24 +10,27 @@ import { ZPerson } from '../../interfaces-validation/ZPerson'
 import { PersonService } from '../personService'
 
 export async function sendToDB() {
-  const people: IPersonSheet[] = await parsePeopleFromSheet()
+  const people: ZPerson[] = await parsePeopleFromSheet()
   const tags: ZTag[] | AppError = await TagRepository.getAll()
   const createdPeople: ZPerson[] = []
-  const parsedPeople: ZPerson[] = []
 
   for (const person of people) {
+
+    // NAME
+    if (!person.name || person.name.length < 1) continue
+    
     // COMPANY
     try {
-      if (person.empresa !== undefined) {
+    if (person.company !== undefined) {
         const company: ZCompany[] | AppError = await CompanyRepository.search({
-          query: person.empresa?.trim(),
+          query: person.company?.trim(),
         }, true)
         if (company instanceof AppError) throw console.log(company.message)
         if (company.length > 1) {
-          console.log('MULTIPLE RESULTS - ', person.empresa, company.length)
+          console.log('MULTIPLE RESULTS - ', person.company, company.length)
           console.log('-------------------------------------------')
         } else if (company.length == 1) {
-          person.empresa = company[0]._id
+          person.company = company[0]._id
         }
       }
     } catch (error) {
@@ -45,26 +48,10 @@ export async function sendToDB() {
       person.tags = tagsIds
     }
 
-    // console.log('Nome', person.Nome)
-    // PARSE PERSON
-    const parsedPerson: ZPerson = {}
-    if (person.Nome) parsedPerson.name = person.Nome
-    else {
-        console.log('NO NAME', person)
-        continue
-    } 
-    
-    if (person.empresa) parsedPerson.company = person.empresa
-    // if(person.emails) parsedPerson['emails'] = person.emails
-    // if(person.telefones) parsedPerson['phones'] = person.telefones
-    if (person.tags) parsedPerson.tags = person.tags
-    // if(person.target) parsedPerson['target'] = person.target
-    parsedPeople.push(parsedPerson)
-
     // RUN!!!
     try {
       const createdPerson: ZPerson | AppError = await PersonService.create(
-        parsedPerson,
+        person,
       )
       if (createdPerson instanceof AppError && createdPerson.status === 409) console.log(createdPerson.message)
       else if (createdPerson instanceof AppError) console.log(createdPerson.message)
@@ -74,5 +61,5 @@ export async function sendToDB() {
     }
   }
 
-  return parsedPeople
+  return people
 }
