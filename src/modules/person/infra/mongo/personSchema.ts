@@ -19,6 +19,10 @@ const personSchema = new mongo.Schema({
         ref: 'company',
         required: false,
     },
+    target: {
+        type: String,
+        required: false,
+    },
     createdAt: {
         type: Date,
         default: Date.now(),
