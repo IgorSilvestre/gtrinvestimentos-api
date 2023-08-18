@@ -1,0 +1,28 @@
+_id: req_0fd7a0d0e8124fb1b23b1b2a7910d997
+type: Request
+parentId: fld_ae1cb4ffef2747898199ec176130c526
+modified: 1692388409585
+created: 1690390300308
+url: http://localhost:3005/api/v1/person/search
+name: search
+description: ""
+method: POST
+body:
+  mimeType: application/json
+  text: |-
+    {
+    	"query": "a"
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+authentication: {}
+metaSortKey: -1690390300308
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

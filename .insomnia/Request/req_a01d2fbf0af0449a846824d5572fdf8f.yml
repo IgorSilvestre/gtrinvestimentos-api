@@ -1,0 +1,29 @@
+_id: req_a01d2fbf0af0449a846824d5572fdf8f
+type: Request
+parentId: fld_3e43bf36e89f49b2bd251de85e707af4
+modified: 1692388445167
+created: 1691864307842
+url: http://localhost:3005/api/v1/company/registerEmployee
+name: register-employee
+description: ""
+method: POST
+body:
+  mimeType: application/json
+  text: |-
+    {   
+    	"employeeId": "64d3d4f093614873d82ee395",
+    	"companyId": "64d395e507f218f0bfd4fd58"
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+authentication: {}
+metaSortKey: -1691864307842
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

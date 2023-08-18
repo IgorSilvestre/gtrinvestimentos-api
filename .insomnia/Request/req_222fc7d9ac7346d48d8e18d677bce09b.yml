@@ -1,0 +1,28 @@
+_id: req_222fc7d9ac7346d48d8e18d677bce09b
+type: Request
+parentId: fld_3e43bf36e89f49b2bd251de85e707af4
+modified: 1692388425838
+created: 1684802478208
+url: http://localhost:3005/api/v1/company/
+name: create-company
+description: ""
+method: POST
+body:
+  mimeType: application/json
+  text: |-
+    {
+    	"name": "julinao dalin"
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+authentication: {}
+metaSortKey: -1684802268134
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

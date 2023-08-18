@@ -1,0 +1,28 @@
+_id: req_8b0015d09c7f47d39924b7b670d886a3
+type: Request
+parentId: fld_68fe17ade61748ac9c635f2508eeca06
+modified: 1692388467663
+created: 1684802430691
+url: http://localhost:3005/api/v1/tag/646bb43d16fbe136826e3f25
+name: tag-by-id
+description: ""
+method: PUT
+body:
+  mimeType: application/json
+  text: |-
+    {
+    	"label": "M"
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+authentication: {}
+metaSortKey: -1684802271257.25
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

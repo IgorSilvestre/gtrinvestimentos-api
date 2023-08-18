@@ -1,0 +1,21 @@
+_id: req_52b743b5a89a4d968a7c6141af2839d3
+type: Request
+parentId: wrk_cd7b86cdb0274ce98f8252bb705d9482
+modified: 1692388275601
+created: 1691009533044
+url: http://localhost:3005/api/v1
+name: New Request
+description: ""
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1691009533044
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

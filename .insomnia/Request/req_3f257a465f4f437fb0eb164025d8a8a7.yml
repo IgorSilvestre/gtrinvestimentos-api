@@ -1,0 +1,28 @@
+_id: req_3f257a465f4f437fb0eb164025d8a8a7
+type: Request
+parentId: fld_68fe17ade61748ac9c635f2508eeca06
+modified: 1692388461845
+created: 1684802341596
+url: http://localhost:3005/api/v1/tag/
+name: tag
+description: ""
+method: POST
+body:
+  mimeType: application/json
+  text: |-
+    {
+    	"label": "LogísticO"
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+authentication: {}
+metaSortKey: -1684802268134
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global
