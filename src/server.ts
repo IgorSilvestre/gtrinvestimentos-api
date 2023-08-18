@@ -12,7 +12,7 @@ app.use(
 
 app.use(express.json())
 
-app.use(router)
+app.use('/api/v1', router)
 
 const PORT = 3005
 
