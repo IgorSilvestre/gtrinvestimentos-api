@@ -15,16 +15,18 @@ export async function sendToDB() {
   const createdPeople: ZPerson[] = []
 
   for (const person of people) {
-
     // NAME
     if (!person.name || person.name.length < 1) continue
-    
+
     // COMPANY
     try {
-    if (person.company !== undefined) {
-        const company: ZCompany[] | AppError = await CompanyRepository.search({
-          query: person.company?.trim(),
-        }, true)
+      if (person.company !== undefined) {
+        const company: ZCompany[] | AppError = await CompanyRepository.search(
+          {
+            query: person.company?.trim(),
+          },
+          true,
+        )
         if (company instanceof AppError) throw console.log(company.message)
         if (company.length > 1) {
           console.log('MULTIPLE RESULTS - ', person.company, company.length)
@@ -53,11 +55,13 @@ export async function sendToDB() {
       const createdPerson: ZPerson | AppError = await PersonService.create(
         person,
       )
-      if (createdPerson instanceof AppError && createdPerson.status === 409) console.log(createdPerson.message)
-      else if (createdPerson instanceof AppError) console.log(createdPerson.message)
+      if (createdPerson instanceof AppError && createdPerson.status === 409)
+        console.log(createdPerson.message)
+      else if (createdPerson instanceof AppError)
+        console.log(createdPerson.message)
       else createdPeople.push(createdPerson)
     } catch (error) {
-        console.log('ERROR', error)
+      console.log('ERROR', error)
     }
   }
 
