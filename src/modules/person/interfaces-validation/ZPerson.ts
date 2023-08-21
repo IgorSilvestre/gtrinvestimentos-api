@@ -11,6 +11,7 @@ export const personValidation = z.object({
     name: z
         .string(stringOptions('name')).min(2).optional(),
     tags: z.array(z.string(stringOptions('tags'))).optional(),
+    target: z.string(stringOptions('target')).optional(),
     email: z.string(stringOptions('email')).optional(),
     company: z.string(stringOptions('company')).optional(),
     lastUpdated: z.date().optional(),
