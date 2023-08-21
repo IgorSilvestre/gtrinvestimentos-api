@@ -5,8 +5,6 @@ export const companyRouter = Router()
 
 companyRouter.post('/', CompanyController.create)
 
-companyRouter.get('/all', CompanyController.getAll)
-
 companyRouter.post('/search', CompanyController.search)
 
 companyRouter.get('/all', CompanyController.getAll)

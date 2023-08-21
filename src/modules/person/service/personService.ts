@@ -4,7 +4,6 @@ import { getById } from './services/personService.getById'
 import { remove } from './services/personService.remove'
 import { getAll } from './services/personService.getAll'
 import { search } from './services/personService.search'
-import { sendToDB } from './services/personService.sendToDB'
 
 export const PersonService = {
   create,
@@ -12,6 +11,5 @@ export const PersonService = {
   getById,
   getAll,
   search,
-  sendToDB,
   remove,
 }
