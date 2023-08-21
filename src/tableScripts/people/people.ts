@@ -2,7 +2,7 @@ import { ZPerson } from '../../modules/person/interfaces-validation/ZPerson'
 import { arrIncludeRegex } from '../utils/arrIncludeRegex'
 import { formatPhoneNumber } from '../utils/formatPhoneNumber'
 import { parseSheetToArrayOfObjects } from '../utils/parseSheetToObject'
-import { normalizedPeople } from './parsePeople'
+import { parsePeople } from './parsePeople'
 
 export async function parsePeopleFromSheet(): Promise<ZPerson[]> {
   const people: ZPerson[] = []
@@ -55,9 +55,8 @@ export async function parsePeopleFromSheet(): Promise<ZPerson[]> {
     // ajeitando a Tags
     if (tags.includes('undefined')) tags.splice(tags.indexOf('undefined'), 1)
     pessoa.tags = tags
-    
 
-    people.push(normalizedPeople(pessoa))
+    people.push(parsePeople(pessoa))
   })
   return people
 }
