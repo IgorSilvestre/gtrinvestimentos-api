@@ -5,8 +5,11 @@ import { ZCompanyModel } from '../../infra/mongo/companySchema'
 import { ISearchParams } from '../../../../shared/interfaces/ISearchParams'
 
 export async function search (searchParams: ISearchParams): Promise<ZCompanyModel[] | AppError> {
+  let {isFullMatch} = searchParams
+  if (isFullMatch) delete searchParams.isFullMatch
+
   try {
-    const companies: ZCompanyModel[] | null = await CompanyRepository.search(searchParams)
+    const companies: ZCompanyModel[] | null = await CompanyRepository.search(searchParams, isFullMatch)
 
     if (companies === null) return new AppError(
       { clientMessage: errorMessageKeys.company.notFound },
