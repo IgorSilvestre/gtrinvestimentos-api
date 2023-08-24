@@ -26,6 +26,10 @@ export async function create(personDTO: ZPerson): Promise<ZPerson | AppError> {
     })
   }
 
+  // NORMALIZING DATA
+  // Normalizing email
+  if (personDTO.email) personDTO.email = personDTO.email.toLowerCase()
+
   // Create person
   let personSaved: ZPerson | AppError
   try {
