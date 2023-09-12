@@ -5,8 +5,6 @@ export const personRouter = Router()
 
 personRouter.post('/', PersonController.create)
 
-personRouter.get('/table', PersonController.sendToDB)
-
 personRouter.get('/all', PersonController.getAll)
 
 personRouter.post('/search', PersonController.search)
