@@ -23,11 +23,19 @@ const personSchema = new mongo.Schema({
         type: String,
         required: false,
     },
-    landArea: {
+    minLandArea: {
         type: Number,
         required: false,
     },
-    vgv: {
+    maxLandArea: {
+        type: Number,
+        required: false,
+    },
+    minVgv: {
+        type: Number,
+        required: false,
+    },
+    maxVgv: {
         type: Number,
         required: false,
     },
