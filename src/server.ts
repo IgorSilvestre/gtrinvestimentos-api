@@ -6,7 +6,7 @@ const app = express()
 
 app.use(
   cors({
-    origin: '*', // TODO alterar para receber apenas do front da empresa
+    origin: 'http://localhost:5173', // TODO alterar para receber apenas do front da empresa
   }),
 )
 
