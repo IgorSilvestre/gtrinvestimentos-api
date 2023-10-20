@@ -4,3 +4,4 @@ dist
 table-scripts
 src/tableScripts
 table-scripts/**/*
+.insomnia
