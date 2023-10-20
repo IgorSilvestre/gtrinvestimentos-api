@@ -23,4 +23,7 @@ export const errorMessageKeys = {
     notUpdated: 'Não foi possível atualizar pessoa',
     notRemoved: 'Não foi possível remover pessoa',
   },
+  externalAPI: {
+    fetchCNPJData: 'Não foi possível buscar dados do CNPJ',
+  }
 }

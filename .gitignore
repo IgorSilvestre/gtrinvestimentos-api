@@ -1,4 +1,6 @@
 node_modules
 .env
 dist
-countLines.sh
+table-scripts
+src/tableScripts
+table-scripts/**/*

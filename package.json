@@ -2,13 +2,11 @@
   "name": "gtrinvestimentos-api",
   "version": "1.0.0",
   "description": "",
-  "type": "commonjs",
+  "type": "module",
   "scripts": {
-    "dev": "tsx --watch src/server.ts ",
-    "dev:run": "tsx src/server.ts",
+    "dev": "bun --watch run src/server.ts ",
     "test": "jest",
-    "build": "tsup src",
-    "start": "node dist/server.js",
+    "start": "bun run src/server.ts",
     "lint": "eslint . --ext .ts",
     "lint:fix": "npm run lint -- --fix",
     "format": "prettier --write '**/*.{ts,tsx}'"
@@ -40,6 +38,11 @@
     "prettier": "^2.8.3",
     "ts-jest": "^29.1.1",
     "tsup": "^6.5.0",
-    "tsx": "^3.12.2"
+    "tsx": "^3.12.2",
+    "bun-types": "latest"
+  },
+  "module": "index.ts",
+  "peerDependencies": {
+    "typescript": "^5.0.0"
   }
 }
