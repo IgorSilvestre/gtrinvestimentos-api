@@ -1,4 +1,4 @@
-import { fetchCNPJData } from "./controllers/externalAPIController.fetchCNPJData";
+import { fetchCNPJData } from "./controllers/fetchCNPJData.externalAPIController";
 
 export const externalApiController = {
     fetchCNPJData
