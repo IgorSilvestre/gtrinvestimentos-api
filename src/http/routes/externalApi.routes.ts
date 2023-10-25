@@ -4,3 +4,5 @@ import { externalApiController } from '../../modules/externalAPI/infra/express/e
 export const externalAPIRouter = Router()
 
 externalAPIRouter.get('/fetch-cnpj-data/:cnpj', externalApiController.fetchCNPJData)
+externalAPIRouter.post('/company-searchEngine', externalApiController.companySearchEngine)
+

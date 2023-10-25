@@ -1,6 +1,8 @@
 export const errorMessageKeys = {
   checkIfExistsFailed: 'Não foi possível validar se registro ja existe',
   alreadyExists: 'Registro já existe',
+  noQuery: 'Sem query de busca',
+  cantSearch: 'Não foi possível realizar busca',
   company: {
     cantRegisterEmployee: 'Não foi possível vincular funcionário',
     cantUnregisterEmployee: 'Não foi possível desvincular funcionário',
@@ -24,6 +26,6 @@ export const errorMessageKeys = {
     notRemoved: 'Não foi possível remover pessoa',
   },
   externalAPI: {
-    fetchCNPJData: 'Não foi possível buscar dados do CNPJ',
+    cantFetchCNPJData: 'Não foi possível buscar dados do CNPJ',
   }
 }
