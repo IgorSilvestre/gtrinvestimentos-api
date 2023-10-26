@@ -76,14 +76,14 @@ function normalizeCNPJData(CNPJData: ICNPJData) {
 export async function fetchCNPJData(cnpj: string) {
   try {
     const response = await axios.get(
-      externalAPIConfigs.fetchCNPJData + cnpj,
+      externalAPIConfigs.fetchCNPJData.endpoint + cnpj,
     )
     return normalizeCNPJData(response.data)
   } catch (err: any) {
     return new AppError({
       clientMessage: errorMessageKeys.externalAPI.cantFetchCNPJData,
       apiError: err,
-    }, err.response.status)
+    })
   }
 }
 
