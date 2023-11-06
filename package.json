@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "type": "module",
+  "module": "es2022",
   "scripts": {
     "dev": "bun --watch run src/server.ts ",
     "test": "jest",
