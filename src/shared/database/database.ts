@@ -5,8 +5,11 @@ dotenv.config()
 
 const url = process.env.DATABASE_MONGO_STRING || ''
 
-mongo.connect(url)
-mongo.Promise = global.Promise
+try {
+  await mongo.connect(url);
+  console.log('MongoDB Connected!');
+} catch (err) {
+  console.error('Failed to connect to MongoDB', err);
+}
 
-console.log('MongoDB Connected!')
 export default mongo
