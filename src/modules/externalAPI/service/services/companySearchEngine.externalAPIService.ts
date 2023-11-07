@@ -3,7 +3,6 @@ import { AxiosRequestConfig } from 'axios'
 import { AppError } from '../../../../shared/AppError';
 import { errorMessageKeys } from '../../../../shared/keys/errorMessageKeys';
 import { externalAPIConfigs } from "../../../../shared/externalAPIEndpoints"
-import { string } from 'zod';
 
 export interface ICompanySearchEngineData {
   business_id: string;
