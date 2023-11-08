@@ -1,5 +1,5 @@
   # Use the oven/bun image
-  FROM bun
+  FROM oven/bun
 
   # Set the working directory in the container to /app
   WORKDIR /app
