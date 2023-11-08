@@ -10,7 +10,7 @@
     "build": "bun build src/server.ts --outdir out --target bun",
     "dev": "bun --watch run src/server.ts",
     "test": "jest",
-    "start": "bun out/server.js",
+    "start": "node out/server.js",
     "lint": "eslint . --ext .ts",
     "lint:fix": "npm run lint -- --fix",
     "format": "prettier --write '**/*.{ts,tsx}'"
