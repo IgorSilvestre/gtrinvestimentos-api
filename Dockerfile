@@ -20,4 +20,4 @@
   EXPOSE 3000
 
   # Run the application
-  CMD ["bun", "run" "start"]
+  CMD ["bun", "run", "start"]
