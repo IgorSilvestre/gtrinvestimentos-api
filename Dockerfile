@@ -1,5 +1,5 @@
   # Use the oven/bun image
-  FROM oven/bun
+  FROM node
 
   # Set the working directory in the container to /app
   WORKDIR /app
@@ -17,7 +17,7 @@
   RUN bun run build
 
   # Expose port 3000
-  EXPOSE 3000
+  EXPOSE 3005
 
   # Run the application
   CMD ["bun", "run", "start"]
