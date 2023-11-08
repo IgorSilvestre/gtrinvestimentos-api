@@ -4,15 +4,13 @@
   "description": "",
   "type": "module",
   "scripts": {
-    "node:dev": "tsx --watch src/server.ts ",
-    "dev:run": "tsx src/server.ts",
-    "node:build": "tsup src",
     "build": "bun build src/server.ts --outdir out --target bun",
     "dev": "bun --watch run src/server.ts",
     "test": "jest",
-    "start": "node out/server.js",
+    "start:build": "bun out/server.js",
+    "start": "bun src/server.ts",
     "lint": "eslint . --ext .ts",
-    "lint:fix": "npm run lint -- --fix",
+    "lint:fix": "bun run lint -- --fix",
     "format": "prettier --write '**/*.{ts,tsx}'"
   },
   "author": "Igor Silvestre",
@@ -48,8 +46,6 @@
     "jest": "^29.5.0",
     "patch-package": "^8.0.0",
     "prettier": "^2.8.3",
-    "ts-jest": "^29.1.1",
-    "tsup": "^6.5.0",
-    "tsx": "^3.12.2"
+    "ts-jest": "^29.1.1"
   }
 }
