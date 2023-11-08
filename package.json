@@ -7,7 +7,7 @@
     "node:dev": "tsx --watch src/server.ts ",
     "dev:run": "tsx src/server.ts",
     "node:build": "tsup src",
-    "build": "bun build src/server.ts --outdir out --target node",
+    "build": "bun build src/server.ts --outdir out --target bun",
     "dev": "bun --watch run src/server.ts",
     "test": "jest",
     "start": "node out/server.js",
