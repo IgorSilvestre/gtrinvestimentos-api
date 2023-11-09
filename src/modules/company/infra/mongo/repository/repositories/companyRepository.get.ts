@@ -6,10 +6,8 @@ import { ICompanyDocument } from '../../../../interfaces-validation/ICompanyMode
 export async function get(
   paginationParams: IPaginationParams,
 ): Promise<ICompanyDocument[]> {
-  let { page, limit } = paginationParams
-
-  if (!page) page = defaultValues.paginationPage
-  if (!limit) limit = defaultValues.paginationLimit
+  const page = paginationParams?.page || defaultValues.paginationPage
+  const limit = paginationParams?.limit || defaultValues.paginationLimit
 
   try {
     const companies = await companyModel
@@ -20,6 +18,7 @@ export async function get(
       .populate('employees')
       .skip((page - 1) * limit)
       .limit(limit)
+      .lean()
 
     return companies
   } catch (err) {

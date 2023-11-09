@@ -31,7 +31,7 @@ export async function search(
       .skip((page - 1) * limit)
       .limit(limit)
 
-    return companies as any // TODO there is type error here, I think is becuse the tags IDs are not strings
+    return companies
   } catch (err) {
     throw new Error(err as string)
   }
