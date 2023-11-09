@@ -20,4 +20,4 @@
   EXPOSE 3005
 
   # Run the application
-  CMD ["bun", "run", "start"]
+  CMD ["bun", "run", "start:build"]
