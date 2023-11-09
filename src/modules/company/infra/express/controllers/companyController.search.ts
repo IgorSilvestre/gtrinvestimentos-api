@@ -5,7 +5,8 @@ import { CompanyService } from '../../../service/companyService'
 import { normalizeCompanies } from '../../../interfaces-validation/normalizeCompanies'
 
 export async function search (req: Request, res: Response) {
-  const companies: ZCompanyModel[] | AppError = await CompanyService.search(req.body)
+  console.log('controller', req.query)
+  const companies: ZCompanyModel[] | AppError = await CompanyService.search(req.query)
   if (companies instanceof AppError) {
     return res.status(companies.status).json({ error: companies.message })
   }
