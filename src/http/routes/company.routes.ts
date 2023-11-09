@@ -7,7 +7,7 @@ companyRouter.post('/', CompanyController.create)
 
 companyRouter.get('/search', CompanyController.search)
 
-companyRouter.get('/all', CompanyController.getAll)
+companyRouter.get('/get', CompanyController.get)
 
 companyRouter.post('/registerEmployee', CompanyController.registerEmployee)
 

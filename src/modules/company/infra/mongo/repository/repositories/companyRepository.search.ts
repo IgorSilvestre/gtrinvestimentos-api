@@ -1,19 +1,22 @@
 import { defaultValues } from '../../../../../../shared/defaultValues'
 import { regexForSearch } from '../../../../../../shared/functions/regexForSearch'
 import { ISearchParams } from '../../../../../../shared/interfaces/ISearchParams'
-import { ZCompanyModel, companyModel } from '../../companySchema'
+import { ICompanyDocument } from '../../../../interfaces-validation/ICompanyModel'
+import { companyModel } from '../../companySchema'
 
-export async function search(queryParams: ISearchParams): Promise<ZCompanyModel[]> {
+export async function search(
+  queryParams: ISearchParams,
+): Promise<ICompanyDocument[]> {
   const { tags, query, isFullMatch } = queryParams
   let { page, limit } = queryParams
   console.log('queryParams', queryParams)
 
   if (!page) page = defaultValues.paginationPage
-  if (!limit) limit = defaultValues.paginationLimit 
-  
+  if (!limit) limit = defaultValues.paginationLimit
+
   try {
     const searchParams: any = {}
-    
+
     if (tags) searchParams.tags = { $all: tags }
     if (query)
       isFullMatch
@@ -28,7 +31,7 @@ export async function search(queryParams: ISearchParams): Promise<ZCompanyModel[
       .skip((page - 1) * limit)
       .limit(limit)
 
-    return companies as any // TODO there is type error here, I think is becuse the tags IDs are not strings
+    return companies
   } catch (err) {
     throw new Error(err as string)
   }

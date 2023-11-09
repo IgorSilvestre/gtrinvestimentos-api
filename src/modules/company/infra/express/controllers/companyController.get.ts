@@ -1,11 +1,11 @@
 import { Request, Response } from 'express'
-import { ZCompanyModel } from '../../mongo/companySchema'
 import { AppError } from '../../../../../shared/AppError'
 import { CompanyService } from '../../../service/companyService'
 import { normalizeCompanies } from '../../../interfaces-validation/normalizeCompanies'
+import { ICompanyDocument } from '../../../interfaces-validation/ICompanyModel'
 
-export async function getAll (req: Request, res: Response) {
-  const companies: ZCompanyModel[] | AppError = await CompanyService.getAll()
+export async function get (req: Request, res: Response) {
+  const companies: ICompanyDocument[] | AppError = await CompanyService.get(req.query)
   if (companies instanceof AppError) {
     return res.status(companies.status).json({ error: companies.message })
   }

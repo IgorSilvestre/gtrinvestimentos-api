@@ -1,16 +1,15 @@
 import { CompanyRepository } from '../../infra/mongo/repository/CompanyRepository'
 import { AppError } from '../../../../shared/AppError'
 import { errorMessageKeys } from '../../../../shared/keys/errorMessageKeys'
-import { ISearchParams } from '../../../../shared/interfaces/ISearchParams'
+import { IPaginationParams } from '../../../../shared/interfaces/IPaginationsParams'
 import { ICompanyDocument } from '../../interfaces-validation/ICompanyModel'
 
-export async function search(
-  searchParams: ISearchParams,
+export async function get(
+  paginationParams: IPaginationParams,
 ): Promise<ICompanyDocument[] | AppError> {
   try {
-    const companies: ICompanyDocument[] | null = await CompanyRepository.search(
-      searchParams,
-    )
+    const companies: ICompanyDocument[] | null =
+      await CompanyRepository.get(paginationParams)
 
     if (companies === null)
       return new AppError(

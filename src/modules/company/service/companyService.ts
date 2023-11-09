@@ -2,7 +2,7 @@ import { create } from './services/companyService.create'
 import { update } from './services/companyService.update'
 import { getById } from './services/companyService.getById'
 import { remove } from './services/companyService.remove'
-import { getAll } from './services/companyService.getAll'
+import { get } from './services/companyService.get'
 import { search } from './services/companyService.seach'
 import { unregisterEmployee } from './services/companyService.unregisterEmployee'
 import { registerEmployee } from './services/companyService.registerEmployee'
@@ -13,7 +13,7 @@ export const CompanyService = {
   update,
   addToSet,
   getById,
-  getAll,
+  get,
   search,
   remove,
   unregisterEmployee,
