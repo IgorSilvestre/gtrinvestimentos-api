@@ -2,13 +2,13 @@ import { CompanyRepository } from '../../infra/mongo/repository/CompanyRepositor
 import { AppError } from '../../../../shared/AppError'
 import { errorMessageKeys } from '../../../../shared/keys/errorMessageKeys'
 import { IPaginationParams } from '../../../../shared/interfaces/IPaginationsParams'
-import { ICompanyDocument } from '../../interfaces-validation/ICompanyModel'
+import { ICompaniesPaginated } from '../../interfaces-validation/ICompaniesPaginated'
 
 export async function get(
   paginationParams: IPaginationParams,
-): Promise<ICompanyDocument[] | AppError> {
+): Promise<ICompaniesPaginated | AppError> {
   try {
-    const companies: ICompanyDocument[] | null =
+    const companies: ICompaniesPaginated | null =
       await CompanyRepository.get(paginationParams)
 
     if (companies === null)

@@ -1,13 +1,17 @@
 import { defaultValues } from '../../../../../../shared/defaultValues'
 import { IPaginationParams } from '../../../../../../shared/interfaces/IPaginationsParams'
 import { companyModel } from '../../companySchema'
-import { ICompanyDocument } from '../../../../interfaces-validation/ICompanyModel'
+import { ICompaniesPaginated } from '../../../../interfaces-validation/ICompaniesPaginated'
+
 
 export async function get(
   paginationParams: IPaginationParams,
-): Promise<ICompanyDocument[]> {
+): Promise<ICompaniesPaginated> {
   const page = paginationParams?.page || defaultValues.paginationPage
   const limit = paginationParams?.limit || defaultValues.paginationLimit
+
+  const totalCompanies = await companyModel.countDocuments()
+  const totalPages = Math.ceil(totalCompanies / limit)
 
   try {
     const companies = await companyModel
@@ -20,7 +24,11 @@ export async function get(
       .limit(limit)
       .lean()
 
-    return companies
+    return {
+      data: companies,
+      totalCompanies,
+      totalPages,
+    }
   } catch (err) {
     throw new Error(err as string)
   }
