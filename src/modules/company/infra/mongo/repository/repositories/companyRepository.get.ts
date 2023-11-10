@@ -16,31 +16,30 @@ async function countTotalCompanies() {
 }
 
 async function fetchCompanies(page: number, limit: number) {
- const key = `company-get-${page}-${limit}`;
+  const key = `company-get-${page}-${limit}`
 
- // Try to get the data from cache
- const cachedData = CACHE.get(key);
- if (cachedData) return cachedData as ICompanyDocument[];
+  // Try to get the data from cache
+  const cachedData = CACHE.get(key)
+  if (cachedData) return cachedData as ICompanyDocument[]
 
- try {
-   const data = await companyModel
-     .find()
-     .sort({ createdAt: -1 })
-     .collation({ locale: 'en_US', strength: 2 })
-     .populate('tags')
-     .populate('employees')
-     .skip((page - 1) * limit)
-     .limit(limit)
-     .lean();
+  try {
+    const data = await companyModel
+      .find()
+      .sort({ createdAt: -1 })
+      .collation({ locale: 'en_US', strength: 2 })
+      .populate('tags')
+      .populate('employees')
+      .skip((page - 1) * limit)
+      .limit(limit)
+      .lean()
 
-   CACHE.set(key, data, 300);
+    CACHE.set(key, data, 300)
 
-   return data;
- } catch (err) {
-   throw new Error(err as string);
- }
+    return data
+  } catch (err) {
+    throw new Error(err as string)
+  }
 }
-
 
 export async function get(
   paginationParams: IPaginationParams,

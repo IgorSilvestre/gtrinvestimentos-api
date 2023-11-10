@@ -1,7 +1,9 @@
+import { CACHE } from '../../../../../../shared/cache'
 import { defaultValues } from '../../../../../../shared/defaultValues'
 import { regexForSearch } from '../../../../../../shared/functions/regexForSearch'
 import { ISearchParams } from '../../../../../../shared/interfaces/ISearchParams'
 import { ICompaniesPaginated } from '../../../../interfaces-validation/ICompaniesPaginated'
+import { ICompanyDocument } from '../../../../interfaces-validation/ICompanyModel'
 import { companyModel } from '../../companySchema'
 
 async function countTotalCompanies(queryParams: ISearchParams) {
@@ -17,8 +19,13 @@ async function searchCompanies(
   page: number,
   limit: number,
 ) {
+  const key = `company-search-${JSON.stringify(params)}-${page}-${limit}`
+  // Try to get the data from cache
+  const cachedData = CACHE.get(key)
+  if (cachedData) return cachedData as ICompanyDocument[]
+
   try {
-    return companyModel
+    const data = await companyModel
       .find(params)
       .sort({ createdAt: -1 })
       .populate('tags')
@@ -26,6 +33,10 @@ async function searchCompanies(
       .skip((page - 1) * limit)
       .limit(limit)
       .lean()
+
+    CACHE.set(key, data, 300)
+
+    return data
   } catch (err) {
     throw new Error(err as string)
   }
