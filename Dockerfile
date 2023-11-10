@@ -13,8 +13,6 @@
   # Copy the rest of the application code to the working directory
   COPY . .
 
-  ARG DATABASE_MONGO_STRING
-
   # Build the application
   RUN bun run build
 
