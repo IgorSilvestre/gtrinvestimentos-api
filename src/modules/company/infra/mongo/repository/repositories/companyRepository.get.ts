@@ -3,8 +3,8 @@ import { IPaginationParams } from '../../../../../../shared/interfaces/IPaginati
 import { companyModel } from '../../companySchema'
 import { ICompaniesPaginated } from '../../../../interfaces-validation/ICompaniesPaginated'
 import { AppError } from '../../../../../../shared/AppError'
-import NodeCache from 'node-cache'
 import { ICompanyDocument } from '../../../../interfaces-validation/ICompanyModel'
+import { CACHE } from '../../../../../../shared/cache'
 
 async function countTotalCompanies() {
   try {
@@ -15,13 +15,11 @@ async function countTotalCompanies() {
   }
 }
 
-const myCache = new NodeCache();
-
 async function fetchCompanies(page: number, limit: number) {
  const key = `company-get-${page}-${limit}`;
 
  // Try to get the data from cache
- const cachedData = myCache.get(key);
+ const cachedData = CACHE.get(key);
  if (cachedData) return cachedData as ICompanyDocument[];
 
  try {
@@ -35,7 +33,7 @@ async function fetchCompanies(page: number, limit: number) {
      .limit(limit)
      .lean();
 
-   myCache.set(key, data, 300);
+   CACHE.set(key, data, 300);
 
    return data;
  } catch (err) {
