@@ -8,6 +8,15 @@ import { ICompaniesPaginated } from '../../interfaces-validation/ICompaniesPagin
 export async function search(
   searchParams: ISearchParams,
 ): Promise<ICompaniesPaginated | AppError> {
+  if (searchParams?.page) {
+    searchParams.page = Number(searchParams.page)
+    searchParams.page < 1 ? delete searchParams.page : null
+  }
+  if(searchParams?.limit) {
+    searchParams.limit = Number(searchParams.limit)
+    searchParams.limit < 1 ? delete searchParams.limit : null
+  }
+
   try {
     const companies: ICompaniesPaginated | null | Error =
       await CompanyRepository.search(searchParams)

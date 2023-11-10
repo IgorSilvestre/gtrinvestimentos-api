@@ -17,7 +17,6 @@ async function countTotalCompanies() {
 
 async function fetchCompanies(page: number, limit: number) {
   const key = `company-get-${page}-${limit}`
-
   // Try to get the data from cache
   const cachedData = CACHE.get(key)
   if (cachedData) return cachedData as ICompanyDocument[]
@@ -53,16 +52,13 @@ export async function get(
   const totalPages = Math.ceil(totalCompanies / limit)
 
   const page =
-    typeof paginationParams?.page == 'number' &&
     paginationParams?.page &&
-    paginationParams?.page > 0 &&
     paginationParams?.page <= totalPages
       ? paginationParams?.page
       : defaultValues.paginationPage
 
   const previousPage = page > 1 ? page - 1 : null
   const nextPage = page < totalPages ? page + 1 : null
-
   const companies = await fetchCompanies(page, limit)
   return {
     data: companies,

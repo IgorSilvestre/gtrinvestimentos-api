@@ -48,7 +48,6 @@ export async function search(
   const { tags, query, isFullMatch } = queryParams
   let { page, limit } = queryParams
 
-  if (!page) page = defaultValues.paginationPage
   if (!limit) limit = defaultValues.paginationLimit
 
   const searchParams: any = {}
@@ -61,7 +60,10 @@ export async function search(
   const totalCompanies = await countTotalCompanies(searchParams)
   const totalPages = Math.ceil(totalCompanies / limit)
 
-  page = page > totalPages ? totalPages : page
+  page =
+    page && page <= totalPages
+      ? page
+      : defaultValues.paginationPage
 
   const companies = await searchCompanies(searchParams, page, limit)
 
