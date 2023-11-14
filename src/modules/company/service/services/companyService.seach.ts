@@ -1,19 +1,35 @@
 import { CompanyRepository } from '../../infra/mongo/repository/CompanyRepository'
 import { AppError } from '../../../../shared/AppError'
 import { errorMessageKeys } from '../../../../shared/keys/errorMessageKeys'
-import { ZCompanyModel } from '../../infra/mongo/companySchema'
 import { ISearchParams } from '../../../../shared/interfaces/ISearchParams'
+import { ICompanyDocument } from '../../interfaces-validation/ICompanyModel'
+import { ICompaniesPaginated } from '../../interfaces-validation/ICompaniesPaginated'
 
-export async function search (searchParams: ISearchParams): Promise<ZCompanyModel[] | AppError> {
-  let {isFullMatch} = searchParams
-  if (isFullMatch) delete searchParams.isFullMatch
+export async function search(
+  searchParams: ISearchParams,
+): Promise<ICompaniesPaginated | AppError> {
+  if (searchParams?.page) {
+    searchParams.page = Number(searchParams.page)
+    searchParams.page < 1 ? delete searchParams.page : null
+  }
+  if(searchParams?.limit) {
+    searchParams.limit = Number(searchParams.limit)
+    searchParams.limit < 1 ? delete searchParams.limit : null
+  }
 
   try {
-    const companies: ZCompanyModel[] | null = await CompanyRepository.search(searchParams, isFullMatch)
+    const companies: ICompaniesPaginated | null | Error =
+      await CompanyRepository.search(searchParams)
 
-    if (companies === null) return new AppError(
-      { clientMessage: errorMessageKeys.company.notFound },
-      404)
+    if (companies === null)
+      return new AppError(
+        { clientMessage: errorMessageKeys.company.notFound },
+        404,
+      )
+
+    if (companies instanceof Error)
+      return new AppError({ apiError: companies, clientMessage: '' }, 503) // TODO ADD ERROR MESSAGE
+
     return companies
   } catch (err) {
     return new AppError(
