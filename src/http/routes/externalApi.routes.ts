@@ -5,4 +5,4 @@ export const externalAPIRouter = Router()
 
 externalAPIRouter.get('/fetch-cnpj-data/:cnpj', externalApiController.fetchCNPJData)
 externalAPIRouter.post('/company-searchEngine', externalApiController.companySearchEngine)
-
+externalAPIRouter.get('/fetch-linkedin-company-data-by-domain/:domain', externalApiController.fetchLinkedinCompanyDataByDomain)

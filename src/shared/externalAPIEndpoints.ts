@@ -2,6 +2,24 @@ export const externalAPIConfigs = {
   fetchCNPJData: {
     endpoint: 'https://www.receitaws.com.br/v1/cnpj/',
   },
+  linkedin: {
+    companyDataByDomain: {
+      options: {
+          method: 'POST',
+          url: 'https://linkedin-company-data.p.rapidapi.com/linkedInCompanyDataByDomainJson',
+          headers: {
+            'content-type': 'application/json',
+            'X-RapidAPI-Key': '223d54b17bmsh3228eb7095d78ddp1f0c60jsn3eff6a281b01',
+            'X-RapidAPI-Host': 'linkedin-company-data.p.rapidapi.com'
+          },
+          data: {
+            domains: [
+              'hubspot.com', // example - domains array gets edited in the service
+            ]
+        }
+      }
+    }
+  },
   companySearchEngine: {
     defaultOptions: {
       method: 'GET',
