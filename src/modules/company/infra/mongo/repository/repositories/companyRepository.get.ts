@@ -6,6 +6,7 @@ import { AppError } from '../../../../../../shared/AppError'
 import { ICompanyDocument } from '../../../../interfaces-validation/ICompanyModel'
 import { CACHE } from '../../../../../../shared/cache'
 
+// TODO This needs to be its own repository
 async function countTotalCompanies() {
   try {
     return await companyModel.countDocuments()
@@ -39,7 +40,7 @@ async function fetchCompanies(page: number, limit: number) {
     throw new Error(err as string)
   }
 }
-
+// TODO This is supposed to be in the service, not in the repository
 export async function get(
   paginationParams: IPaginationParams,
 ): Promise<ICompaniesPaginated> {
