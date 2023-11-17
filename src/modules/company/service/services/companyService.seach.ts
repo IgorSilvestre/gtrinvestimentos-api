@@ -6,7 +6,7 @@ import { ICompaniesPaginated } from '../../interfaces-validation/ICompaniesPagin
 
 export async function search(
   searchParams: ISearchParams,
-): Promise<ICompaniesPaginated | null | AppError> {
+): Promise<ICompaniesPaginated | AppError> {
   if (searchParams?.page) {
     searchParams.page = Number(searchParams.page)
     searchParams.page < 1 ? delete searchParams.page : null
@@ -20,9 +20,15 @@ export async function search(
     const companies: ICompaniesPaginated | null | Error =
       await CompanyRepository.search(searchParams)
 
-    if (companies === null) return new AppError(
-      { clientMessage: errorMessageKeys.company.notFound },
-      404)
+    if (companies === null)
+      return new AppError(
+        { clientMessage: errorMessageKeys.company.notFound },
+        404,
+      )
+
+    if (companies instanceof Error)
+      return new AppError({ apiError: companies, clientMessage: errorMessageKeys.company.cantGetCompany }, 503)
+
     return companies
   } catch (err) {
     return new AppError(
