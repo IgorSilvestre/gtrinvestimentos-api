@@ -27,5 +27,6 @@ export const errorMessageKeys = {
   },
   externalAPI: {
     cantFetchCNPJData: 'Não foi possível buscar dados do CNPJ',
+    cantFetchLinkedinCompanyDataByDomain: 'Não foi possível buscar dados da empresa no LinkedIn',
   }
 }

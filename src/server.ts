@@ -12,6 +12,8 @@ app.use(
 
 app.use(express.json())
 
+app.get('/', (req, res) => res.status(200).send('UP'))
+
 app.use('/api/v1', router)
 
 const PORT = process.env.PORT || 3005
