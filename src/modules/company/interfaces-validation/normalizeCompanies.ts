@@ -16,6 +16,5 @@ export function normalizeCompanies(
     lastUpdated: parseISODateToBrazilSTD(company?.lastUpdated?.toISOString()),
   }))
 
-  if (companiesNormalized.length === 1) return companiesNormalized[0]
   return companiesNormalized
 }
