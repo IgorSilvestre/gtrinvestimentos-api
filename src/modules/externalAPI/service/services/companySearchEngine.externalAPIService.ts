@@ -83,7 +83,6 @@ export async function companySearchEngine(query: string) {
   if (cachedData) return cachedData as ICompanySearchEngineData[]
 
   externalAPIConfigs.companySearchEngine.defaultOptions.params.query = query
-  console.log(externalAPIConfigs.companySearchEngine.defaultOptions)
   try {
     const response = await axios.request(
       externalAPIConfigs.companySearchEngine
