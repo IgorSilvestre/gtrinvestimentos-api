@@ -4,6 +4,7 @@ import { errorMessageKeys } from '../../../../shared/keys/errorMessageKeys'
 import { ISearchParams } from '../../../../shared/interfaces/ISearchParams'
 import { ICompanyDocument } from '../../interfaces-validation/ICompanyModel'
 import { ICompaniesPaginated } from '../../interfaces-validation/ICompaniesPaginated'
+import { ensureArray } from '../../../../shared/functions/ensureArray'
 
 export async function search(
   searchParams: ISearchParams,
@@ -28,7 +29,7 @@ export async function search(
       )
 
     if (companies instanceof Error)
-      return new AppError({ apiError: companies, clientMessage: '' }, 503) // TODO ADD ERROR MESSAGE
+      return new AppError({ apiError: companies, clientMessage: errorMessageKeys.company.cantGetCompany }, 503)
 
     return companies
   } catch (err) {
