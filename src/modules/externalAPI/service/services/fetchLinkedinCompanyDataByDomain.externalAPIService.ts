@@ -2,6 +2,7 @@ import axios, { AxiosRequestConfig } from 'axios'
 import { externalAPIConfigs } from '../../../../shared/externalAPIEndpoints'
 import { AppError } from '../../../../shared/AppError'
 import { errorMessageKeys } from '../../../../shared/keys/errorMessageKeys'
+import { CACHE } from '../../../../shared/cache';
 // import { dummyResponseLinkedin } from './dummyResponseLinkedin'
 
 interface Employee {
@@ -74,11 +75,16 @@ interface Employee {
   }
 
 export async function fetchLinkedinCompanyDataByDomain(domain: string): Promise<ICompanyLinkedinData | AppError> {
+  const cachedKey = `fetchLinkedinCompanyDataByDomain-${domain}`
+  const cachedData = await CACHE.get(cachedKey)
+  if (cachedData) return cachedData as ICompanyLinkedinData
+
     const options = externalAPIConfigs.linkedin.companyDataByDomain.options
     options.data.domains = [domain] // Set the domain to be searched
     try {
         // return dummyResponseLinkedin
         const response = await axios.request(options as AxiosRequestConfig)
+        CACHE.set(cachedKey, response.data, CacheTime.one_month)
         return response.data
     } catch (error: any) {
         console.error(error)
