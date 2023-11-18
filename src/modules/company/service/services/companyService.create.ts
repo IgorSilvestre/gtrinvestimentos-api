@@ -20,10 +20,11 @@ export async function create(
     const alreadyExists = await CompanyRepository.search(
       {
         query: companyDTO.name,
-      },
-      true,
+        isFullMatch: true
+      }
     )
-    if (alreadyExists && alreadyExists?.length > 0)
+    if (alreadyExists instanceof Error) return new AppError({ apiError: alreadyExists, clientMessage: errorMessageKeys.checkIfExistsFailed })
+    if (alreadyExists && alreadyExists?.data?.length > 0)
       return new AppError(
         { clientMessage: errorMessageKeys.alreadyExists },
         409,
