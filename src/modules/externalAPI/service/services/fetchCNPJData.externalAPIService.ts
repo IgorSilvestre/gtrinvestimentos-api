@@ -83,6 +83,11 @@ export async function fetchCNPJData(cnpj: string) {
   try {
     const response = await axios.get(
       externalAPIConfigs.fetchCNPJData.endpoint + cnpj,
+      {
+        headers: {
+          'Accept-Encoding': 'gzip, deflate'
+        }
+      }
     )
     const CNPJData = normalizeCNPJData(response.data)
 
