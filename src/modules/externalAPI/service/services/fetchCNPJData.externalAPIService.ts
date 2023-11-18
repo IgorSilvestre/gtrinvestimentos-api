@@ -3,6 +3,7 @@ import { AppError } from '../../../../shared/AppError'
 import { errorMessageKeys } from '../../../../shared/keys/errorMessageKeys'
 import { externalAPIConfigs } from '../../../../shared/externalAPIEndpoints'
 import { CACHE } from '../../../../shared/cache'
+import { CacheTime } from '../../../../shared/keys/cacheTime'
 
 interface ICNPJActivity {
   code: string
