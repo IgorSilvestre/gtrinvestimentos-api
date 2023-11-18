@@ -4,6 +4,8 @@ import { AppError } from '../../../../shared/AppError'
 import { errorMessageKeys } from '../../../../shared/keys/errorMessageKeys'
 import { externalAPIConfigs } from '../../../../shared/externalAPIEndpoints'
 import { CACHE } from '../../../../shared/cache'
+import { CacheTime } from '../../../../shared/keys/cacheTime'
+
 
 export interface ICompanySearchEngineData {
   business_id: string
@@ -100,8 +102,7 @@ export async function companySearchEngine(query: string) {
       {
         clientMessage: errorMessageKeys.cantSearch,
         apiError: err,
-      },
-      err.response.status,
+      }
     )
   }
 }
