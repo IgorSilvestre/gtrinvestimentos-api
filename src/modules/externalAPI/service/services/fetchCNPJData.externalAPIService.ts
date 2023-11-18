@@ -2,6 +2,7 @@ import axios from 'axios'
 import { AppError } from '../../../../shared/AppError'
 import { errorMessageKeys } from '../../../../shared/keys/errorMessageKeys'
 import { externalAPIConfigs } from '../../../../shared/externalAPIEndpoints'
+import { CACHE } from '../../../../shared/cache'
 
 interface ICNPJActivity {
   code: string
@@ -74,11 +75,18 @@ function normalizeCNPJData(CNPJData: ICNPJData) {
 }
 
 export async function fetchCNPJData(cnpj: string) {
+  const cachedKey = `fetchCNPJData-${cnpj}`
+  const cachedData = await CACHE.get(cachedKey)
+  if (cachedData) return cachedData as ICNPJData
+
   try {
     const response = await axios.get(
       externalAPIConfigs.fetchCNPJData.endpoint + cnpj,
     )
-    return normalizeCNPJData(response.data)
+    const CNPJData = normalizeCNPJData(response.data)
+
+    CACHE.set(cachedKey, CNPJData, CacheTime.one_month)
+    return CNPJData
   } catch (err: any) {
     return new AppError({
       clientMessage: errorMessageKeys.externalAPI.cantFetchCNPJData,
