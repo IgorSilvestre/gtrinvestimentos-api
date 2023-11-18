@@ -1,4 +1,4 @@
-const CacheTime = {
+export const CacheTime = {
     five_minutes: 300,
     one_hour: 3600,
     one_day: 86400,
