@@ -2,9 +2,7 @@ import { CompanyRepository } from '../../infra/mongo/repository/CompanyRepositor
 import { AppError } from '../../../../shared/AppError'
 import { errorMessageKeys } from '../../../../shared/keys/errorMessageKeys'
 import { ISearchParams } from '../../../../shared/interfaces/ISearchParams'
-import { ICompanyDocument } from '../../interfaces-validation/ICompanyModel'
 import { ICompaniesPaginated } from '../../interfaces-validation/ICompaniesPaginated'
-import { ensureArray } from '../../../../shared/functions/ensureArray'
 
 export async function search(
   searchParams: ISearchParams,

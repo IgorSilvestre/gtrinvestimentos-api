@@ -2,6 +2,8 @@ import axios from 'axios'
 import { AppError } from '../../../../shared/AppError'
 import { errorMessageKeys } from '../../../../shared/keys/errorMessageKeys'
 import { externalAPIConfigs } from '../../../../shared/externalAPIEndpoints'
+import { CACHE } from '../../../../shared/cache'
+import { CacheTime } from '../../../../shared/keys/cacheTime'
 
 interface ICNPJActivity {
   code: string
@@ -47,7 +49,6 @@ interface ICNPJData {
   situacao_especial: string
   data_situacao_especial: string
   capital_social: string
-  extra: any // You can specify a more specific type for "extra" if needed
   billing: ICNPJBilling
 }
 
@@ -74,11 +75,23 @@ function normalizeCNPJData(CNPJData: ICNPJData) {
 }
 
 export async function fetchCNPJData(cnpj: string) {
+  const cachedKey = `fetchCNPJData-${cnpj}`
+  const cachedData = await CACHE.get(cachedKey)
+  if (cachedData) return cachedData as ICNPJData
+
   try {
     const response = await axios.get(
       externalAPIConfigs.fetchCNPJData.endpoint + cnpj,
+      {
+        headers: {
+          'Accept-Encoding': 'gzip, deflate'
+        }
+      }
     )
-    return normalizeCNPJData(response.data)
+    const CNPJData = normalizeCNPJData(response.data)
+
+    CACHE.set(cachedKey, CNPJData, CacheTime.one_month)
+    return CNPJData
   } catch (err: any) {
     return new AppError({
       clientMessage: errorMessageKeys.externalAPI.cantFetchCNPJData,
