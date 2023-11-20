@@ -49,7 +49,6 @@ interface ICNPJData {
   situacao_especial: string
   data_situacao_especial: string
   capital_social: string
-  extra: any // You can specify a more specific type for "extra" if needed
   billing: ICNPJBilling
 }
 

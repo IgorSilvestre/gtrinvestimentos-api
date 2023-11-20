@@ -17,6 +17,7 @@ export const errorMessageKeys = {
     notFound: 'Tag não encontrada!',
     notUpdated: 'Não foi possível atualizar tag',
     notRemoved: 'Não foi possível remover tag',
+    failedToRebuildCache: 'Falha ao reconstruir cache de tags',
   },
   person: {
     cantGetPerson: 'Não foi possível pegar registro de pessoa',
