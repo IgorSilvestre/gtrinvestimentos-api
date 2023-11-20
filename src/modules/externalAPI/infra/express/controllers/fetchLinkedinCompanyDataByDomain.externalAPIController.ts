@@ -16,5 +16,5 @@ export async function fetchLinkedinCompanyDataByDomain(
       .status(companyLinkedinData.status)
       .json({ error: companyLinkedinData.message })
 
-  return res.status(200).json(companyLinkedinData)
+  return res.status(200).json(companyLinkedinData.results)
 }
