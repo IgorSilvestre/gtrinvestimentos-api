@@ -1,11 +1,12 @@
 {
   "compilerOptions": {
+    "typeRoots": ["./types"],
     "target": "ESNext",
     "module": "ESNext",
     "moduleResolution": "Node",
     "strict": true,
     "esModuleInterop": true,
-    "types": ["node"],
+    // "types": ["node"],
     "outDir": "dist"
   },
   "include": ["src/**/*.ts"],
