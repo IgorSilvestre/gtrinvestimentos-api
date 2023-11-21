@@ -9,7 +9,7 @@ import { removeSpecialCharacters } from '../../../../shared/functions/removeSpec
 
 function normalizeCNPJData(CNPJData: ICNPJData) {
   const normalizeCNPJData = {
-    Sócios: CNPJData.qsa.map((partner) => ({
+    socios: CNPJData.qsa.map((partner) => ({
       'Nome': partner.nome,
       'Cargo': partner.qual,
     })),
