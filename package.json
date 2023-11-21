@@ -19,11 +19,12 @@
   "dependencies": {
     "@types/supertest": "^2.0.12",
     "axios": "^1.6.0",
+    "br-lib": "git://github.com/IgorSilvestre/br-lib.git",
     "bun-types": "^1.0.11",
+    "whois": "git://github.com/IgorSilvestre/whois.js.git",
     "cors": "^2.8.5",
     "date-fns": "^2.30.0",
     "date-fns-tz": "^2.0.0",
-    "br-lib": "git://github.com/IgorSilvestre/br-lib.git",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "mongoose": "^6.8.3",
@@ -31,7 +32,6 @@
     "source-map-support": "^0.5.21",
     "supertest": "^6.3.3",
     "typescript": "*",
-    "whois-json": "^2.0.4",
     "zod": "^3.20.2"
   },
   "devDependencies": {
@@ -41,7 +41,6 @@
     "@types/express": "^4.17.21",
     "@types/jest": "^29.5.2",
     "@types/node": "^20.8.10",
-    "@types/whois-json": "^2.0.3",
     "@typescript-eslint/parser": "^5.50.0",
     "eslint": "^8.33.0",
     "eslint-config-prettier": "^8.6.0",
