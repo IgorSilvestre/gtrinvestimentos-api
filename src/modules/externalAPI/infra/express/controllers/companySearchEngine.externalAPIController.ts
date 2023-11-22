@@ -4,12 +4,11 @@ import { errorMessageKeys } from '../../../../../shared/keys/errorMessageKeys'
 import { externalAPIService } from '../../../service/externalAPIService'
 
 export async function companySearchEngine (req: Request, res: Response) {
-    const { query } = req.body
-    if (!query) return res.status(400).json({ error: errorMessageKeys.noQuery })
+    const { query } = req.query
+    if (!query || typeof query !== 'string') return res.status(400).json({ error: errorMessageKeys.noQuery })
     
-    // return res.status(200).json(testResponse.data)
     try {
-        const externalAPIResponse = await externalAPIService.companySearchEngine(query)
+        const externalAPIResponse = await externalAPIService.companySearchEngine(query as string)
 
         if (externalAPIResponse instanceof AppError) {
             return res.status(externalAPIResponse.status).json({ error: externalAPIResponse.message })
