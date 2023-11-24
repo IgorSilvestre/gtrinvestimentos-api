@@ -4,27 +4,38 @@ import { AppError } from '../../../../shared/AppError'
 import { errorMessageKeys } from '../../../../shared/keys/errorMessageKeys'
 import { externalAPIService } from '../externalAPIService'
 
+// TODO arrumar tudo isso aqui
 export async function deepSearchCompany(domain: string) {
   let companyCNPJ: string | undefined
+  let whoisData: { ownerid: string; owner: string } | undefined
+
   try {
-    const whoisData: { ownerid: string } = await whois(domain)
-    companyCNPJ = isValidCNPJ(whoisData.ownerid) ? whoisData.ownerid : undefined
+    whoisData = await whois(domain)
+    companyCNPJ = isValidCNPJ(whoisData?.ownerid ?? '')
+      ? whoisData?.ownerid
+      : undefined
   } catch (err) {
     console.log(err)
   }
 
   try {
-    const [linkedinCompanyDataByDomain, CNPJData] = await Promise.allSettled([
-      externalAPIService.fetchLinkedinCompanyDataByDomain(domain),
+    const [CNPJData, linkedinCompanyDataByDomain] = await Promise.allSettled([
       companyCNPJ ? externalAPIService.fetchCNPJData(companyCNPJ) : undefined,
+      externalAPIService.fetchLinkedinCompanyDataByDomain(domain),
     ])
 
     return {
+      CNPJData:
+        CNPJData.status === 'fulfilled'
+          ? CNPJData.value
+          : {
+              Dono: whoisData?.owner ?? 'Não encontrado',
+              Documento: whoisData?.ownerid ?? 'Não encontrado',
+            },
       linkedinData:
         linkedinCompanyDataByDomain.status === 'fulfilled'
           ? linkedinCompanyDataByDomain.value
           : undefined,
-      CNPJData: CNPJData.status === 'fulfilled' ? CNPJData.value : undefined,
     }
   } catch (error) {
     console.error(error)
