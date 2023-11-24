@@ -4,7 +4,6 @@ import { AppError } from '../../../../shared/AppError'
 import { errorMessageKeys } from '../../../../shared/keys/errorMessageKeys'
 import { externalAPIService } from '../externalAPIService'
 
-// TODO arrumar tudo isso aqui
 export async function deepSearchCompany(domain: string) {
   let companyCNPJ: string | undefined
   let whoisData: { ownerid: string; owner: string } | undefined
@@ -23,7 +22,7 @@ export async function deepSearchCompany(domain: string) {
       companyCNPJ ? externalAPIService.fetchCNPJData(companyCNPJ) : undefined,
       externalAPIService.fetchLinkedinCompanyDataByDomain(domain),
     ])
-
+    console.log('CNPJData', CNPJData)
     return {
       CNPJData:
         CNPJData.status === 'fulfilled'
