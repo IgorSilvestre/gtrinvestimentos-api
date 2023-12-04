@@ -40,7 +40,7 @@ async function fetchCompanies(page: number, limit: number) {
     throw new Error(err as string)
   }
 }
-// TODO This is supposed to be in the service, not in the repository
+// TODO !! This is supposed to be in the service, not in the repository
 export async function get(
   paginationParams: IPaginationParams,
 ): Promise<ICompaniesPaginated> {
