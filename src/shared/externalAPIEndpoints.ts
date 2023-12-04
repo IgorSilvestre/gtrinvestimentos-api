@@ -9,7 +9,7 @@ export const externalAPIConfigs = {
           url: 'https://linkedin-company-data.p.rapidapi.com/linkedInCompanyDataByDomainJson',
           headers: {
             'content-type': 'application/json',
-            'X-RapidAPI-Key': '223d54b17bmsh3228eb7095d78ddp1f0c60jsn3eff6a281b01',
+            'X-RapidAPI-Key': `${process.env.RAPID_API_KEY}`,
             'X-RapidAPI-Host': 'linkedin-company-data.p.rapidapi.com'
           },
           data: {
@@ -32,7 +32,7 @@ export const externalAPIConfigs = {
         region: 'br'
       },
       headers: {
-        'X-RapidAPI-Key': '223d54b17bmsh3228eb7095d78ddp1f0c60jsn3eff6a281b01',
+        'X-RapidAPI-Key': `${process.env.RAPID_API_KEY}`,
         'X-RapidAPI-Host': 'local-business-data.p.rapidapi.com'
       }
     }
