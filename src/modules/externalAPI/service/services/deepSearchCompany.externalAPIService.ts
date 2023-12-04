@@ -22,7 +22,7 @@ export async function deepSearchCompany(domain: string) {
       companyCNPJ ? externalAPIService.fetchCNPJData(companyCNPJ) : undefined,
       externalAPIService.fetchLinkedinCompanyDataByDomain(domain),
     ])
-    console.log('CNPJData', CNPJData)
+    
     return {
       CNPJData:
         CNPJData.status === 'fulfilled'
