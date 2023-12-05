@@ -6,35 +6,59 @@ import { externalAPIService } from '../externalAPIService'
 
 export async function deepSearchCompany(domain: string) {
   let companyCNPJ: string | undefined
-  let whoisData: { ownerid: string; owner: string } | undefined
+  let whoisData:
+    | {
+        ownerid: string
+        owner: string
+        person: string | undefined
+        eMail: string | undefined
+      }
+    | undefined
+  let domainOwner:
+    | {
+        name: string | undefined
+        fullName: string | undefined
+        document: string | undefined
+        emails: string[] | undefined
+      }
+    | undefined
 
   try {
     whoisData = await whois(domain)
     companyCNPJ = isValidCNPJ(whoisData?.ownerid ?? '')
       ? whoisData?.ownerid
       : undefined
+    domainOwner = companyCNPJ
+      ? undefined
+      : {
+          name: whoisData?.owner,
+          fullName: whoisData?.person,
+          document: whoisData?.ownerid,
+          emails: whoisData?.eMail?.split(' '),
+        }
   } catch (err) {
     console.log(err)
   }
 
   try {
-    const [CNPJData, linkedinCompanyDataByDomain] = await Promise.allSettled([
+    const [CNPJResponse, linkedinResponse] = await Promise.allSettled([
       companyCNPJ ? externalAPIService.fetchCNPJData(companyCNPJ) : undefined,
       externalAPIService.fetchLinkedinCompanyDataByDomain(domain),
     ])
-    
+
+    const CNPJData =
+      CNPJResponse.status === 'fulfilled' && CNPJResponse.value
+        ? { status: 'fulfilled', value: CNPJResponse.value }
+        : undefined
+    const linkedinData =
+      linkedinResponse.status === 'fulfilled'
+        ? linkedinResponse.value
+        : undefined
+
     return {
-      CNPJData:
-        CNPJData.status === 'fulfilled'
-          ? CNPJData.value
-          : {
-              Dono: whoisData?.owner ?? 'Não encontrado',
-              Documento: whoisData?.ownerid ?? 'Não encontrado',
-            },
-      linkedinData:
-        linkedinCompanyDataByDomain.status === 'fulfilled'
-          ? linkedinCompanyDataByDomain.value
-          : undefined,
+      CNPJData,
+      domainOwner,
+      linkedinData,
     }
   } catch (error) {
     console.error(error)

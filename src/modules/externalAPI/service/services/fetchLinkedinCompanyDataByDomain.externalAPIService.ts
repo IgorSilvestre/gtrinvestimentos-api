@@ -83,6 +83,8 @@ export async function fetchLinkedinCompanyDataByDomain(domain: string): Promise<
     options.data.domains = [domain] // Set the domain to be searched
     try {
         const response = await axios.request(options as AxiosRequestConfig)
+        if (!response.data.results) throw new Error('CUSTOM: No results found')
+        
         CACHE.set(cachedKey, response.data, CacheTime.one_month)
         return response.data
     } catch (error: any) {
