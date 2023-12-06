@@ -5,20 +5,20 @@ export const externalAPIConfigs = {
   linkedin: {
     companyDataByDomain: {
       options: {
-          method: 'POST',
-          url: 'https://linkedin-company-data.p.rapidapi.com/linkedInCompanyDataByDomainJson',
-          headers: {
-            'content-type': 'application/json',
-            'X-RapidAPI-Key': `${process.env.RAPID_API_KEY}`,
-            'X-RapidAPI-Host': 'linkedin-company-data.p.rapidapi.com'
-          },
-          data: {
-            domains: [
-              'hubspot.com', // example - domains array gets edited in the service
-            ]
-        }
-      }
-    }
+        method: 'POST',
+        url: 'https://linkedin-company-data.p.rapidapi.com/linkedInCompanyDataByDomainJson',
+        headers: {
+          'content-type': 'application/json',
+          'X-RapidAPI-Key': `${process.env.RAPID_API_KEY}`,
+          'X-RapidAPI-Host': 'linkedin-company-data.p.rapidapi.com',
+        },
+        data: {
+          domains: [
+            'hubspot.com', // example - domains array gets edited in the service
+          ],
+        },
+      },
+    },
   },
   companySearchEngine: {
     defaultOptions: {
@@ -29,13 +29,26 @@ export const externalAPIConfigs = {
         // limit: '20',
         // zoom: '13',
         language: 'pt',
-        region: 'br'
+        region: 'br',
       },
       headers: {
         'X-RapidAPI-Key': `${process.env.RAPID_API_KEY}`,
-        'X-RapidAPI-Host': 'local-business-data.p.rapidapi.com'
-      }
-    }
-  }
+        'X-RapidAPI-Host': 'local-business-data.p.rapidapi.com',
+      },
+    },
+  },
+  findEmail: {
+    method: 'GET',
+    url: 'https://email-finder8.p.rapidapi.com/fetch_email_of_person',
+    params: {
+      // filled in service
+      first_name: 'john',
+      last_name: 'doe',
+      domain: 'example.com.br',
+    },
+    headers: {
+      'X-RapidAPI-Key': `${process.env.RAPID_API_KEY}`,
+      'X-RapidAPI-Host': 'email-finder8.p.rapidapi.com',
+    },
+  },
 }
-
