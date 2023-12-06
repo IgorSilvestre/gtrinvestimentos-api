@@ -48,7 +48,7 @@ export async function deepSearchCompany(domain: string) {
 
     const CNPJData =
       CNPJResponse.status === 'fulfilled' && CNPJResponse.value
-        ? { status: 'fulfilled', value: CNPJResponse.value }
+        ? CNPJResponse.value
         : undefined
     const linkedinData =
       linkedinResponse.status === 'fulfilled'
