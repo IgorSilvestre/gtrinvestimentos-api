@@ -1,5 +1,6 @@
 node_modules
 .env
+.connect_database.sh
 dist
 table-scripts
 src/tableScripts
