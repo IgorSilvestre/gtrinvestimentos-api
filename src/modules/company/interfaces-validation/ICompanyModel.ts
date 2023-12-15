@@ -1,6 +1,7 @@
 import { Types } from 'mongoose'
 
 interface IDocument {
+  _id: Types.ObjectId
   name: string
   tags: Types.ObjectId[]
   employees: Types.ObjectId[]

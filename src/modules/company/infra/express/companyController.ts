@@ -4,7 +4,7 @@ import { update } from './controllers/companyController.update'
 import { remove } from './controllers/companyController.remove'
 import { get } from './controllers/companyController.get'
 import { search } from './controllers/companyController.search'
-import { getAllForSelect } from './controllers/companyController.getForSelect'
+import { searchForSelect } from './controllers/companyController.searchForSelect'
 import { registerEmployee } from './controllers/companyController.registerEmployee'
 
 export const CompanyController = {
@@ -12,8 +12,8 @@ export const CompanyController = {
   getById,
   get,
   search,
-  getAllForSelect,
+  searchForSelect,
   registerEmployee,
   update,
-  remove
+  remove,
 }

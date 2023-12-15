@@ -7,6 +7,7 @@ import { search } from './services/companyService.seach'
 import { unregisterEmployee } from './services/companyService.unregisterEmployee'
 import { registerEmployee } from './services/companyService.registerEmployee'
 import { addToSet } from './services/companyService.addToSet'
+import { searchForSelect } from './services/companyService.searchForSelect'
 
 export const CompanyService = {
   create,
@@ -15,6 +16,7 @@ export const CompanyService = {
   getById,
   get,
   search,
+  searchForSelect,
   remove,
   unregisterEmployee,
   registerEmployee,

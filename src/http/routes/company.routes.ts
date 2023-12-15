@@ -11,7 +11,7 @@ companyRouter.get('/get', CompanyController.get)
 
 companyRouter.post('/registerEmployee', CompanyController.registerEmployee)
 
-companyRouter.get('/all-for-select', CompanyController.getAllForSelect)
+companyRouter.get('/search-for-select', CompanyController.searchForSelect)
 
 companyRouter.get('/:id', CompanyController.getById)
 
