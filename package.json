@@ -5,6 +5,7 @@
   "type": "module",
   "module": "src/server.ts",
   "scripts": {
+    "update": "bun update && bun update br-lib && bun update whois",
     "build": "bun build src/server.ts --outdir out --target bun",
     "dev": "bun --watch run src/server.ts",
     "test": "jest",
@@ -21,7 +22,6 @@
     "axios": "^1.6.0",
     "br-lib": "git://github.com/IgorSilvestre/br-lib.git",
     "bun-types": "^1.0.11",
-    "whois": "git://github.com/IgorSilvestre/whois.js.git",
     "cors": "^2.8.5",
     "date-fns": "^2.30.0",
     "date-fns-tz": "^2.0.0",
@@ -32,6 +32,7 @@
     "source-map-support": "^0.5.21",
     "supertest": "^6.3.3",
     "typescript": "*",
+    "whois": "git://github.com/IgorSilvestre/whois.js.git",
     "zod": "^3.20.2"
   },
   "devDependencies": {
