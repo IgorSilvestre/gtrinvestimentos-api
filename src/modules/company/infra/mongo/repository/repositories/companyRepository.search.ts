@@ -5,6 +5,7 @@ import { ISearchParams } from '../../../../../../shared/interfaces/ISearchParams
 import { ICompaniesPaginated } from '../../../../interfaces-validation/ICompaniesPaginated'
 import { ICompanyDocument } from '../../../../interfaces-validation/ICompanyModel'
 import { companyModel } from '../../companySchema'
+import { stringifyObjectWithRegex } from 'br-lib'
 
 async function countTotalCompanies(queryParams: ISearchParams) {
   try {
@@ -19,7 +20,8 @@ async function searchCompanies(
   page: number,
   limit: number,
 ) {
-  const key = `company-search-${JSON.stringify(params)}-${page}-${limit}`
+  const key = `company-search-${stringifyObjectWithRegex(params)}-${page}-${limit}`
+  console.log(key)
   // Try to get the data from cache
   const cachedData = CACHE.get(key)
   if (cachedData) return cachedData as ICompanyDocument[]
@@ -45,17 +47,29 @@ async function searchCompanies(
 export async function search(
   queryParams: ISearchParams,
 ): Promise<ICompaniesPaginated | Error> {
-  const { tags, query, isFullMatch } = queryParams
+  const { tags, query, isFullMatch, partialStringSearch } = queryParams
   let { page, limit } = queryParams
 
   if (!limit) limit = defaultValues.paginationLimit
 
   const searchParams: any = {}
-  if (tags) searchParams.tags = { $all: tags }
-  if (query)
-    isFullMatch
-      ? (searchParams.name = { $regex: regexForSearch(query, true) })
-      : (searchParams.$text = { $search: query })
+  if (tags) {
+    searchParams.tags = { $all: tags }
+  }
+  
+  if (query) {
+    ;(() => {
+      if (isFullMatch) {
+        searchParams.name = { $regex: regexForSearch(query, true) }
+        return
+      }
+      else if (partialStringSearch) {
+        searchParams.name = { $regex: regexForSearch(query) }
+        return
+      }
+      else searchParams.$text = { $search: query }
+    })()
+  }
 
   const totalCompanies = await countTotalCompanies(searchParams)
   const totalPages = Math.ceil(totalCompanies / limit)
