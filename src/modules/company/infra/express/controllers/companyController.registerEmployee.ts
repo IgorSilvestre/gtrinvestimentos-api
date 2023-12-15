@@ -3,7 +3,7 @@ import { ZCompany } from '../../../interfaces-validation/ZCompany'
 import { CompanyService } from '../../../service/companyService'
 import { AppError } from '../../../../../shared/AppError'
 
-export async function registerEmployee (req: Request, res: Response) {
+export async function registerEmployee(req: Request, res: Response) {
   const { employeeId, companyId } = req.body
 
   if (typeof employeeId !== 'string') {

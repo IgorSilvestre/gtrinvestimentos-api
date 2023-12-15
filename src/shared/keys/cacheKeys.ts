@@ -5,5 +5,5 @@ export const cacheKeys = {
   tag: {
     all: 'all-tags',
     allForSelect: 'all-tags-for-select',
-  }
+  },
 }

@@ -3,7 +3,7 @@ import { tagValidation, ZTag } from '../../../interfaces-validation/ZTag'
 import { TagService } from '../../../service/tagService'
 import { AppError } from '../../../../../shared/AppError'
 
-export async function create (req: Request, res: Response) {
+export async function create(req: Request, res: Response) {
   const tagDTO = req.body as ZTag
 
   const validatedTagDTO = tagValidation.safeParse(tagDTO)

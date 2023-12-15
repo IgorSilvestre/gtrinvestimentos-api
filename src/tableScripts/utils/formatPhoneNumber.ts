@@ -8,10 +8,10 @@ export function formatPhoneNumber(input) {
 
   // Remove leading zeros
   digitsOnly = digitsOnly.replace(/^0+/, '')
-  
+
   // Remove country code
   digitsOnly = digitsOnly.replace(/^55+/, '')
-  
+
   // Check if the input has the right number of digits
   if (digitsOnly.length !== 11 && digitsOnly.length !== 10) {
     return input + ' (Número inválido)'

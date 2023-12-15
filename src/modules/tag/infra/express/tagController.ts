@@ -11,5 +11,5 @@ export const TagController = {
   getAll,
   getForSelect,
   update,
-  remove
+  remove,
 }

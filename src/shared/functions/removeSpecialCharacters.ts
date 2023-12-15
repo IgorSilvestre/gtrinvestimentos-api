@@ -1,3 +1,3 @@
 export function removeSpecialCharacters(str: string): string {
-  return str.replace(/[^\w\s()]/gi, '').replace(/\s+/g, '');
+  return str.replace(/[^\w\s()]/gi, '').replace(/\s+/g, '')
 }

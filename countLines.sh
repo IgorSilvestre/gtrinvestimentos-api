@@ -1,1 +1,1 @@
-find . -type f -name "*.js" -o -name "*.css" -o -name "*.ts" -o -name "*.svelte" -o -name "*.json" | grep -vE "(tsconfig|yarn-error|prettierrc|jest\.config|package-lock|README|es-lint|yarn|node_modules|dist)" | xargs cat | wc -l
+find . -type f -name "*.js" -o -name "*.css" -o -name "*.ts" -o -name "*.svelte" -o -name "*.prettierrc" -o -name "Dockerfile" | grep -vE "(tsconfig|yarn-error|prettierrc|jest\.config|package-lock|README|es-lint|yarn|node_modules|dist)" | xargs cat | wc -l

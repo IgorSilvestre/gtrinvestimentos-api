@@ -21,4 +21,3 @@ export class AppError implements IAppError {
 //     this.status = status;
 //   }
 // }
-

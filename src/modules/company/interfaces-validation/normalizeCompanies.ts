@@ -4,9 +4,7 @@ import { ZTag } from '../../tag/interfaces-validation/ZTag'
 import { ICompanyDocument } from './ICompanyModel'
 
 export function normalizeCompanies(
-  companies:
-    | ICompanyDocument
-    | ICompanyDocument[]
+  companies: ICompanyDocument | ICompanyDocument[],
 ) {
   companies = Array.isArray(companies) ? companies : [companies]
   let companiesNormalized = companies.map((company) => ({

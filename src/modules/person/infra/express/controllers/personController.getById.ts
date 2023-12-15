@@ -5,7 +5,7 @@ import { ZPerson } from '../../../interfaces-validation/ZPerson'
 import { serializePerson } from '../../../interfaces-validation/personSerializer'
 import { ZPersonModel } from '../../mongo/personSchema'
 
-export async function getById (req: Request, res: Response) {
+export async function getById(req: Request, res: Response) {
   const { id } = req.params
   const person: ZPerson | AppError = await PersonService.getById(id)
   if (person instanceof AppError) {

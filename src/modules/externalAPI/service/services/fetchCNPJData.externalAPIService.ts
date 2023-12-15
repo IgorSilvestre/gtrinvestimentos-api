@@ -13,13 +13,10 @@ function normalizeCNPJData(CNPJData: ICNPJData) {
     ultima_atualizacao: new Date(
       CNPJData.ultima_atualizacao,
     ).toLocaleDateString('pt-BR'),
-    capital_social: Number(CNPJData.capital_social).toLocaleString(
-      'pt-BR',
-      {
-        style: 'currency',
-        currency: 'BRL',
-      },
-    ),
+    capital_social: Number(CNPJData.capital_social).toLocaleString('pt-BR', {
+      style: 'currency',
+      currency: 'BRL',
+    }),
   }
   return normalizeCNPJData
 }
@@ -35,9 +32,9 @@ export async function fetchCNPJData(cnpj: string) {
       externalAPIConfigs.fetchCNPJData.endpoint + cnpj,
       {
         headers: {
-          'Accept-Encoding': 'gzip, deflate'
-        }
-      }
+          'Accept-Encoding': 'gzip, deflate',
+        },
+      },
     )
     const CNPJData = normalizeCNPJData(response.data)
 

@@ -10,7 +10,6 @@ tagRouter.get('/all', TagController.getAll)
 tagRouter.get('/all-for-select', TagController.getForSelect)
 tagRouter.get('/:id', TagController.getById)
 
-
 tagRouter.put('/:id', TagController.update)
 
 tagRouter.delete('/:id', TagController.remove)

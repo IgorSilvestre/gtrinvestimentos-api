@@ -1,10 +1,7 @@
 import { ZCompany } from '../../../../interfaces-validation/ZCompany'
 import { companyModel } from '../../companySchema'
 
-export async function update(
-  _id: string,
-  data: {},
-): Promise<ZCompany | null> {
+export async function update(_id: string, data: {}): Promise<ZCompany | null> {
   try {
     return companyModel
       .findOneAndUpdate(

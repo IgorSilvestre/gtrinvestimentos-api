@@ -1,9 +1,12 @@
 import { Request, Response } from 'express'
-import { personValidation, ZPerson } from '../../../interfaces-validation/ZPerson'
+import {
+  personValidation,
+  ZPerson,
+} from '../../../interfaces-validation/ZPerson'
 import { PersonService } from '../../../service/personService'
 import { AppError } from '../../../../../shared/AppError'
 
-export async function create (req: Request, res: Response) {
+export async function create(req: Request, res: Response) {
   const personDTO = req.body as ZPerson
   const validatedPersonDTO = personValidation.safeParse(personDTO)
   if (!validatedPersonDTO.success) {

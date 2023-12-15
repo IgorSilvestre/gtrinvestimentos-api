@@ -53,8 +53,7 @@ export async function get(
   const totalPages = Math.ceil(totalCompanies / limit)
 
   const page =
-    paginationParams?.page &&
-    paginationParams?.page <= totalPages
+    paginationParams?.page && paginationParams?.page <= totalPages
       ? paginationParams?.page
       : defaultValues.paginationPage
 

@@ -13,5 +13,5 @@ export const PersonController = {
   update,
   sendToDB,
   search,
-  remove
+  remove,
 }

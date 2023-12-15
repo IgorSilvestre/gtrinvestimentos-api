@@ -1,9 +1,12 @@
 import { Request, Response } from 'express'
-import { companyValidation, ZCompany } from '../../../interfaces-validation/ZCompany'
+import {
+  companyValidation,
+  ZCompany,
+} from '../../../interfaces-validation/ZCompany'
 import { CompanyService } from '../../../service/companyService'
 import { AppError } from '../../../../../shared/AppError'
 
-export async function create (req: Request, res: Response) {
+export async function create(req: Request, res: Response) {
   const companyDTO = req.body as ZCompany
 
   const validatedCompanyDTO = companyValidation.safeParse(companyDTO)

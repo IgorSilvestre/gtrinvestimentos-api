@@ -3,23 +3,26 @@ import { normalizeTags } from '../../tag/interfaces-validation/normalizeTags'
 import { ZTag } from '../../tag/interfaces-validation/ZTag'
 import { ZPersonModel } from '../infra/mongo/personSchema'
 
-
 export function serializePerson(personOrPeople: ZPersonModel | ZPersonModel[]) {
   let peopleSerialized
-  if(Array.isArray(personOrPeople)) {
-    peopleSerialized = personOrPeople.map((person) =>  ({
+  if (Array.isArray(personOrPeople)) {
+    peopleSerialized = personOrPeople.map((person) => ({
       ...person.toObject(),
       tags: normalizeTags(person.tags as unknown as ZTag[]),
       createdAt: parseISODateToBrazilSTD(person?.createdAt?.toISOString()),
-      lastUpdated: parseISODateToBrazilSTD(person?.lastUpdated?.toISOString())
+      lastUpdated: parseISODateToBrazilSTD(person?.lastUpdated?.toISOString()),
     }))
-  }
-  else {
+  } else {
     peopleSerialized = {
       ...personOrPeople.toObject(),
       tags: normalizeTags(personOrPeople.tags as unknown as ZTag[]),
-      createdAt: parseISODateToBrazilSTD(personOrPeople?.createdAt?.toISOString()),
-      lastUpdated: parseISODateToBrazilSTD(personOrPeople?.lastUpdated?.toISOString())
-    }}
+      createdAt: parseISODateToBrazilSTD(
+        personOrPeople?.createdAt?.toISOString(),
+      ),
+      lastUpdated: parseISODateToBrazilSTD(
+        personOrPeople?.lastUpdated?.toISOString(),
+      ),
+    }
+  }
   return peopleSerialized
 }

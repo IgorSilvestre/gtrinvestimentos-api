@@ -3,7 +3,7 @@ import { tagValidation } from './ZTag'
 
 export const updateTagValidation = z.object({
   id: z.string(),
-  data: tagValidation
+  data: tagValidation,
 })
 
 export type ZUpdateTag = z.infer<typeof updateTagValidation>

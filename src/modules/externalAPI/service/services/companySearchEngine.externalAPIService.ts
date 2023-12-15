@@ -6,7 +6,6 @@ import { externalAPIConfigs } from '../../../../shared/externalAPIEndpoints'
 import { CACHE } from '../../../../shared/cache'
 import { CacheTime } from '../../../../shared/keys/cacheTime'
 
-
 export interface ICompanySearchEngineData {
   business_id: string
   google_id: string
@@ -98,11 +97,9 @@ export async function companySearchEngine(query: string) {
 
     return companies
   } catch (err: any) {
-    return new AppError(
-      {
-        clientMessage: errorMessageKeys.cantSearch,
-        apiError: err,
-      }
-    )
+    return new AppError({
+      clientMessage: errorMessageKeys.cantSearch,
+      apiError: err,
+    })
   }
 }

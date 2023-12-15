@@ -18,7 +18,7 @@ export async function update(
   let error
   // get Person
   try {
-    person = await PersonRepository.getById(id) as any
+    person = (await PersonRepository.getById(id)) as any
   } catch (err) {
     return new AppError({
       clientMessage: errorMessageKeys.person.notFound,
@@ -26,7 +26,10 @@ export async function update(
     })
   }
 
-  if (person?.company && person?.company?._id.toString() !== updatedPersonData.company) {
+  if (
+    person?.company &&
+    person?.company?._id.toString() !== updatedPersonData.company
+  ) {
     let isUnregistered
 
     // if company changed, unregister employee from old company
@@ -67,8 +70,8 @@ export async function update(
     )
     if (person === null)
       return new AppError({ clientMessage: 'returned: NULL' })
-    
-    if(error) person.error = error.clientMessage
+
+    if (error) person.error = error.clientMessage
     return person as ZPerson
   } catch (err) {
     return new AppError({

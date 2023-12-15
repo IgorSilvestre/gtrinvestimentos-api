@@ -60,10 +60,7 @@ export async function search(
   const totalCompanies = await countTotalCompanies(searchParams)
   const totalPages = Math.ceil(totalCompanies / limit)
 
-  page =
-    page && page <= totalPages
-      ? page
-      : defaultValues.paginationPage
+  page = page && page <= totalPages ? page : defaultValues.paginationPage
 
   const companies = await searchCompanies(searchParams, page, limit)
 

@@ -3,7 +3,7 @@ import { TagService } from '../../../service/tagService'
 import { AppError } from '../../../../../shared/AppError'
 import { ZTag } from '../../../interfaces-validation/ZTag'
 
-export async function getById (req: Request, res: Response) {
+export async function getById(req: Request, res: Response) {
   const { id } = req.params
   const tag: ZTag | AppError = await TagService.getById(id)
   if (tag instanceof AppError) {

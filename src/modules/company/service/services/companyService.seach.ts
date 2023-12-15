@@ -11,7 +11,7 @@ export async function search(
     searchParams.page = Number(searchParams.page)
     searchParams.page < 1 ? delete searchParams.page : null
   }
-  if(searchParams?.limit) {
+  if (searchParams?.limit) {
     searchParams.limit = Number(searchParams.limit)
     searchParams.limit < 1 ? delete searchParams.limit : null
   }
@@ -27,7 +27,13 @@ export async function search(
       )
 
     if (companies instanceof Error)
-      return new AppError({ apiError: companies, clientMessage: errorMessageKeys.company.cantGetCompany }, 503)
+      return new AppError(
+        {
+          apiError: companies,
+          clientMessage: errorMessageKeys.company.cantGetCompany,
+        },
+        503,
+      )
 
     return companies
   } catch (err) {

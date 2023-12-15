@@ -17,13 +17,15 @@ export async function create(
     )
 
   try {
-    const alreadyExists = await CompanyRepository.search(
-      {
-        query: companyDTO.name,
-        isFullMatch: true
-      }
-    )
-    if (alreadyExists instanceof Error) return new AppError({ apiError: alreadyExists, clientMessage: errorMessageKeys.checkIfExistsFailed })
+    const alreadyExists = await CompanyRepository.search({
+      query: companyDTO.name,
+      isFullMatch: true,
+    })
+    if (alreadyExists instanceof Error)
+      return new AppError({
+        apiError: alreadyExists,
+        clientMessage: errorMessageKeys.checkIfExistsFailed,
+      })
     if (alreadyExists && alreadyExists?.data?.length > 0)
       return new AppError(
         { clientMessage: errorMessageKeys.alreadyExists },
