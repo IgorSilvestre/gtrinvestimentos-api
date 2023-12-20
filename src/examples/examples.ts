@@ -7,7 +7,6 @@ export function sum(a: Znumber, b: Znumber) {
   const result = numberValidation.safeParse(a)
   if (!result.success) {
     // handle error then return
-    console.log('GOT ERROR>>>', result.error.errors[0].message)
     return result.error.errors[0].message
   } else {
     // do something
