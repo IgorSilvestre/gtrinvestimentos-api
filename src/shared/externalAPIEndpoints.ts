@@ -1,4 +1,17 @@
 export const externalAPIConfigs = {
+  fetchBusinessEmail: {
+    method: 'GET',
+    url: 'https://email-finder8.p.rapidapi.com/fetch_email_of_person',
+    params: {
+      first_name: 'John', //example - domains array gets edited in the service
+      last_name: 'Doe', //example - domains array gets edited in the service
+      domain: 'google.com' //example - domains array gets edited in the service
+    },
+    headers: {
+      'X-RapidAPI-Key': `${process.env.RAPID_API_KEY}`,
+      'X-RapidAPI-Host': 'email-finder8.p.rapidapi.com'
+    }
+  },
   fetchCNPJData: {
     endpoint: 'https://www.receitaws.com.br/v1/cnpj/',
   },
