@@ -19,7 +19,6 @@ export async function fetchBusinessEmail({
   const cacheKey = `fetch-business-email-${first_name}-${rest.join(
     '-',
   )}-${domain}`
-  console.log('cacheKey', cacheKey)
   const cachedData = CACHE.get(cacheKey)
   if (cachedData) return cachedData
 
