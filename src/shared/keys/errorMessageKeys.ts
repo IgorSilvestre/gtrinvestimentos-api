@@ -31,4 +31,7 @@ export const errorMessageKeys = {
     cantFetchLinkedinCompanyDataByDomain:
       'Não foi possível buscar dados da empresa no LinkedIn',
   },
+  demand: {
+    notCreated: 'Não foi possível criar demanda',
+  }
 }
