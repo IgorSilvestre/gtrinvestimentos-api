@@ -37,5 +37,12 @@ export const errorMessageKeys = {
     notUpdated: 'Não foi possível atualizar zoneamento',
     notRemoved: 'Não foi possível remover zoneamento',
     failedToRebuildCache: 'Falha ao reconstruir cache de zoneamentos',
-  }
+  },
+  asset: {
+    cantGet: 'Não foi possível pegar registro de ativo',
+    notCreated: 'Não foi possível criar ativo',
+    notFound: 'Ativo não encontrada!',
+    notUpdated: 'Não foi possível atualizar ativo',
+    notRemoved: 'Não foi possível remover ativo',
+  },
 }
