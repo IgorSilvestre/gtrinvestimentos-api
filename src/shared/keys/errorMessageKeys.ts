@@ -31,4 +31,11 @@ export const errorMessageKeys = {
     cantFetchLinkedinCompanyDataByDomain:
       'Não foi possível buscar dados da empresa no LinkedIn',
   },
+  zoning: {
+    notCreated: 'Não foi possível criar zoneamento',
+    notFound: 'Zoneamento não encontrada!',
+    notUpdated: 'Não foi possível atualizar zoneamento',
+    notRemoved: 'Não foi possível remover zoneamento',
+    failedToRebuildCache: 'Falha ao reconstruir cache de zoneamentos',
+  }
 }
