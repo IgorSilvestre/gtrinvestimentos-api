@@ -1,4 +1,5 @@
 export function capitalizeFirstLetters(str: string): string {
+  str = str.trim() // Remove leading and trailing whitespace
   // Split the string into separate words
   const words = str.split(' '); 
 
