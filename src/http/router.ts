@@ -8,6 +8,8 @@ import { externalAPIRouter } from './routes/externalApi.routes'
 
 export const router = Router()
 
+router.use('/health', (_, res) => res.send('UP'))
+
 router.use('/company', companyRouter)
 router.use('/tag', tagRouter)
 router.use('/person', personRouter)
