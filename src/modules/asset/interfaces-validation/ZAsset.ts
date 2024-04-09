@@ -27,6 +27,11 @@ export const assetValidation = z.object({
   totalAreaM2: z.number().optional(),
   constructedAreaM2: z.number().optional(),
   vgvInReais: z.number().optional(),
+  cashOrEquivalentInReais: z.number().optional(),
+  privateDebtInReais: z.number().optional(),
+  laborDebtInReais: z.number().optional(),
+  publicDebtInReais: z.number().optional(),
+  numberOfEmployees: z.number().optional(),
   docLink: z.string().url('Invalid URL').optional(), // Use z.string().url() for URL validation
   state: z.string().optional(),
   city: z.string().optional(),

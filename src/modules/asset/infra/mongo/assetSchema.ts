@@ -1,6 +1,10 @@
 import mongo from '../../../../shared/database/database'
 
 const assetSchema = new mongo.Schema({
+  imgURL: {
+    type: String,
+    required: false,
+  },
   name: {
     type: String,
     required: true,
@@ -15,11 +19,27 @@ const assetSchema = new mongo.Schema({
     type: Number,
     required: false,
   },
+  isForSale: {
+    type: Boolean,
+    required: false,
+  },
   partnershipPercentage: {
     type: Number,
     required: false,
   },
   downPaymentInReais: {
+    type: Number,
+    required: false,
+  },
+  privateDebtInReais: {
+    type: Number,
+    required: false,
+  },
+  laborDebtInReais: {
+    type: Number,
+    required: false,
+  },
+  publicDebtInReais: {
     type: Number,
     required: false,
   },
@@ -44,6 +64,30 @@ const assetSchema = new mongo.Schema({
     required: false,
   },
   vgvInReais: {
+    type: Number,
+    required: false,
+  },
+  environmentalAreaPercentage: {
+    type: Number,
+    required: false,
+  },
+  hasValuation: {
+    type: Boolean,
+    required: false,
+  },
+  marginEBITDA: {
+    type: Number,
+    required: false,
+  },
+  anualRevenueInReais: {
+    type: Number,
+    required: false,
+  },
+  numberOfEmployees: {
+    type: Number,
+    required: false,
+  },
+  cashOrEquivalentInReais: {
     type: Number,
     required: false,
   },

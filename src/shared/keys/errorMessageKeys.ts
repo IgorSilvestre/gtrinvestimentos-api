@@ -1,4 +1,5 @@
 export const errorMessageKeys = {
+  badSearchParams: 'Parâmetros de busca inválidos',
   checkIfExistsFailed: 'Não foi possível validar se registro ja existe',
   alreadyExists: 'Registro já existe',
   noQuery: 'Sem query de busca',

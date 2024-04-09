@@ -2,10 +2,18 @@ import { Request, Response } from 'express'
 import { AssetService } from '../../../service/AssetService'
 import { AppError } from '../../../../../shared/AppError'
 import { IAssetPagination } from '../../../interfaces-validation/IAssetDocument'
+import { errorMessageKeys } from '../../../../../shared/keys/errorMessageKeys'
 
 export async function get(req: Request, res: Response) {
   const { page, limit } = req.query
-  const search = JSON.parse(decodeURIComponent(req.query.search as string))
+  
+  let search
+  try {
+    search = JSON.parse(decodeURIComponent(req.query.search as string))
+  } catch (err) {
+    search = {}
+    console.log({ error: err, clientMessage: errorMessageKeys.badSearchParams })
+  }
 
   const assets: IAssetPagination | AppError = await AssetService.get(
     search,

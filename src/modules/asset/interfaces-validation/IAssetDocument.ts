@@ -4,7 +4,14 @@ import { number } from 'zod';
 export interface IAssetDocument {
   name: string;
   tags: Types.ObjectId[];
-  priceInReais?: number; 
+  priceInReais?: number;
+  isForSale?: boolean;
+  anualRevenueInReais?: number;
+  marginEBITDA?: number;
+  cashOrEquivalentInReais?: number;
+  privateDebtInReais?: number;
+  laborDebtInReais?: number;
+  publicDebtInReais?: number;
   partnershipPercentage?: number;
   downPaymentInReais?: number;
   description?: string;
