@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { AppError } from '../../../../shared/AppError'
 import { errorMessageKeys } from '../../../../shared/keys/errorMessageKeys'
-import { externalAPIConfigs } from '../../../../shared/externalAPIEndpoints'
+import { externalAPIEndpoints } from '../../../../shared/externalAPIEndpoints'
 import { CACHE } from '../../../../shared/cache'
 import { CacheTime } from '../../../../shared/keys/cacheTime'
 import { ICNPJData } from '../../interfaces/ICNPJData'
@@ -29,7 +29,7 @@ export async function fetchCNPJData(cnpj: string) {
 
   try {
     const response = await axios.get(
-      externalAPIConfigs.fetchCNPJData.endpoint + cnpj,
+      externalAPIEndpoints.fetchCNPJData.endpoint + cnpj,
       {
         headers: {
           'Accept-Encoding': 'gzip, deflate',

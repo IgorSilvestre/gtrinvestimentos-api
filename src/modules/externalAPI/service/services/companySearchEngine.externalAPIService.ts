@@ -2,7 +2,7 @@ import axios from 'axios'
 import { AxiosRequestConfig } from 'axios'
 import { AppError } from '../../../../shared/AppError'
 import { errorMessageKeys } from '../../../../shared/keys/errorMessageKeys'
-import { externalAPIConfigs } from '../../../../shared/externalAPIEndpoints'
+import { externalAPIEndpoints } from '../../../../shared/externalAPIEndpoints'
 import { CACHE } from '../../../../shared/cache'
 import { CacheTime } from '../../../../shared/keys/cacheTime'
 
@@ -83,10 +83,10 @@ export async function companySearchEngine(query: string) {
   const cachedData = CACHE.get(cacheKey)
   if (cachedData) return cachedData as ICompanySearchEngineData[]
 
-  externalAPIConfigs.companySearchEngine.defaultOptions.params.query = query
+  externalAPIEndpoints.companySearchEngine.defaultOptions.params.query = query
   try {
     const response = await axios.request(
-      externalAPIConfigs.companySearchEngine
+      externalAPIEndpoints.companySearchEngine
         .defaultOptions as AxiosRequestConfig,
     )
     const companies = response.data.data.map(

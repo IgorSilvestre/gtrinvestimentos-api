@@ -2,7 +2,7 @@ import axios from 'axios'
 import { AxiosRequestConfig } from 'axios'
 import { AppError } from '../../../../shared/AppError'
 import { errorMessageKeys } from '../../../../shared/keys/errorMessageKeys'
-import { externalAPIConfigs } from '../../../../shared/externalAPIEndpoints'
+import { externalAPIEndpoints } from '../../../../shared/externalAPIEndpoints'
 import { CACHE } from '../../../../shared/cache'
 import { CacheTime } from '../../../../shared/keys/cacheTime'
 
@@ -22,13 +22,13 @@ export async function fetchBusinessEmail({
   const cachedData = CACHE.get(cacheKey)
   if (cachedData) return cachedData
 
-  externalAPIConfigs.fetchBusinessEmail.params.first_name = first_name
-  externalAPIConfigs.fetchBusinessEmail.params.last_name = last_name
-  externalAPIConfigs.fetchBusinessEmail.params.domain = domain
+  externalAPIEndpoints.fetchBusinessEmail.params.first_name = first_name
+  externalAPIEndpoints.fetchBusinessEmail.params.last_name = last_name
+  externalAPIEndpoints.fetchBusinessEmail.params.domain = domain
 
   try {
     const response = await axios.request(
-      externalAPIConfigs.fetchBusinessEmail as AxiosRequestConfig,
+      externalAPIEndpoints.fetchBusinessEmail as AxiosRequestConfig,
     )
     const businessEmail = response.data
 

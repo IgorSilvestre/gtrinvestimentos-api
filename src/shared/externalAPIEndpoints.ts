@@ -1,16 +1,19 @@
-export const externalAPIConfigs = {
+import { getNeighberhoodByCityApiId } from '../modules/externalAPI/service/services/locations/endpoints/getNeighberhoodByCityApiId.locationsSubService'
+import { getBrazilStates } from '../modules/externalAPI/service/services/locations/endpoints/getBrazilStates.locationsSubService'
+
+export const externalAPIEndpoints = {
   fetchBusinessEmail: {
     method: 'GET',
     url: 'https://email-finder8.p.rapidapi.com/fetch_email_of_person',
     params: {
       first_name: 'John', //example - domains array gets edited in the service
       last_name: 'Doe', //example - domains array gets edited in the service
-      domain: 'google.com' //example - domains array gets edited in the service
+      domain: 'google.com', //example - domains array gets edited in the service
     },
     headers: {
       'X-RapidAPI-Key': `${process.env.RAPID_API_KEY}`,
-      'X-RapidAPI-Host': 'email-finder8.p.rapidapi.com'
-    }
+      'X-RapidAPI-Host': 'email-finder8.p.rapidapi.com',
+    },
   },
   fetchCNPJData: {
     endpoint: 'https://www.receitaws.com.br/v1/cnpj/',
@@ -62,6 +65,20 @@ export const externalAPIConfigs = {
     headers: {
       'X-RapidAPI-Key': `${process.env.RAPID_API_KEY}`,
       'X-RapidAPI-Host': 'email-finder8.p.rapidapi.com',
+    },
+  },
+  locations: {
+    url: {
+      getCitiesByState: 'https://api.brasilaberto.com/v1/cities/',
+      getNeighberhoodByCityApiId: 'https://api.brasilaberto.com/v1/districts/',
+      getBrazilStates: 'https://api.brasilaberto.com/v1/states',
+      getStreetByNeighborhoodApiId: 'https://api.brasilaberto.com/v1/streets/',
+    },
+    options: {
+      headers: {
+        Bearer: `${process.env.BRASIL_ABERTO_API_KEY}`,
+        'Accept-Encoding': 'gzip, deflate',
+      },
     },
   },
 }
