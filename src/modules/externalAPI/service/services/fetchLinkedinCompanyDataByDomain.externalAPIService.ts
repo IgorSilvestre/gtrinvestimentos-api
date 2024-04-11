@@ -1,5 +1,5 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios'
-import { externalAPIConfigs } from '../../../../shared/externalAPIEndpoints'
+import { externalAPIEndpoints } from '../../../../shared/externalAPIEndpoints'
 import { AppError } from '../../../../shared/AppError'
 import { errorMessageKeys } from '../../../../shared/keys/errorMessageKeys'
 import { CACHE } from '../../../../shared/cache'
@@ -81,7 +81,7 @@ export async function fetchLinkedinCompanyDataByDomain(
   const cachedData = await CACHE.get(cachedKey)
   if (cachedData) return cachedData as ICompanyLinkedinData
 
-  const options = externalAPIConfigs.linkedin.companyDataByDomain.options
+  const options = externalAPIEndpoints.linkedin.companyDataByDomain.options
   options.data.domains = [domain] // Set the domain to be searched
   try {
     const response: AxiosResponse<ICompanyLinkedinData> = await axios.request(

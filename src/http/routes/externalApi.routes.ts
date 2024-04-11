@@ -1,5 +1,6 @@
 import { Router } from 'express'
 import { externalApiController } from '../../modules/externalAPI/infra/express/externalApiController'
+import { locationsSubRouter } from './externalAPI/locations.routes'
 
 export const externalAPIRouter = Router()
 
@@ -32,3 +33,6 @@ externalAPIRouter.get(
   '/fetch-business-email',
   externalApiController.fetchBusinessEmail,
 )
+
+
+externalAPIRouter.use('/locations', locationsSubRouter)
