@@ -56,7 +56,8 @@ export async function search(
   if (tags) {
     searchParams.tags = { $all: tags }
   }
-  
+ 
+  // TODO fix this??
   if (query) {
     ;(() => {
       if (isFullMatch) {
@@ -71,6 +72,7 @@ export async function search(
     })()
   }
 
+  // TODO make all this pagination in a function, see how is done in assetService.get.ts
   const totalCompanies = await countTotalCompanies(searchParams)
   const totalPages = Math.ceil(totalCompanies / limit)
 

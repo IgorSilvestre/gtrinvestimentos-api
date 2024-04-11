@@ -1,4 +1,5 @@
 export const errorMessageKeys = {
+  badSearchParams: 'Parâmetros de busca inválidos',
   checkIfExistsFailed: 'Não foi possível validar se registro ja existe',
   alreadyExists: 'Registro já existe',
   noQuery: 'Sem query de busca',
@@ -30,5 +31,19 @@ export const errorMessageKeys = {
     cantFetchCNPJData: 'Não foi possível buscar dados do CNPJ',
     cantFetchLinkedinCompanyDataByDomain:
       'Não foi possível buscar dados da empresa no LinkedIn',
+  },
+  zoning: {
+    notCreated: 'Não foi possível criar zoneamento',
+    notFound: 'Zoneamento não encontrada!',
+    notUpdated: 'Não foi possível atualizar zoneamento',
+    notRemoved: 'Não foi possível remover zoneamento',
+    failedToRebuildCache: 'Falha ao reconstruir cache de zoneamentos',
+  },
+  asset: {
+    cantGet: 'Não foi possível pegar registro de ativo',
+    notCreated: 'Não foi possível criar ativo',
+    notFound: 'Ativo não encontrada!',
+    notUpdated: 'Não foi possível atualizar ativo',
+    notRemoved: 'Não foi possível remover ativo',
   },
 }

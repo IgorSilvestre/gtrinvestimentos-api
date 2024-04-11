@@ -1,3 +1,7 @@
+/**
+ * 
+ * @returns array of unique elements from both arrays
+ */
 export function mergeTwoStringArrays(
   arr1: string[] | undefined,
   arr2: string[] | undefined,
