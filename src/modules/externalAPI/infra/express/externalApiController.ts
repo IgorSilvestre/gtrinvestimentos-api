@@ -3,6 +3,7 @@ import { deepSearchCompany } from './controllers/deepSearchCompany.externalContr
 import { fetchBusinessEmail } from './controllers/fetchBusinessEmail.externalAPIController'
 import { fetchCNPJData } from './controllers/fetchCNPJData.externalAPIController'
 import { fetchLinkedinCompanyDataByDomain } from './controllers/fetchLinkedinCompanyDataByDomain.externalAPIController'
+import { locationsSubController } from './controllers/locations/locationsSubController'
 
 export const externalApiController = {
   fetchCNPJData,
@@ -10,4 +11,5 @@ export const externalApiController = {
   fetchLinkedinCompanyDataByDomain,
   deepSearchCompany,
   fetchBusinessEmail,
+  locationsSubController
 }

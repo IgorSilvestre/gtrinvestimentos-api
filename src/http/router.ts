@@ -9,7 +9,7 @@ import { assetRouter } from './routes/asset.routes'
 
 export const router = Router()
 
-router.use('/', (_, res) => res.send('UP'))
+router.use('/health', (_, res) => res.send('UP'))
 
 router.use('/company', companyRouter)
 router.use('/tag', tagRouter)

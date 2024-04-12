@@ -3,11 +3,13 @@ import { deepSearchCompany } from './services/deepSearchCompany.externalAPIServi
 import { fetchBusinessEmail } from './services/fetchBusinessEmail.externalAPIService'
 import { fetchCNPJData } from './services/fetchCNPJData.externalAPIService'
 import { fetchLinkedinCompanyDataByDomain } from './services/fetchLinkedinCompanyDataByDomain.externalAPIService'
+import { locationsSubService } from './services/locations/locations.externalAPIService'
 
 export const externalAPIService = {
   fetchCNPJData,
   companySearchEngine,
   fetchLinkedinCompanyDataByDomain,
   deepSearchCompany,
-  fetchBusinessEmail
+  fetchBusinessEmail,
+  locationsSubService,
 }
