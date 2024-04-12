@@ -24,6 +24,9 @@ export interface IAssetDocument {
   state?: string;
   city?: string;
   neighborhood?: string;
+  street?: string;
+  addressNumber?: string;
+  addressComplement?: string;
   partner?: Types.ObjectId;
   zoning?: Types.ObjectId;
   createdAt: Date;

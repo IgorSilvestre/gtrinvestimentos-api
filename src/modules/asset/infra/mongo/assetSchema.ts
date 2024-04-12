@@ -107,6 +107,18 @@ const assetSchema = new mongo.Schema({
     type: String,
     required: false,
   },
+  street: {
+    type: String,
+    required: false,
+  },
+  addressNumber: {
+    type: String,
+    required: false,
+  },
+  addressComplement: {
+    type: String,
+    required: false,
+  },
   partner: {
     type: mongo.Schema.Types.ObjectId,
     ref: 'person',
