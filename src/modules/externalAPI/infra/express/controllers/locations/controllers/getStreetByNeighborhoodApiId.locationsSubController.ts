@@ -3,23 +3,28 @@ import { AppError } from '../../../../../../../shared/AppError'
 import { errorMessageKeys } from '../../../../../../../shared/keys/errorMessageKeys'
 import { externalAPIService } from '../../../../../service/externalAPIService'
 
-export async function getNeighberhoodByCityApiId(req: Request, res: Response) {
+export async function getStreetByNeighborhoodApiId(
+  req: Request,
+  res: Response,
+) {
   const { apiId } = req.params
 
   if (!apiId || typeof apiId !== 'string')
     return res.status(400).json({ error: errorMessageKeys.noQuery })
 
   try {
-    const citiesResponse =
-      await externalAPIService.locationsSubService.getNeighberhoodByCityApiId(apiId)
+    const streetsResponse =
+      await externalAPIService.locationsSubService.getStreetByNeighborhoodApiId(
+        apiId,
+      )
 
-    if (citiesResponse instanceof AppError) {
+    if (streetsResponse instanceof AppError) {
       return res
-        .status(citiesResponse.status || 500)
-        .json({ error: citiesResponse.message })
+        .status(streetsResponse.status || 500)
+        .json({ error: streetsResponse.message })
     }
 
-    return res.status(200).json(citiesResponse)
+    return res.status(200).json(streetsResponse)
   } catch (error) {
     console.error('Error fetching data:', error)
     return res

@@ -16,16 +16,16 @@ locationsSubRouter.get(
  * @param ApiId - The city's API ID
 */
 locationsSubRouter.get(
-  '/neighberhood-by-city-apiId/:apiId',
-  externalApiController.locationsSubController.getNeighberhoodByCityApiId,
+  '/neighborhood-by-city-apiId/:apiId',
+  externalApiController.locationsSubController.getNeighborhoodByCityApiId,
 )
 
 /**
- * @param ApiId - The neiberhood's API ID
+ * @param ApiId - The neiborhood's API ID
 */
 locationsSubRouter.get(
-  '/street-by-neighberhood-apiId/:apiId',
-  externalApiController.locationsSubController.getStreetByNeighberhoodApiId,
+  '/street-by-neighborhood-apiId/:apiId',
+  externalApiController.locationsSubController.getStreetByNeighborhoodApiId,
 )
 
 locationsSubRouter.get(

@@ -8,7 +8,7 @@ import { CacheTime } from '../../../../../../shared/keys/cacheTime'
 /**
  * @param ApiId - Its the API ID for the city
  */
-export async function getNeighberhoodByCityApiId(ApiId: string) {
+export async function getNeighborhoodByCityApiId(ApiId: string) {
   const cachekey = `getNeighberhoodByCityApiId-${ApiId}`
   const cachedData = CACHE.get(cachekey)
   if (cachedData) return cachedData

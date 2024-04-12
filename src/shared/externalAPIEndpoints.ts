@@ -1,4 +1,4 @@
-import { getNeighberhoodByCityApiId } from '../modules/externalAPI/service/services/locations/endpoints/getNeighberhoodByCityApiId.locationsSubService'
+import { getNeighborhoodByCityApiId } from '../modules/externalAPI/service/services/locations/endpoints/getNeighborhoodByCityApiId.locationsSubService'
 import { getBrazilStates } from '../modules/externalAPI/service/services/locations/endpoints/getBrazilStates.locationsSubService'
 
 export const externalAPIEndpoints = {

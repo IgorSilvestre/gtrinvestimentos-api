@@ -1,11 +1,11 @@
 import { getBrazilStates } from './endpoints/getBrazilStates.locationsSubService'
 import { getCitiesByState } from './endpoints/getCitiesByState.locationsSubService'
-import { getNeighberhoodByCityApiId } from './endpoints/getNeighberhoodByCityApiId.locationsSubService'
-import { getStreetByNeighborhoodApiId } from './endpoints/getStreetByNeighberhoodApiId.locationsSubService'
+import { getNeighborhoodByCityApiId } from './endpoints/getNeighborhoodByCityApiId.locationsSubService'
+import { getStreetByNeighborhoodApiId } from './endpoints/getStreetByNeighborhoodApiId.locationsSubService'
 
 export const locationsSubService = {
   getCitiesByState,
-  getNeighberhoodByCityApiId,
+  getNeighborhoodByCityApiId,
   getBrazilStates,
-  getStreetByNeighborhoodApiId
+  getStreetByNeighborhoodApiId,
 }
