@@ -8,7 +8,7 @@ export const locationsSubRouter = Router()
  * @param state - Brazilian state as acronym (e.g. SP, RJ, MG)
  */
 locationsSubRouter.get(
-  '/citiesByState/:state',
+  '/cities-by-state/:state',
   externalApiController.locationsSubController.getCitiesByState,
 )
 
@@ -16,7 +16,7 @@ locationsSubRouter.get(
  * @param ApiId - The city's API ID
 */
 locationsSubRouter.get(
-  '/neighberhoodByCityApiId/:apiId',
+  '/neighberhood-by-city-apiId/:apiId',
   externalApiController.locationsSubController.getNeighberhoodByCityApiId,
 )
 
@@ -24,11 +24,11 @@ locationsSubRouter.get(
  * @param ApiId - The neiberhood's API ID
 */
 locationsSubRouter.get(
-  '/streetByNeighberhoodApiId/:apiId',
+  '/street-by-neighberhood-apiId/:apiId',
   externalApiController.locationsSubController.getStreetByNeighberhoodApiId,
 )
 
 locationsSubRouter.get(
-  '/BrazilStates',
+  '/Brazil-states',
   externalApiController.locationsSubController.getBrazilStates,
 )
