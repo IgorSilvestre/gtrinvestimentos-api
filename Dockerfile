@@ -18,6 +18,7 @@
 
   # Expose port 3000
   EXPOSE 3005
+  EXPOSE 7297
 
   # Run the application
   CMD ["bun", "run", "start:build"]
