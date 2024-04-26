@@ -8,6 +8,9 @@ tagRouter.post('/', TagController.create)
 // GET REQUESTS
 tagRouter.get('/all', TagController.getAll)
 tagRouter.get('/all-for-select', TagController.getForSelect)
+
+tagRouter.get('/find', TagController.find)
+
 tagRouter.get('/:id', TagController.getById)
 
 tagRouter.put('/:id', TagController.update)
