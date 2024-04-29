@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { PersonController } from '../../../../modules/person/infra/express/personController'
+import { PersonController } from '../../../../modules/person/v1/infra/express/personController'
 
 export const personRouter = Router()
 

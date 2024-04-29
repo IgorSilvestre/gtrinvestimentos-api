@@ -1,9 +1,9 @@
 import { AppError } from '../../../../shared/AppError'
 import { errorMessageKeys } from '../../../../shared/keys/errorMessageKeys'
 import { ZPerson } from '../../../person/interfaces-validation/ZPerson'
-import { PersonService } from '../../../person/service/personService'
 import { CompanyService } from '../companyService'
 import { converStringToObjectIdMongo } from '../../../../shared/functions/convertStringToObjectIdMongo'
+import { PersonService } from '../../../person/v1/service/personService'
 
 export async function registerEmployee(
   employeeId: string,

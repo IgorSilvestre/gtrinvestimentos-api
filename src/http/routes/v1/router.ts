@@ -7,11 +7,11 @@ import { externalAPIRouter } from './routes/externalApi.routes'
 import { zoningRouter } from './routes/zoning.routes'
 import { assetRouter } from './routes/asset.routes'
 
-export const v1Router = Router()
+export const router_v1 = Router()
 
-v1Router.use('/company', companyRouter)
-v1Router.use('/tag', tagRouter)
-v1Router.use('/person', personRouter)
-v1Router.use('/externalAPI', externalAPIRouter)
-v1Router.use('/zoning', zoningRouter)
-v1Router.use('/asset', assetRouter)
+router_v1.use('/company', companyRouter)
+router_v1.use('/tag', tagRouter)
+router_v1.use('/person', personRouter)
+router_v1.use('/externalAPI', externalAPIRouter)
+router_v1.use('/zoning', zoningRouter)
+router_v1.use('/asset', assetRouter)

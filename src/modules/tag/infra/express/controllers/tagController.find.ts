@@ -8,7 +8,7 @@ import { parseObjectWithRegex } from 'br-lib'
  * needs stringify to use br-lib function stringifyObjectWithRegex
  */
 export async function find(req: Request, res: Response) {
-    const decoded = decodeURIComponent(req.query.search)
+    const decoded = decodeURIComponent(req.query.search as string)
     let params = parseObjectWithRegex(decoded)
     console.log('params', params)
 

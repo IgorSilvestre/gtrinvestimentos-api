@@ -1,7 +1,7 @@
 import { Router } from 'express'
-import { personRouter } from './routes/person.routes'
+import { personRouter_v2 } from './routes/person.routes'
 
-export const v2Router = Router()
+export const router_v2 = Router()
 
-v2Router.use('/person', personRouter)
+router_v2.use('/person', personRouter_v2)
 

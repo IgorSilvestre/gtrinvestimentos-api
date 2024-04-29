@@ -1,7 +1,7 @@
 import { Router } from 'express'
-import { PersonController } from '../../../../modules/person/infra/express/personController'
+import { PersonService_v2 } from '../../../../modules/person/v2/service/personService'
 
-export const personRouter = Router()
+export const personRouter_v2 = Router()
 
-// personRouter.get('/find', PersonController.find)
+personRouter_v2.get('/test', PersonService_v2.getPartners)
 
