@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { externalApiController } from '../../modules/externalAPI/infra/express/externalApiController'
+import { externalApiController } from '../../../../modules/externalAPI/infra/express/externalApiController'
 import { locationsSubRouter } from './externalAPI/locations.routes'
 
 export const externalAPIRouter = Router()

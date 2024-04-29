@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { TagController } from '../../modules/tag/infra/express/tagController'
+import { TagController } from '../../../../modules/tag/infra/express/tagController'
 
 export const tagRouter = Router()
 

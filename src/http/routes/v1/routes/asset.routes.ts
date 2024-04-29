@@ -1,9 +1,10 @@
 import { Router } from 'express'
-import { ZoningController } from '../../modules/zoning/infra/express/ZoningController'
+import { AssetController } from '../../../../modules/asset/infra/express/AssetController'
 
-export const zoningRouter = Router()
+export const assetRouter = Router()
 
-zoningRouter.post('/', ZoningController.create)
+assetRouter.post('/', AssetController.create)
+assetRouter.get('/', AssetController.get)
 
 // GET REQUESTS
 // zoningRouter.get('/all', ZoningController.getAll)
