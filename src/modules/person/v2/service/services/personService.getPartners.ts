@@ -33,7 +33,7 @@ export async function getPartners(): Promise<ZPersonModel[] | AppError> {
                 { clientMessage: errorMessageKeys.person.notFound },
                 404,
             )
-
+        console.log(people)
         return people as ZPersonModel[]
     } catch (err) {
         return new AppError(
