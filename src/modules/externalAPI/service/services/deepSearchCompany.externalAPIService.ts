@@ -1,44 +1,46 @@
-import whois from 'whois'
 import { isValidCNPJ } from 'br-lib'
 import { AppError } from '../../../../shared/AppError'
 import { errorMessageKeys } from '../../../../shared/keys/errorMessageKeys'
 import { externalAPIService } from '../externalAPIService'
 
 export async function deepSearchCompany(domain: string) {
-    let companyCNPJ: string | undefined
-    let whoisData:
-        | {
-            ownerid: string
-            owner: string
-            person: string | undefined
-            eMail: string | undefined
-        }
-        | undefined
-    let domainOwner:
-        | {
-            name: string | undefined
-            fullName: string | undefined
-            document: string | undefined
-            emails: string[] | undefined
-        }
-        | undefined
+    let companyCNPJ: string | undefined | null = undefined
+    let domainOwner: Record<string, any> | undefined = undefined
+
+    const proc = Bun.spawn(["whois", domain]);
+    const output = await new Response(proc.stdout).text();
+
+    const ownerRegex = /owner:\s+(.*)/;
+    const ownerMatch = output.match(ownerRegex);
+    const owner = ownerMatch ? ownerMatch[1] : null;
+
+    const personRegex = /person:\s+(.*)/;
+    const personMatch = output.match(personRegex);
+    const person = personMatch ? personMatch[1] : null;
+
+    const emailRegex = /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b/g;
+    const emails = output.match(emailRegex);
+
+    const owneridRegex = /ownerid:\s+(.*)/;
+    const owneridMatch = output.match(owneridRegex);
+    const ownerid = owneridMatch ? owneridMatch[1] : null;
 
     try {
-        whoisData = await whois(domain)
-        companyCNPJ = isValidCNPJ(whoisData?.ownerid ?? '')
-            ? whoisData?.ownerid
+        companyCNPJ = isValidCNPJ(ownerid ?? '')
+            ? ownerid
             : undefined
         domainOwner = companyCNPJ
             ? undefined
             : {
-                name: whoisData?.owner,
-                fullName: whoisData?.person,
-                document: whoisData?.ownerid,
-                emails: whoisData?.eMail?.split(' '),
+                name: owner,
+                fullName: person,
+                document: ownerid,
+                emails: emails?.toString().split(','),
             }
     } catch (err) {
         console.log(err)
     }
+
 
     try {
         const [CNPJResponse, linkedinResponse] = await Promise.allSettled([
@@ -73,3 +75,4 @@ export async function deepSearchCompany(domain: string) {
         })
     }
 }
+
