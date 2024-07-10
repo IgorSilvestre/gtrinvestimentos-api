@@ -34,5 +34,10 @@ externalAPIRouter.get(
   externalApiController.fetchBusinessEmail,
 )
 
+/**
+ * @param domain - The domain of the company
+ */
+externalAPIRouter.get('/scrape-contacts-from-website', externalApiController.scrapeContactsFromWebsite)
+
 
 externalAPIRouter.use('/locations', locationsSubRouter)

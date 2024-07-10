@@ -4,6 +4,7 @@ import { fetchBusinessEmail } from './controllers/fetchBusinessEmail.externalAPI
 import { fetchCNPJData } from './controllers/fetchCNPJData.externalAPIController'
 import { fetchLinkedinCompanyDataByDomain } from './controllers/fetchLinkedinCompanyDataByDomain.externalAPIController'
 import { locationsSubController } from './controllers/locations/locationsSubController'
+import { scrapeContactsFromWebsite } from './controllers/scrapeContactsFromWebsite.externalAPIController'
 
 export const externalApiController = {
   fetchCNPJData,
@@ -11,5 +12,6 @@ export const externalApiController = {
   fetchLinkedinCompanyDataByDomain,
   deepSearchCompany,
   fetchBusinessEmail,
-  locationsSubController
+  locationsSubController,
+  scrapeContactsFromWebsite,
 }

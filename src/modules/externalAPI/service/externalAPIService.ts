@@ -4,12 +4,14 @@ import { fetchBusinessEmail } from './services/fetchBusinessEmail.externalAPISer
 import { fetchCNPJData } from './services/fetchCNPJData.externalAPIService'
 import { fetchLinkedinCompanyDataByDomain } from './services/fetchLinkedinCompanyDataByDomain.externalAPIService'
 import { locationsSubService } from './services/locations/locations.externalAPIService'
+import { scrapeContactsFromWebsite } from './services/scrapeContactsFromWebsite.externalAPIService'
 
 export const externalAPIService = {
-  fetchCNPJData,
-  companySearchEngine,
-  fetchLinkedinCompanyDataByDomain,
-  deepSearchCompany,
-  fetchBusinessEmail,
-  locationsSubService,
+    fetchCNPJData,
+    companySearchEngine,
+    fetchLinkedinCompanyDataByDomain,
+    deepSearchCompany,
+    fetchBusinessEmail,
+    locationsSubService,
+    scrapeContactsFromWebsite
 }
