@@ -5,7 +5,7 @@
   "type": "module",
   "module": "src/server.ts",
   "scripts": {
-    "update": "bun update && bun update br-lib && bun update whois",
+    "update": "bun update && bun remove br-lib && bun add --force git://github.com/IgorSilvestre/br-lib.git#main",
     "build": "bun build src/server.ts --outdir out --target bun",
     "dev": "bun --watch run src/server.ts",
     "test": "jest",
