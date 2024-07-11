@@ -11,7 +11,6 @@ export async function deepSearchCompany(domain: string) {
 
     const response = await axios.get(`${externalAPIEndpoints.whois}${domain}`) 
     const output = response.data
-    console.log(output)
 
     const ownerRegex = /owner:\s+(.*)/;
     const ownerMatch = output.match(ownerRegex);

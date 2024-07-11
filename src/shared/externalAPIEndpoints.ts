@@ -1,5 +1,5 @@
 export const externalAPIEndpoints = {
-    whois: 'https://simple-go-server.sliplane.app/whois/',
+    whois: 'https://simple-go-server-production.up.railway.app/whois/',
     fetchBusinessEmail: {
     method: 'GET',
     url: 'https://email-finder8.p.rapidapi.com/fetch_email_of_person',
