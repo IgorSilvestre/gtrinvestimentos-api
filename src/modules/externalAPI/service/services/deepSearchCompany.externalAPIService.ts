@@ -2,13 +2,16 @@ import { isValidCNPJ } from 'br-lib'
 import { AppError } from '../../../../shared/AppError'
 import { errorMessageKeys } from '../../../../shared/keys/errorMessageKeys'
 import { externalAPIService } from '../externalAPIService'
+import { externalAPIEndpoints } from '../../../../shared/externalAPIEndpoints'
+import axios from 'axios'
 
 export async function deepSearchCompany(domain: string) {
     let companyCNPJ: string | undefined | null = undefined
     let domainOwner: Record<string, any> | undefined = undefined
 
-    const proc = Bun.spawn(["whois", domain]);
-    const output = await new Response(proc.stdout).text();
+    const response = await axios.get(`${externalAPIEndpoints.whois}${domain}`) 
+    const output = response.data
+    console.log(output)
 
     const ownerRegex = /owner:\s+(.*)/;
     const ownerMatch = output.match(ownerRegex);

@@ -1,8 +1,6 @@
-import { getNeighborhoodByCityApiId } from '../modules/externalAPI/service/services/locations/endpoints/getNeighborhoodByCityApiId.locationsSubService'
-import { getBrazilStates } from '../modules/externalAPI/service/services/locations/endpoints/getBrazilStates.locationsSubService'
-
 export const externalAPIEndpoints = {
-  fetchBusinessEmail: {
+    whois: 'https://simple-go-server.sliplane.app/whois/',
+    fetchBusinessEmail: {
     method: 'GET',
     url: 'https://email-finder8.p.rapidapi.com/fetch_email_of_person',
     params: {
