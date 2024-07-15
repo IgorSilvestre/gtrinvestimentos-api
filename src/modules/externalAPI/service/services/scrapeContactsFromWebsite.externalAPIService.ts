@@ -6,7 +6,6 @@ export interface IContacts {
 }
 
 export async function scrapeContactsFromWebsite (domain: string): Promise<IContacts> {
-    let contacts = await scrapeWebsiteForContacts(domain)
-    console.log(contacts)
+    return await scrapeWebsiteForContacts(domain)
 }
 
