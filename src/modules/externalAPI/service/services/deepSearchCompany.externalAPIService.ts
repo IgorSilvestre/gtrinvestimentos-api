@@ -32,13 +32,13 @@ export async function deepSearchCompany(domain: string) {
             ? ownerid
             : undefined
         domainOwner = companyCNPJ
-            ? undefined
-            : {
+            ? {
                 name: owner,
                 fullName: person,
                 document: ownerid,
                 emails: emails?.toString().split(','),
             }
+            : undefined
     } catch (err) {
         console.log(err)
     }
