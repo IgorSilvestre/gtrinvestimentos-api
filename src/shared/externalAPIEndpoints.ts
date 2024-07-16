@@ -1,6 +1,15 @@
 export const externalAPIEndpoints = {
-    whois: 'https://simple-go-server-production.up.railway.app/whois/',
-    fetchBusinessEmail: {
+  verifyEmail: {
+    // method: 'GET',
+    url: `https://api.emailable.com/v1/verify?api_key=${process.env.EMAILABLE_APIKEY}&email=`,
+    options: {
+      headers: {
+        'Accept-Encoding': 'gzip, deflate',
+      },
+    },
+  },
+  whois: 'https://simple-go-server-production.up.railway.app/whois/',
+  fetchBusinessEmail: {
     method: 'GET',
     url: 'https://email-finder8.p.rapidapi.com/fetch_email_of_person',
     params: {

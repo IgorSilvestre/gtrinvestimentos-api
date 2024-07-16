@@ -40,4 +40,9 @@ externalAPIRouter.get(
 externalAPIRouter.get('/scrape-contacts-from-website', externalApiController.scrapeContactsFromWebsite)
 
 
+/**
+ * @param email - The email to verify
+ */
+externalAPIRouter.get('/verify-email/:email', externalApiController.verifyEmail)
+
 externalAPIRouter.use('/locations', locationsSubRouter)
