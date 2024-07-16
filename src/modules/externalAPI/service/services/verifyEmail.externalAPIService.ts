@@ -14,10 +14,11 @@ export async function verifyEmail(
     score: 0,
   }
   for (const email of emails) {
-    const options = externalAPIEndpoints.verifyEmail
-    options.url += email
     try {
-      const response = await axios.request(options)
+      const response = await axios.get(
+        externalAPIEndpoints.verifyEmail.url + email,
+        externalAPIEndpoints.verifyEmail.options,
+      )
 
       if (response.data.score > bestEmail.score) {
         bestEmail.score = response.data.score
