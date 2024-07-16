@@ -32,7 +32,7 @@ export async function verifyEmail(
   }
 
   if (bestEmail.score <= 60) {
-    throw new Error('Email not found')
+    return new Error('Email not found')
   }
 
   return bestEmail

@@ -20,13 +20,20 @@ export async function fetchBusinessEmail({
 
     try {
         const businessEmail = await externalAPIService.verifyEmail(possibleEmailPermutations)
+        
+        if (businessEmail instanceof Error) {
+            return new AppError({
+                clientMessage: errorMessageKeys.notFound,
+                apiError: businessEmail,
+            }, 200)
+        }
 
         CACHE.set(cacheKey, businessEmail, CacheTime.one_month)
 
         return businessEmail
     } catch (err: any) {
         return new AppError({
-            clientMessage: errorMessageKeys.notFound,
+            clientMessage: errorMessageKeys.cantSearch,
             apiError: err,
         })
     }
