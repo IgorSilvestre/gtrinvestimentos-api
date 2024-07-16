@@ -8,4 +8,3 @@ router.use('/health', (_, res) => res.send('UP'))
 
 router.use('/v1', router_v1)
 router.use('/v2', router_v2)
-
