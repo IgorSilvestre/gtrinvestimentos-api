@@ -26,7 +26,7 @@ export async function fetchBusinessEmail({
         return businessEmail
     } catch (err: any) {
         return new AppError({
-            clientMessage: errorMessageKeys.cantSearch,
+            clientMessage: errorMessageKeys.notFound,
             apiError: err,
         })
     }
