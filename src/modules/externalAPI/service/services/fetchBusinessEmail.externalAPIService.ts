@@ -19,7 +19,7 @@ export async function fetchBusinessEmail({
     const possibleEmailPermutations = createBusinessEmailPermutations(name, domain)
 
     try {
-        const businessEmail = externalAPIService.verifyEmail(possibleEmailPermutations)
+        const businessEmail = await externalAPIService.verifyEmail(possibleEmailPermutations)
 
         CACHE.set(cacheKey, businessEmail, CacheTime.one_month)
 
