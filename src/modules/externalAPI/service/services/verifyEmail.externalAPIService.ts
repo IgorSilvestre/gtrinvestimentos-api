@@ -26,8 +26,7 @@ export async function verifyEmail(
       }
       if (response.data.score === 100) break
     } catch (error) {
-      console.error('Error verifying email:', error)
-      throw new Error(`Error verifying email: ${error}`)
+      return new Error(`Error verifying email: ${error}`)
     }
   }
 
