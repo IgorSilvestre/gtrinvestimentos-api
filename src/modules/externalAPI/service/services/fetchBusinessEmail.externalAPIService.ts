@@ -6,36 +6,34 @@ import { createBusinessEmailPermutations } from '../../../../shared/functions/cr
 import { externalAPIService } from '../externalAPIService'
 
 export async function fetchBusinessEmail({
-    name,
-    domain,
+  name,
+  domain,
 }: {
-        name: string
-        domain: string
-    }) {
-    const cacheKey = `fetch-business-email-${name.trim().replace(' ', '-')}-${domain}`
-    const cachedData = CACHE.get(cacheKey)
-    if (cachedData) return cachedData
+  name: string
+  domain: string
+}) {
+  const cacheKey = `fetch-business-email-${name.trim().replace(' ', '-')}-${domain}`
+  const cachedData = CACHE.get(cacheKey)
+  if (cachedData) return cachedData
 
-    const possibleEmailPermutations = createBusinessEmailPermutations(name, domain)
+  const possibleEmailPermutations = createBusinessEmailPermutations(name, domain)
 
-    try {
-        const businessEmail = await externalAPIService.verifyEmail(possibleEmailPermutations)
-        
-        if (businessEmail instanceof Error) {
-            return new AppError({
-                clientMessage: errorMessageKeys.notFound,
-                apiError: businessEmail,
-            }, 200)
-        }
+  try {
+    const businessEmail = await externalAPIService.verifyEmail(possibleEmailPermutations)
 
-        CACHE.set(cacheKey, businessEmail, CacheTime.one_month)
+    CACHE.set(cacheKey, businessEmail, CacheTime.one_month)
 
-        return businessEmail
-    } catch (err: any) {
-        return new AppError({
-            clientMessage: errorMessageKeys.cantSearch,
-            apiError: err,
-        })
+    return businessEmail
+  } catch (err: any) {
+    if (err instanceof Error) {
+      return new AppError({
+        clientMessage: errorMessageKeys.notFound,
+        apiError: err.message,
+      }, 200)
     }
+    return new AppError({
+      clientMessage: errorMessageKeys.cantSearch,
+      apiError: err,
+    })
+  }
 }
-

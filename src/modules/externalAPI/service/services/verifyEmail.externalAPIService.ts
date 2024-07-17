@@ -8,7 +8,7 @@ export interface IVerifyEmailResponse {
 
 export async function verifyEmail(
   emails: string[],
-): Promise<IVerifyEmailResponse | Error> {
+): Promise<IVerifyEmailResponse> {
   const bestEmail = {
     email: '',
     score: 0,
@@ -16,22 +16,22 @@ export async function verifyEmail(
   for (const email of emails) {
     try {
       const response = await axios.get(
-        externalAPIEndpoints.verifyEmail.url + email,
+        `${externalAPIEndpoints.verifyEmail.url}${email}`,
         externalAPIEndpoints.verifyEmail.options,
       )
-
+      
       if (response.data.score > bestEmail.score) {
         bestEmail.score = response.data.score
         bestEmail.email = response.data.email
       }
       if (response.data.score === 100) break
     } catch (error) {
-      return new Error(`Error verifying email: ${error}`)
+      console.error(`Error verifying email: ${error}`) // Log error but continue
     }
   }
 
   if (bestEmail.score <= 60) {
-    return new Error('Email not found')
+    throw new Error('Email not found')
   }
 
   return bestEmail

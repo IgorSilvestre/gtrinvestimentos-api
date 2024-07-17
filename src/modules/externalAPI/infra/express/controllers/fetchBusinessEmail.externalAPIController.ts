@@ -18,14 +18,18 @@ export async function fetchBusinessEmail(req: Request, res: Response) {
     return res.status(400).json({ error: 'No name provided' })
   }
 
-  let businessEmailData = await externalAPIService.fetchBusinessEmail({
-    domain,
-    name,
-  } as IService)
+  try {
+    const businessEmailData = await externalAPIService.fetchBusinessEmail({
+      domain,
+      name,
+    } as IService)
 
-  if (businessEmailData instanceof AppError) {
-    res.status(businessEmailData.status).json(businessEmailData.message)
+    if (businessEmailData instanceof AppError) {
+      return res.status(businessEmailData.status).json(businessEmailData.message)
+    }
+
+    res.status(200).json(businessEmailData)
+  } catch (error) {
+    res.status(500).json(error)
   }
-
-  res.status(200).json(businessEmailData)
 }
