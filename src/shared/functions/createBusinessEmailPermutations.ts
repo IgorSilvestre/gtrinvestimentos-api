@@ -30,10 +30,14 @@ export function createBusinessEmailPermutations(fullName: string, domain: string
     emailPermutations.push(...familyNames.map((familyName: string) => familyName + firstName + '@' + domain))
     // 7. f.lastname@domain
     emailPermutations.push(firstName[0] + '.' + lastName + '@' + domain)
-    // 8. l.firstname@domain
+    // 8. f_lastname@domain
+    emailPermutations.push(firstName[0] + '_' + lastName + '@' + domain)
+    // 9. l.firstname@domain
     emailPermutations.push(lastName[0] + '.' + firstName + '@' + domain)
-    // 9. fistname + first letter of every family name@domain
+    // 10. fistname + first letter of every family name@domain
     emailPermutations.push(firstName + familyNames.map((name: string) => name[0]).join('') + '@' + domain)
+    // 11. fistname-first letter of family name @domain
+    emailPermutations.push(firstName + '-' + lastName[0] + '@' + domain)
 
     return emailPermutations
 }
