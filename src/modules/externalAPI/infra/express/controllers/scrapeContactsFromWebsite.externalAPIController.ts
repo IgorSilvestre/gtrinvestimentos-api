@@ -14,3 +14,4 @@ export async function scrapeContactsFromWebsite (Request: Request, Response: Res
 
   return Response.status(200).json(contacts)
 }
+

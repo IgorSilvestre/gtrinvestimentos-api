@@ -37,7 +37,7 @@ externalAPIRouter.get(
 /**
  * @param domain - The domain of the company
  */
-externalAPIRouter.get('/scrape-contacts-from-website', externalApiController.scrapeContactsFromWebsite)
+externalAPIRouter.get('/scrape-website-for-contacts', externalApiController.scrapeContactsFromWebsite)
 
 
 /**
