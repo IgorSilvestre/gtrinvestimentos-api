@@ -119,7 +119,7 @@ const assetSchema = new mongo.Schema({
     type: String,
     required: false,
   },
-  partner: {
+  contact: {
     type: mongo.Schema.Types.ObjectId,
     ref: 'person',
     required: false,

@@ -39,7 +39,7 @@ export const assetValidation = z.object({
   street: z.string().optional(),
   addressNumber: z.string().optional(),
   addressComplement: z.string().optional(),
-  partner: z.string().optional(),
+  contact: z.string().optional(),
   zoning: z.string().optional(),
   createdAt: z.date().optional(),
   lastUpdated: z.date().optional(),
