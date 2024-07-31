@@ -4,9 +4,6 @@
   # Set the working directory in the container to /app
   WORKDIR /app
 
-  # Install whois package
-  RUN apt-get update && apt-get install -y whois
-
   # Copy package.json and bun.lockb to the working directory
   COPY package.json bun.lockb ./
 
