@@ -19,6 +19,7 @@
   "license": "ISC",
   "dependencies": {
     "@types/supertest": "^2.0.12",
+    "aws-sdk": "^2.1667.0",
     "axios": "^1.6.0",
     "br-lib": "git://github.com/IgorSilvestre/br-lib.git#main",
     "bun-types": "^1.0.11",
