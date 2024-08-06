@@ -1,5 +1,5 @@
+import { normalizeTags } from '../../../shared/functions/normalizeTags'
 import { parseISODateToBrazilSTD } from '../../../shared/functions/parseISODateToBrazilSTD'
-import { normalizeTags } from '../../tag/interfaces-validation/normalizeTags'
 import { ZTag } from '../../tag/interfaces-validation/ZTag'
 import { ICompanyDocument } from './ICompanyModel'
 

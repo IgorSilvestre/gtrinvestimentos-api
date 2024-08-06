@@ -1,8 +1,8 @@
 import { TagRepository } from '../../../modules/tag/infra/mongo/repository/TagRepository'
-import { normalizeTags } from '../../../modules/tag/interfaces-validation/normalizeTags'
 import { CACHE } from '../../cache'
 import { cacheKeys } from '../../keys/cacheKeys'
 import { CacheTime } from '../../keys/cacheTime'
+import { normalizeTags } from '../normalizeTags'
 
 /**
  * @returns True if cache was rebuilded, false if not

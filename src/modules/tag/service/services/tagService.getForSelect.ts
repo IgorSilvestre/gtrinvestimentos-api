@@ -1,9 +1,9 @@
 import { AppError } from '../../../../shared/AppError'
 import { CACHE } from '../../../../shared/cache'
-import { normalizeTags } from '../../interfaces-validation/normalizeTags'
 import { TagService } from '../tagService'
 import { CacheTime } from '../../../../shared/keys/cacheTime'
 import { cacheKeys } from '../../../../shared/keys/cacheKeys'
+import { IDatabaseOption, normalizeTags } from '../../../../shared/functions/normalizeTags'
 
 export async function getForSelect() {
   const cachedTagsAllForSelect = CACHE.get(cacheKeys.tag.allForSelect)
@@ -13,7 +13,7 @@ export async function getForSelect() {
 
   if (tags instanceof AppError) return tags
 
-  const tagsAllForSelect = normalizeTags(tags)
+  const tagsAllForSelect = normalizeTags(tags as IDatabaseOption[])
 
   CACHE.set(cacheKeys.tag.allForSelect, tagsAllForSelect, CacheTime.one_year)
 
