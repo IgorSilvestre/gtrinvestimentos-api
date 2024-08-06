@@ -23,6 +23,7 @@ export const assetValidation = z.object({
   price: z.number().optional(),
   downPayment: z.number().optional(),
   capRatePercentage: z.number().optional(),
+  monthlyRentInReais: z.number().optional(),
   kmFromSP: z.number().optional(),
   totalAreaM2: z.number().optional(),
   constructedAreaM2: z.number().optional(),

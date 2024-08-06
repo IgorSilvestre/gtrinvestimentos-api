@@ -15,6 +15,7 @@ export interface IAssetDocument {
   downPaymentInReais?: number;
   description?: string;
   capRatePercentage?: number;
+  monthlyRentInReais?: number;
   kmFromSP?: number;
   totalAreaM2?: number;
   constructedAreaM2?: number;

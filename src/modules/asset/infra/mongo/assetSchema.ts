@@ -51,6 +51,10 @@ const assetSchema = new mongo.Schema({
     type: Number,
     required: false,
   },
+  monthlyRentInReais: {
+    type: Number,
+    required: false,
+  },
   kmFromSP: {
     type: Number,
     required: false,
