@@ -17,7 +17,7 @@ export interface IAssetDocument {
   capRatePercentage?: number;
   monthlyRentInReais?: number;
   kmFromSP?: number;
-  totalAreaM2?: number;
+  landAreaM2?: number;
   constructedAreaM2?: number;
   vgvInReais?: number;
     valuationPriceInReais?: number;
@@ -29,7 +29,7 @@ export interface IAssetDocument {
   addressNumber?: string;
   addressComplement?: string;
   partner?: Types.ObjectId;
-  zoning?: Types.ObjectId;
+  zoning?: Types.ObjectId[];
   createdAt: Date;
   lastUpdated: Date;
 }

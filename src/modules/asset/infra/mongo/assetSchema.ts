@@ -59,7 +59,7 @@ const assetSchema = new mongo.Schema({
     type: Number,
     required: false,
   },
-  totalAreaM2: {
+  landAreaM2: {
     type: Number,
     required: false,
   },
@@ -128,11 +128,11 @@ const assetSchema = new mongo.Schema({
     ref: 'person',
     required: false,
   },
-  zoning: {
+  zoning: [{
     type: mongo.Schema.Types.ObjectId,
     ref: 'zoning',
     required: false,
-  },
+  }],
   createdAt: {
     type: Date,
     default: Date.now,

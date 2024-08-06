@@ -1,13 +1,10 @@
 import { z } from 'zod'
-import { tagValidation } from '../../tag/interfaces-validation/ZTag'
 
 function stringOptions(type: string) {
   return {
     invalid_type_error: `${type} must be a string`,
   }
 }
-
-const tagStringValidation = z.array(z.string(stringOptions('tags')))
 
 export const assetValidation = z.object({
   _id: z.string().optional(),
@@ -17,7 +14,7 @@ export const assetValidation = z.object({
       invalid_type_error: 'Name must be a string',
     })
     .min(2, 'Name must be at least 2 characters long'),
-  tags: z.union([tagStringValidation, tagValidation]).optional(),
+  tags: z.array(z.string(stringOptions('tags'))).optional(),
   description: z.string().optional(),
   partnershipPercentage: z.number().optional(),
   price: z.number().optional(),
@@ -25,7 +22,7 @@ export const assetValidation = z.object({
   capRatePercentage: z.number().optional(),
   monthlyRentInReais: z.number().optional(),
   kmFromSP: z.number().optional(),
-  totalAreaM2: z.number().optional(),
+  landAreaM2: z.number().optional(),
   constructedAreaM2: z.number().optional(),
   vgvInReais: z.number().optional(),
   cashOrEquivalentInReais: z.number().optional(),
@@ -42,7 +39,7 @@ export const assetValidation = z.object({
   addressNumber: z.string().optional(),
   addressComplement: z.string().optional(),
   contact: z.string().optional(),
-  zoning: z.string().optional(),
+  zoning: z.array(z.string(stringOptions('zonings'))).optional(),
   createdAt: z.date().optional(),
   lastUpdated: z.date().optional(),
 })
