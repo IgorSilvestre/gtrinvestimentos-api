@@ -29,6 +29,7 @@ export const assetValidation = z.object({
   vgvInReais: z.number().optional(),
   cashOrEquivalentInReais: z.number().optional(),
   privateDebtInReais: z.number().optional(),
+    valuationPriceInReais: z.number().optional(),
   laborDebtInReais: z.number().optional(),
   publicDebtInReais: z.number().optional(),
   numberOfEmployees: z.number().optional(),

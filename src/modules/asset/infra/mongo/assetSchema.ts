@@ -71,8 +71,8 @@ const assetSchema = new mongo.Schema({
     type: Number,
     required: false,
   },
-  hasValuation: {
-    type: Boolean,
+  valuationPriceInReais: {
+    type: Number,
     required: false,
   },
   marginEBITDA: {

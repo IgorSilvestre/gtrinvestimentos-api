@@ -1,5 +1,4 @@
 import { Types } from 'mongoose'
-import { number } from 'zod';
 
 export interface IAssetDocument {
   name: string;
@@ -20,6 +19,7 @@ export interface IAssetDocument {
   totalAreaM2?: number;
   constructedAreaM2?: number;
   vgvInReais?: number;
+    valuationPriceInReais?: number;
   docLink?: string;
   state?: string;
   city?: string;
