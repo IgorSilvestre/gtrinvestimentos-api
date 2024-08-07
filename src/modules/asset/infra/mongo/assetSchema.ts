@@ -47,6 +47,10 @@ const assetSchema = new mongo.Schema({
     type: String,
     required: false,
   },
+  tenant: {
+    type: String,
+    required: false,
+  },
   capRatePercentage: {
     type: Number,
     required: false,
