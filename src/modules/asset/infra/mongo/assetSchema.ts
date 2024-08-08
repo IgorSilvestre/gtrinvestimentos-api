@@ -21,7 +21,7 @@ const assetSchema = new mongo.Schema({
   },
   contractTerm: {
     type: String,
-    required: true,
+    required: false,
   },
   isForSale: {
     type: Boolean,
