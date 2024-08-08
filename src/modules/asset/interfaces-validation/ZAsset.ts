@@ -18,6 +18,7 @@ export const assetValidation = z.object({
     description: z.string().optional(),
     partnershipPercentage: z.number().optional(),
     price: z.number().optional(),
+    contractTerm: z.string().optional(),
     downPayment: z.number().optional(),
     capRatePercentage: z.number().optional(),
     monthlyRentInReais: z.number().optional(),

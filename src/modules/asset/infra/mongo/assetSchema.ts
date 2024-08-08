@@ -19,6 +19,10 @@ const assetSchema = new mongo.Schema({
     type: Number,
     required: false,
   },
+  contractTerm: {
+    type: String,
+    required: true,
+  },
   isForSale: {
     type: Boolean,
     required: false,
