@@ -5,11 +5,11 @@ export const assetRouter = Router()
 
 assetRouter.post('/', AssetController.create)
 assetRouter.get('/', AssetController.get)
+assetRouter.get('/:id', AssetController.getById)
 
 // GET REQUESTS
 // zoningRouter.get('/all', ZoningController.getAll)
 // zoningRouter.get('/all-for-select', ZoningController.getForSelect)
-// zoningRouter.get('/:id', ZoningController.getById)
 
 // zoningRouter.put('/:id', ZoningController.update)
 
