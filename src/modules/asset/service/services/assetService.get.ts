@@ -41,12 +41,12 @@ export async function get(
     )) as IAssetDocument[]
     if (assets === null)
       return new AppError(
-        { clientMessage: errorMessageKeys.company.notFound },
+        { clientMessage: errorMessageKeys.asset.notFound },
         404,
       )
   } catch (err) {
     return new AppError(
-      { clientMessage: errorMessageKeys.company.notFound, apiError: err },
+      { clientMessage: errorMessageKeys.asset.notFound, apiError: err },
       404,
     )
   }
@@ -66,7 +66,7 @@ export async function get(
     )) as number
     if (numberOfDocuments === null)
       getPagesError = new AppError(
-        { clientMessage: errorMessageKeys.company.notFound },
+        { clientMessage: errorMessageKeys.asset.notFound },
         404,
       )
     totalPages = Math.ceil(numberOfDocuments / limit)
@@ -74,7 +74,7 @@ export async function get(
     previousPage = page > 1 ? page - 1 : null
   } catch (err) {
     getPagesError = new AppError(
-      { clientMessage: errorMessageKeys.company.notFound, apiError: err },
+      { clientMessage: errorMessageKeys.asset.notFound, apiError: err },
       404,
     )
   }

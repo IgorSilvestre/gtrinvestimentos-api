@@ -9,7 +9,7 @@ export async function get(req: Request, res: Response) {
   
   let search
   try {
-    search = JSON.parse(decodeURIComponent(req.query.search as string))
+    search = req.query.search ? JSON.parse(decodeURIComponent(req.query.search as string)) : {}
   } catch (err) {
     search = {}
     console.log({ error: err, clientMessage: errorMessageKeys.badSearchParams })
