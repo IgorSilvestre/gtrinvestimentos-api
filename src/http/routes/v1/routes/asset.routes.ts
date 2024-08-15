@@ -5,7 +5,9 @@ export const assetRouter = Router()
 
 assetRouter.post('/', AssetController.create)
 assetRouter.get('/', AssetController.get)
+
 assetRouter.get('/search', AssetController.search)
+
 assetRouter.get('/:id', AssetController.getById)
 assetRouter.put('/:id', AssetController.update)
 
