@@ -83,6 +83,10 @@ const assetSchema = new mongo.Schema({
     type: Number,
     required: false,
   },
+  isAtypicalContract: {
+    type: Boolean,
+    required: false,
+  },
   valuationPriceInReais: {
     type: Number,
     required: false,

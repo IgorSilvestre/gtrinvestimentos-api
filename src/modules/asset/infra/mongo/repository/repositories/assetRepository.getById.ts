@@ -6,6 +6,7 @@ export async function getById(id: string): Promise<IAssetDocument> {
     return (await assetModel
       .findById(id)
       .populate('tags')
+      .populate('zoning')
       .lean()) as IAssetDocument
   } catch (err) {
     throw new Error(err as string)
