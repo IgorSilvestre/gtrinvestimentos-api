@@ -13,6 +13,7 @@ export interface IAssetDocument {
     publicDebtInReais?: number;
     partnershipPercentage?: number;
     downPaymentInReais?: number;
+    isAtypicalContract?: boolean;
     description?: string;
     capRatePercentage?: number;
     tenant?: string;
