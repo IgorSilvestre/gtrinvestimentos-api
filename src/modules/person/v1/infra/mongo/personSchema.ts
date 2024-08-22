@@ -29,15 +29,7 @@ const personSchema = new mongo.Schema({
     type: Number,
     required: false,
   },
-  maxLandArea: {
-    type: Number,
-    required: false,
-  },
-  minVgv: {
-    type: Number,
-    required: false,
-  },
-  maxVgv: {
+  phone: {
     type: Number,
     required: false,
   },
