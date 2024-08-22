@@ -2,7 +2,6 @@ import express from 'express'
 import cors from 'cors'
 import { router } from './http/router'
 import { connectToS3 } from './shared/database/s3/s3Connection'
-import { s3Repository } from './shared/database/s3/repository/s3Repository'
 
 const app = express()
 
@@ -15,10 +14,6 @@ app.use(cors({
 app.use(express.json())
 
 app.get('/', (_, res) => res.status(200).send('UP'))
-app.get('/test', async (_, res) => {
-    const result = s3Repository.get({ Bucket: 'gtr-images' })
-    res.status(200).send(result)
-})
 
 app.use('/api', router)
 

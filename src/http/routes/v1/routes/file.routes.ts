@@ -29,7 +29,7 @@ fileRouter.post(
   },
 )
 
-fileRouter.get('/', async (req, res) => {
+fileRouter.get('/', async (_, res) => {
   const files = await s3Repository.get(bucketKeys.publicImages)
 
   if (files instanceof AppError)
