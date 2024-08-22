@@ -37,15 +37,15 @@ const connectWithRetry = async () => {
 connectWithRetry();
 
 mongoose.connection.on('connected', () => {
-  console.log('Mongoose: connected to the database');
+  console.log('mongoDB: connected to the database');
 });
 
 mongoose.connection.on('error', (err) => {
-  console.error('Mongoose: connection error:', err);
+  console.error('mongoDB: connection error:', err);
 });
 
 mongoose.connection.on('disconnected', () => {
-  console.log('Mongoose: disconnected from the database');
+  console.log('mongoDB: disconnected from the database');
 });
 
 export default mongoose;
