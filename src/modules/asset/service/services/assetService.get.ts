@@ -1,6 +1,7 @@
 import { AppError } from '../../../../shared/AppError'
 import { CACHE } from '../../../../shared/cache'
 import { defaultValues } from '../../../../shared/defaultValues'
+import { ISearchParams } from '../../../../shared/interfaces/ISearchParams'
 import { errorMessageKeys } from '../../../../shared/keys/errorMessageKeys'
 import { AssetRepository } from '../../infra/mongo/repository/AssetRepository'
 import {
@@ -9,24 +10,24 @@ import {
 } from '../../interfaces-validation/IAssetDocument'
 
 export async function get(
-  search: {},
-  possibleLimit: number | undefined,
-  possiblePage: number | undefined,
+  params: ISearchParams
 ): Promise<IAssetPagination | AppError> {
-  const limit =
-    possibleLimit &&
-    typeof possibleLimit == 'number' &&
-    possibleLimit > 0 &&
-    possibleLimit <= 100
-      ? possibleLimit
+  let { type, page, limit, search } = params
+
+  limit =
+    limit &&
+    typeof limit == 'number' &&
+    limit > 0 &&
+    limit <= 100
+      ? limit
       : defaultValues.paginationLimit
-  const page =
-    possiblePage && typeof possiblePage == 'number'
-      ? possiblePage
+
+  page =
+    page && typeof page == 'number'
+      ? page
       : defaultValues.paginationPage
 
-  const key = `asset-get-${page}-${limit}`
-  // Try to get the data from cache
+  const key = `asset-get-${type}-${page}-${limit}-${JSON.stringify(search)}`
   const cachedData = CACHE.get(key)
   // TODO Enable CACHING LATER
   // if (cachedData) return cachedData as IAssetPagination
@@ -34,11 +35,12 @@ export async function get(
   // get results
   let assets: IAssetDocument[] | AppError
   try {
-    assets = (await AssetRepository.get(
+    assets = (await AssetRepository.get({
       search,
       page,
       limit,
-    )) as IAssetDocument[]
+      type,
+    })) as IAssetDocument[]
     if (assets === null)
       return new AppError(
         { clientMessage: errorMessageKeys.asset.notFound },
@@ -57,18 +59,21 @@ export async function get(
   let nextPage: number | null = null
   let previousPage: number | null = null
   let numberOfDocuments: number | null = null
+
   try {
-    numberOfDocuments = (await AssetRepository.get(
+    numberOfDocuments = (await AssetRepository.get({
       search,
       page,
       limit,
-      true,
-    )) as number
+      type,
+    })) as number
+
     if (numberOfDocuments === null)
       getPagesError = new AppError(
         { clientMessage: errorMessageKeys.asset.notFound },
         404,
       )
+
     totalPages = Math.ceil(numberOfDocuments / limit)
     nextPage = page < totalPages ? page + 1 : null
     previousPage = page > 1 ? page - 1 : null
@@ -78,6 +83,7 @@ export async function get(
       404,
     )
   }
+
 
   const response = {
     data: assets as IAssetDocument[],

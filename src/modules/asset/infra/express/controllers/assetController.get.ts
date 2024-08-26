@@ -14,15 +14,16 @@ export async function get(req: Request, res: Response) {
     search = {}
     console.log({ error: err, clientMessage: errorMessageKeys.badSearchParams })
   }
-
-  const assets: IAssetPagination | AppError = await AssetService.get(
+  
+  const assets: IAssetPagination | AppError = await AssetService.get({
     search,
-    parseInt(limit as string) || undefined,
-    parseInt(page as string) || undefined,
-  )
+    limit: parseInt(limit as string) || undefined,
+    page: parseInt(page as string) || undefined,
+  })
 
   if (assets instanceof AppError) {
     return res.status(assets.status).json({ error: assets.message })
   }
   return res.status(200).json(assets)
 }
+
