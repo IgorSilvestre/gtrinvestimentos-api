@@ -31,7 +31,7 @@ export async function deepSearchCompany(domain: string) {
 
     try {
         const [CNPJResponse, linkedinResponse] = await Promise.allSettled([
-            (domainOwner?.type === 'cnpj' && domainOwner?.document) ? externalAPIService.fetchCNPJData(domainOwner.document) : undefined,
+            (domainOwner?.type === 'cnpj' && domainOwner?.document) ? externalAPIService.fetchCNPJData(domainOwner.document.replace(/\D/g, '')) : undefined,
             externalAPIService.fetchLinkedinCompanyDataByDomain(domain),
         ])
 
