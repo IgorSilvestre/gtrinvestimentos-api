@@ -1,4 +1,3 @@
-import { isValidCNPJ } from 'br-lib'
 import { AppError } from '../../../../shared/AppError'
 import { errorMessageKeys } from '../../../../shared/keys/errorMessageKeys'
 import { externalAPIService } from '../externalAPIService'
@@ -6,7 +5,6 @@ import { externalAPIEndpoints } from '../../../../shared/externalAPIEndpoints'
 import axios from 'axios'
 
 export async function deepSearchCompany(domain: string) {
-    let companyCNPJ: string | undefined | null = undefined
     let domainOwner: Record<string, any> | undefined = undefined
 
     const response = await axios.get(`${externalAPIEndpoints.whois}${domain}`) 
@@ -18,10 +16,7 @@ export async function deepSearchCompany(domain: string) {
     const ownerid = output.entities[0].publicIds[0].identifier
 
     try {
-        companyCNPJ = isValidCNPJ(ownerid ?? '')
-            ? ownerid
-            : undefined
-        domainOwner = companyCNPJ
+        domainOwner = output
             ? {
                 name: owner,
                 documentType, 
@@ -36,7 +31,7 @@ export async function deepSearchCompany(domain: string) {
 
     try {
         const [CNPJResponse, linkedinResponse] = await Promise.allSettled([
-            companyCNPJ ? externalAPIService.fetchCNPJData(companyCNPJ) : undefined,
+            (domainOwner?.type === 'cnpj' && domainOwner?.document) ? externalAPIService.fetchCNPJData(domainOwner.document) : undefined,
             externalAPIService.fetchLinkedinCompanyDataByDomain(domain),
         ])
 
@@ -49,11 +44,6 @@ export async function deepSearchCompany(domain: string) {
                 ? linkedinResponse.value
                 : undefined
 
-        console.log('company', {
-            CNPJData,
-            domainOwner,
-            linkedinData,
-        })
         return {
             CNPJData,
             domainOwner,
