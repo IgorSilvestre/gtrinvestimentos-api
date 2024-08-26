@@ -12,20 +12,10 @@ export async function deepSearchCompany(domain: string) {
     const response = await axios.get(`${externalAPIEndpoints.whois}${domain}`) 
     const output = response.data
 
-    const ownerRegex = /owner:\s+(.*)/;
-    const ownerMatch = output.match(ownerRegex);
-    const owner = ownerMatch ? ownerMatch[1] : null;
+    const owner = output.entities[0].legalRepresentative
 
-    const personRegex = /person:\s+(.*)/;
-    const personMatch = output.match(personRegex);
-    const person = personMatch ? personMatch[1] : null;
-
-    const emailRegex = /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b/g;
-    const emails = output.match(emailRegex);
-
-    const owneridRegex = /ownerid:\s+(.*)/;
-    const owneridMatch = output.match(owneridRegex);
-    const ownerid = owneridMatch ? owneridMatch[1] : null;
+    const documentType = output.entities[0].publicIds[0].type
+    const ownerid = output.entities[0].publicIds[0].identifier
 
     try {
         companyCNPJ = isValidCNPJ(ownerid ?? '')
@@ -34,9 +24,9 @@ export async function deepSearchCompany(domain: string) {
         domainOwner = companyCNPJ
             ? {
                 name: owner,
-                fullName: person,
+                documentType, 
                 document: ownerid,
-                emails: emails?.toString().split(','),
+                // emails: emails?.toString().split(','),
             }
             : undefined
     } catch (err) {

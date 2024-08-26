@@ -21,7 +21,6 @@ async function searchCompanies(
   limit: number,
 ) {
   const key = `company-search-${stringifyObjectWithRegex(params)}-${page}-${limit}`
-  console.log(key)
   // Try to get the data from cache
   const cachedData = CACHE.get(key)
   if (cachedData) return cachedData as ICompanyDocument[]

@@ -1,6 +1,4 @@
 import mongo from '../../../../shared/database/database'
-import { Document } from 'mongoose'
-import { ZCompany } from '../../interfaces-validation/ZCompany'
 
 const companySchema = new mongo.Schema({
   name: {
