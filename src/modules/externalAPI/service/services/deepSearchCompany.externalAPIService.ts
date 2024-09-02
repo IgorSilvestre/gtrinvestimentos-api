@@ -2,12 +2,12 @@ import { AppError } from '../../../../shared/AppError'
 import { errorMessageKeys } from '../../../../shared/keys/errorMessageKeys'
 import { externalAPIService } from '../externalAPIService'
 import { externalAPIEndpoints } from '../../../../shared/externalAPIEndpoints'
-import axios from 'axios'
+import { axiosWithoutSSL } from '../../../../shared/globalExports'
 
 export async function deepSearchCompany(domain: string) {
   let domainOwner: Record<string, any> | undefined = undefined
 
-  const response = await axios.get(`${externalAPIEndpoints.whois}${domain}`)
+  const response = await axiosWithoutSSL.get(`${externalAPIEndpoints.whois}${domain}`)
   const output = response.data
 
   const owner = output.entities[0].legalRepresentative
