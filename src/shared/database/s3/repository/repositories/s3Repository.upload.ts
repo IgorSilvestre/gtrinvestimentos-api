@@ -1,7 +1,8 @@
 import { AppError } from '../../../../AppError'
 import { IFile } from '../../../../interfaces/IFile'
 import { errorMessageKeys } from '../../../../keys/errorMessageKeys'
-import { s3 } from '../../s3Connection'
+import { s3Client } from '../../s3Connection'
+import { PutObjectCommand } from '@aws-sdk/client-s3'
 
 export async function upload(bucket: string, file: IFile) {
   const params = {
@@ -12,7 +13,7 @@ export async function upload(bucket: string, file: IFile) {
     // ACL: 'public-read',
   }
   try {
-    const data = await s3.upload(params).promise()
+    const data = await s3Client.send(new PutObjectCommand(params))
     return data.Location
   } catch (error) {
     return new AppError(
