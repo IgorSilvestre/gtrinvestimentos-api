@@ -13,8 +13,11 @@ export async function upload(bucket: string, file: IFile) {
     // ACL: 'public-read',
   }
   try {
-    const data = await s3Client.send(new PutObjectCommand(params))
-    return data.Location
+    const awsObjectCommand = new PutObjectCommand(params)
+    await s3Client.send(awsObjectCommand)
+    const fileUrl = `https://${params.Bucket}.s3.${process.env.AWS_REGION}.amazonaws.com/${params.Key}`
+
+    return fileUrl
   } catch (error) {
     return new AppError(
       {
