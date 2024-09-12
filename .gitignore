@@ -4,6 +4,7 @@ node_modules
 dist
 table-scripts
 src/tableScripts
+temp_resources
 table-scripts/**/*
 .insomnia
 out/
