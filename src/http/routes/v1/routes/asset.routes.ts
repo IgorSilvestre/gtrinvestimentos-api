@@ -10,6 +10,7 @@ assetRouter.get('/search', AssetController.search)
 
 assetRouter.get('/:id', AssetController.getById)
 assetRouter.put('/:id', AssetController.update)
+assetRouter.delete('/:id', AssetController.remove)
 
 // GET REQUESTS
 // zoningRouter.get('/all', ZoningController.getAll)

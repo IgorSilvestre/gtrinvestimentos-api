@@ -4,6 +4,7 @@ import { getById } from "./repositories/assetRepository.getById";
 import { search } from "./repositories/assetRepository.search";
 import { create } from "./repositories/assetRespository.create";
 import { update } from "./repositories/assetRespository.update";
+import { remove } from "./repositories/assetRespository.remove";
 
 export const AssetRepository = {
   create,
@@ -12,8 +13,8 @@ export const AssetRepository = {
   getById,
   update,
   search,
+  remove,
   // addToSet,
   // updateWithPull,
   // get,
-  // remove,
 }
