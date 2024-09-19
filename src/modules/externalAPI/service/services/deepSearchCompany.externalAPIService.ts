@@ -3,19 +3,23 @@ import { errorMessageKeys } from '../../../../shared/keys/errorMessageKeys'
 import { externalAPIService } from '../externalAPIService'
 import { externalAPIEndpoints } from '../../../../shared/externalAPIEndpoints'
 import { axiosWithoutSSL } from '../../../../shared/globalExports'
+import { CACHE } from '../../../../shared/cache'
 
 export async function deepSearchCompany(domain: string) {
+  const cachedData = CACHE.get(domain)
+  if (cachedData) return cachedData
+
   let domainOwner: Record<string, any> | undefined = undefined
 
-  const response = await axiosWithoutSSL.get(`${externalAPIEndpoints.whois}${domain}`)
-  const output = response.data
-
-  const owner = output.entities[0].legalRepresentative
-
-  const documentType = output.entities[0].publicIds[0].type
-  const ownerid = output.entities[0].publicIds[0].identifier
-
   try {
+    const response = await axiosWithoutSSL.get(`${externalAPIEndpoints.whois}${domain}`)
+    const output = response.data
+
+    const owner = output?.entities[0]?.legalRepresentative
+
+    const documentType = output?.entities[0]?.publicIds[0]?.type
+    const ownerid = output?.entities[0]?.publicIds[0]?.identifier
+
     domainOwner = output
       ? {
         name: owner,
@@ -45,12 +49,15 @@ export async function deepSearchCompany(domain: string) {
       linkedinResponse.status === 'fulfilled'
         ? linkedinResponse.value
         : undefined
-
-    return {
+   
+    const response = {
       CNPJData,
       domainOwner,
       linkedinData,
     }
+
+    CACHE.set(domain, response, 2592000)
+    return response 
   } catch (error) {
     console.error(error)
     return new AppError({
