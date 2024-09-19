@@ -111,23 +111,7 @@ const assetSchema = new mongo.Schema({
     type: String,
     required: false,
   },
-  state: {
-    type: String,
-    required: false,
-  },
-  city: {
-    type: String,
-    required: false,
-  },
-  neighborhood: {
-    type: String,
-    required: false,
-  },
-  street: {
-    type: String,
-    required: false,
-  },
-  addressNumber: {
+  address: {
     type: String,
     required: false,
   },

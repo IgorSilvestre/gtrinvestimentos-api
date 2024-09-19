@@ -35,11 +35,7 @@ export const assetValidation = z.object({
     publicDebtInReais: z.number().optional(),
     numberOfEmployees: z.number().optional(),
     docLink: z.string().url('Invalid URL').optional(), // Use z.string().url() for URL validation
-    state: z.string().optional(),
-    city: z.string().optional(),
-    neighborhood: z.string().optional(),
-    street: z.string().optional(),
-    addressNumber: z.string().optional(),
+    address: z.string(),
     addressComplement: z.string().optional(),
     contact: z.string().optional(),
     zoning: z.array(z.string(stringOptions('zonings'))).optional(),
