@@ -129,6 +129,30 @@ const assetSchema = new mongo.Schema({
     ref: 'zoning',
     required: false,
   }],
+  energyOffTaker: {
+    type: String,
+    required: false,
+  },
+  energyInstalledCapacityInMWp: {
+    type: String,
+    required: false,
+  },
+  projectAproveDate: {
+    type: Date,
+    required: false,
+  },
+  constructionStartDate: {
+    type: Date,
+    required: false,
+  },
+  ppaInReaisToMWh: {
+    type: Number,
+    required: false,
+  },
+  capexInReais: {
+    type: Number,
+    required: false,
+  },
   createdAt: {
     type: Date,
     default: Date.now,

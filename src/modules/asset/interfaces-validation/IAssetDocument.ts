@@ -24,6 +24,12 @@ export interface IAssetDocument {
     vgvInReais?: number;
     valuationPriceInReais?: number;
     docLink?: string;
+    energyOffTaker?: string;
+    energyInstalledCapacityInMWp? : number;
+    projectAproveDate?: string;
+    constructionStartDate?: string;
+    ppaInReaisToMWh?: number
+    capexInReais?: number
     state?: string;
     city?: string;
     neighborhood?: string;
