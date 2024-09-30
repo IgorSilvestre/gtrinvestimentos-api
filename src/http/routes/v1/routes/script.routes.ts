@@ -1,11 +1,77 @@
+// @ts-nocheck
 import { Router } from 'express'
 import { assetModel } from '../../../../modules/asset/infra/mongo/assetSchema';
 import { IAssetDocument } from '../../../../modules/asset/interfaces-validation/IAssetDocument';
 import { tagModel } from '../../../../modules/tag/infra/mongo/tagSchema';
 import { companyModel } from '../../../../modules/company/infra/mongo/companySchema';
+import { parseSheetToArrayOfObjects } from '../../../../tableScripts/utils/parseSheetToArrayOfObjects';
+import path from 'path';
+import { ZAsset } from '../../../../modules/asset/interfaces-validation/ZAsset';
+import axios from 'axios';
+import { excelDateToJSDate } from '../../../../shared/functions/excelDateToJSDate';
+import { uploadFileMiddleware } from '../../../../middleware/middleware.uploadFile';
 
 export const scriptRouter = Router()
 
+scriptRouter.post('/fill-assets-from-sheet', uploadFileMiddleware, async (req, res) => {
+  // const filePath = path.resolve(__dirname, '../../../../temp_resources/Produtos GTR_Ago24.xlsx')
+  // const stores: ZAsset[] = parseSheetToArrayOfObjects(filePath, 'Ativo_Renda')
+  const stores: ZAsset[] = parseSheetToArrayOfObjects(req.file.buffer, 'Ativo_Renda')
+  for (const store of stores) {
+    store.name = store.tenant + ' - ' + store.city
+    store.name.trim()
+
+    store.tags = ["64d39a6cce0fc0e411adc878", "64d39a6cce0fc0e411adc870", "64d39a6cce0fc0e411adc885"] 
+
+    store.isAtypicalContract ? store.isAtypicalContract = true : store.isAtypicalContract = false
+
+    if(typeof store.contractTerm === 'string') store.contractTerm = excelDateToJSDate(73050) // jan-2100
+    else if(store.contractTerm) store.contractTerm = excelDateToJSDate(store.contractTerm)
+
+    if (!store.description) store.description = ''
+    if (store['Proprietário']) {
+      store.description += ', Proprietário: ' + store['Proprietário']
+      delete store['Proprietário']
+    }
+    if (store.percentageOfOwnership) {
+      store.description += ', percentual de loja: ' + (store.percentageOfOwnership * 100) + '%'
+      delete store.percentageOfOwnership
+    }
+    if (store['Variável']) {
+      store.description += ', Variável: ' + store['Variável']
+      delete store['Variável']
+    }
+    if (store['Correção Mon.']) {
+      store.description += ', Correção Mon.: ' + store['Correção Mon.']
+      delete store['Correção Mon.']
+    }
+
+    // Convert string to number
+    if(typeof store.monthlyRentInReais === 'string') store.monthlyRentInReais = parseFloat(store.monthlyRentInReais.replace(/[^\d.]/g, ''))
+
+    // fix address
+    store.address = ''
+    store.address = store.street ? `${store.street}, ` : ''
+    store.address += store.addressNumber ? `${store.addressNumber} - ` : ''
+    store.address += store.neighborhood ? `${store.neighborhood}, ` : ''
+    store.address += store.city ? `${store.city} - ` : ''
+    store.address += store.state ? `${store.state}, Brasil` : ''
+    delete store.street
+    delete store.addressNumber
+    delete store.neighborhood
+    delete store.city
+    delete store.state
+  
+    const { data } = await axios('https://simple-go-server-production.up.railway.app/external/autocomplete-address?q=' + store.address)
+    store.address = data?.predictions[0]?.description
+
+
+    try {
+      await assetModel.create(store)
+    } catch (err) { console.error(store.name, err) }
+  }
+  res.json(stores)
+})
 
 scriptRouter.get('/add-investidor-tag-all-companies', async (_, res) => {
   try {
