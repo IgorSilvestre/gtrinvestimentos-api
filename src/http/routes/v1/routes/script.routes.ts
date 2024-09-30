@@ -30,8 +30,8 @@ scriptRouter.post('/fill-assets-from-sheet', uploadFileMiddleware, async (req, r
 
     store.isAtypicalContract ? store.isAtypicalContract = true : store.isAtypicalContract = false
 
-    if (typeof store.contractTerm === 'string') store.contractTerm = excelDateToJSDate(73050) // jan-2100
-    else if (store.contractTerm) store.contractTerm = excelDateToJSDate(store.contractTerm)
+    if (typeof store.contractTerm === 'string') store.contractTerm = excelDateToJSDate(73050).toString() // jan-2100
+    else if (store.contractTerm) store.contractTerm = excelDateToJSDate(store.contractTerm).toString()
 
     if (!store.description) store.description = ''
     if (store['Proprietário']) {
