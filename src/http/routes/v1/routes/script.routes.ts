@@ -1,15 +1,13 @@
-// @ts-nocheck
 import { Router } from 'express'
 import { assetModel } from '../../../../modules/asset/infra/mongo/assetSchema';
 import { IAssetDocument } from '../../../../modules/asset/interfaces-validation/IAssetDocument';
 import { tagModel } from '../../../../modules/tag/infra/mongo/tagSchema';
 import { companyModel } from '../../../../modules/company/infra/mongo/companySchema';
-import { parseSheetToArrayOfObjects } from '../../../../tableScripts/utils/parseSheetToArrayOfObjects';
-import path from 'path';
 import { ZAsset } from '../../../../modules/asset/interfaces-validation/ZAsset';
 import axios from 'axios';
 import { excelDateToJSDate } from '../../../../shared/functions/excelDateToJSDate';
 import { uploadFileMiddleware } from '../../../../middleware/middleware.uploadFile';
+import { parseSheetToArrayOfObjects } from '../../../../shared/functions/parseSheetToArrayOfObjects';
 
 export const scriptRouter = Router()
 
