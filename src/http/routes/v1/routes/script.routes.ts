@@ -8,6 +8,7 @@ import axios from 'axios';
 import { excelDateToJSDate } from '../../../../shared/functions/excelDateToJSDate';
 import { uploadFileMiddleware } from '../../../../middleware/middleware.uploadFile';
 import { parseSheetToArrayOfObjects } from '../../../../shared/functions/parseSheetToArrayOfObjects';
+import { AssetService } from '../../../../modules/asset/service/AssetService';
 
 export const scriptRouter = Router()
 
@@ -19,12 +20,18 @@ scriptRouter.post('/fill-assets-from-sheet', uploadFileMiddleware, async (req, r
     store.name = store.tenant + ' - ' + store.city
     store.name.trim()
 
-    store.tags = ["64d39a6cce0fc0e411adc878", "64d39a6cce0fc0e411adc870", "64d39a6cce0fc0e411adc885"] 
+    if (store.name.match(/log/gi) || store.name.match(/transportadora/gi)) store.tags = ["64d39a6cce0fc0e411adc878", "64d39a6cce0fc0e411adc86f"]
+    else if (store.name.match(/panvel/gi)) store.tags = ["64d39a6cce0fc0e411adc878", "64d39a6cce0fc0e411adc870", "64d39a6cce0fc0e411adc885", "64d39a6cce0fc0e411adc88c", "64d39a6cce0fc0e411adc88d"]
+    else if (store.name.match(/atacadista/gi) || store.name.match(/supermercado/gi) || store.name.match(/atacarejo/gi) || store.name.match(/atacado/gi)) store.tags = ["64d39a6cce0fc0e411adc878", "64d39a6cce0fc0e411adc870", "64d39a6cce0fc0e411adc885", "64d39a6cce0fc0e411adc889"]
+    else if (store.name.match(/ag[eê]ncia/gi) || store.name.match(/banco/gi)) store.tags = ["64d39a6cce0fc0e411adc878", "64d39a6cce0fc0e411adc870"]
+    else if (store.name.match(/pernambucanas/gi)) store.tags = ["64d39a6cce0fc0e411adc878", "64d39a6cce0fc0e411adc870", "64d39a6cce0fc0e411adc885"]
+    else if (store.name.match(/educacional/gi)) store.tags = ["64d39a6cce0fc0e411adc878", "64d39a6cce0fc0e411adc888"]
+    else store.tags = ["64d39a6cce0fc0e411adc878"]
 
     store.isAtypicalContract ? store.isAtypicalContract = true : store.isAtypicalContract = false
 
-    if(typeof store.contractTerm === 'string') store.contractTerm = excelDateToJSDate(73050) // jan-2100
-    else if(store.contractTerm) store.contractTerm = excelDateToJSDate(store.contractTerm)
+    if (typeof store.contractTerm === 'string') store.contractTerm = excelDateToJSDate(73050) // jan-2100
+    else if (store.contractTerm) store.contractTerm = excelDateToJSDate(store.contractTerm)
 
     if (!store.description) store.description = ''
     if (store['Proprietário']) {
@@ -45,7 +52,7 @@ scriptRouter.post('/fill-assets-from-sheet', uploadFileMiddleware, async (req, r
     }
 
     // Convert string to number
-    if(typeof store.monthlyRentInReais === 'string') store.monthlyRentInReais = parseFloat(store.monthlyRentInReais.replace(/[^\d.]/g, ''))
+    if (typeof store.monthlyRentInReais === 'string') store.monthlyRentInReais = parseFloat(store.monthlyRentInReais.replace(/[^\d.]/g, ''))
 
     // fix address
     store.address = ''
@@ -59,13 +66,13 @@ scriptRouter.post('/fill-assets-from-sheet', uploadFileMiddleware, async (req, r
     delete store.neighborhood
     delete store.city
     delete store.state
-  
+
     const { data } = await axios('https://simple-go-server-production.up.railway.app/external/autocomplete-address?q=' + store.address)
     store.address = data?.predictions[0]?.description
 
 
     try {
-      await assetModel.create(store)
+      await AssetService.create(store)
     } catch (err) { console.error(store.name, err) }
   }
   res.json(stores)
