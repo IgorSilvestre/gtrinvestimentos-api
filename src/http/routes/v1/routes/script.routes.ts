@@ -1,9 +1,28 @@
 import { Router } from 'express'
 import { assetModel } from '../../../../modules/asset/infra/mongo/assetSchema';
 import { IAssetDocument } from '../../../../modules/asset/interfaces-validation/IAssetDocument';
+import { tagModel } from '../../../../modules/tag/infra/mongo/tagSchema';
+import { companyModel } from '../../../../modules/company/infra/mongo/companySchema';
 
 export const scriptRouter = Router()
 
+
+scriptRouter.get('/add-investidor-tag-all-companies', async (_, res) => {
+  try {
+    const { _id: tag } = await tagModel.findOne({ label: 'Investidor' })
+    console.log('Tag found:', tag)
+
+    const companies = await companyModel.find();
+    for (let company of companies) {
+      company.tags = [...company.tags, tag]
+      await companyModel.updateOne({ _id: company._id }, company);
+    }
+    console.log('All companies have been updated.');
+    res.send('All companies have been updated.');
+  } catch (err) {
+    console.error('Error updating companies:', err);
+  }
+})
 
 scriptRouter.get('/refactor-asset-address', async (_, res) => {
   try {
