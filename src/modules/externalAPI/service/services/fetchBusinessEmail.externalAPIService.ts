@@ -14,8 +14,10 @@ export async function fetchBusinessEmail({
 }) {
   const cacheKey = `fetch-business-email-${name.trim().replace(' ', '-')}-${domain}`
   const cachedData = CACHE.get(cacheKey)
-  if (cachedData) return cachedData
-
+  if (cachedData) {
+    console.log('fetchBusinessEmail - cached data for key', cacheKey)
+    return cachedData
+  }
   const possibleEmailPermutations = createBusinessEmailPermutations(name, domain)
 
   try {

@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { externalAPIEndpoints } from '../../../../shared/externalAPIEndpoints'
+import { CACHE } from '../../../../shared/cache'
 
 export interface IVerifyEmailResponse {
   email: string
@@ -13,6 +14,13 @@ export async function verifyEmail(
     email: '',
     score: 0,
   }
+  const cacheKey = emails.join(';')
+  const cachedData = CACHE.get(cacheKey)
+  if (cachedData) {
+    console.log('Returning cached data for key', cacheKey)
+    return cachedData as IVerifyEmailResponse
+  }
+
   for (const email of emails) {
     try {
       console.log(`Verifying email: ${email}`)
@@ -34,6 +42,7 @@ export async function verifyEmail(
   if (bestEmail.score <= 60) {
     throw new Error('Email not found')
   }
-
+  
+  CACHE.set(cacheKey, bestEmail)
   return bestEmail
 }
