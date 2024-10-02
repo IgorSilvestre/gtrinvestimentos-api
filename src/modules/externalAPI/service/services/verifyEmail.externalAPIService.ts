@@ -15,6 +15,7 @@ export async function verifyEmail(
   }
   for (const email of emails) {
     try {
+      console.log(`Verifying email: ${email}`)
       const response = await axios.get(
         `${externalAPIEndpoints.verifyEmail.url}${email}`,
         externalAPIEndpoints.verifyEmail.options,
