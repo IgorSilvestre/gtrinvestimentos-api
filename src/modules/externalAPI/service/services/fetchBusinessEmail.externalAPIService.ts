@@ -12,12 +12,18 @@ export async function fetchBusinessEmail({
   name: string
   domain: string
 }) {
+  if (name.includes('LTDA') || name.includes('S/A') || name.includes('S.A') || name.includes('SA'))
+    return new AppError({
+      clientMessage: 'Email é apenas para pessoas'
+    })
+
   const cacheKey = `fetch-business-email-${name.trim().replace(' ', '-')}-${domain}`
   const cachedData = CACHE.get(cacheKey)
   if (cachedData) {
     console.log('fetchBusinessEmail - cached data for key', cacheKey)
     return cachedData
   }
+
   const possibleEmailPermutations = createBusinessEmailPermutations(name, domain)
 
   try {
