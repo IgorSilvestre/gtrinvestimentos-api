@@ -2,8 +2,9 @@ import { AppError } from '../../../../shared/AppError'
 import { errorMessageKeys } from '../../../../shared/keys/errorMessageKeys'
 import { externalAPIService } from '../externalAPIService'
 import { externalAPIEndpoints } from '../../../../shared/externalAPIEndpoints'
-import { axiosWithoutSSL } from '../../../../shared/globalExports'
 import { CACHE } from '../../../../shared/cache'
+import axios from 'axios'
+import { isValidCNPJ } from 'br-lib'
 
 export async function deepSearchCompany(domain: string) {
   const cachedData = CACHE.get(domain)
@@ -12,18 +13,17 @@ export async function deepSearchCompany(domain: string) {
   let domainOwner: Record<string, any> | undefined = undefined
 
   try {
-    const response = await axiosWithoutSSL.get(`${externalAPIEndpoints.whois}${domain}`)
+    const response = await axios.get(`${externalAPIEndpoints.whois}${domain}`)
     const output = response.data
-
-    const owner = output?.entities[0]?.legalRepresentative
-
-    const documentType = output?.entities[0]?.publicIds[0]?.type
-    const ownerid = output?.entities[0]?.publicIds[0]?.identifier
+    const { owner, ownerid, responsible } = output
+  
+    const documentType = isValidCNPJ(ownerid) ? 'cnpj' : 'cpf'
 
     domainOwner = output
       ? {
         name: owner,
         documentType,
+        responsible,
         document: ownerid,
         // emails: emails?.toString().split(','),
       }
@@ -49,7 +49,7 @@ export async function deepSearchCompany(domain: string) {
       linkedinResponse.status === 'fulfilled'
         ? linkedinResponse.value
         : undefined
-   
+  
     const response = {
       CNPJData,
       domainOwner,
