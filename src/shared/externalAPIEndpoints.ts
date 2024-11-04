@@ -25,6 +25,9 @@ export const externalAPIEndpoints = {
   fetchCNPJData: {
     endpoint: 'https://www.receitaws.com.br/v1/cnpj/',
   },
+  fetchCNPJDataV2: {
+    endpoint: 'https://minhareceita.org/',
+  },
   linkedin: {
     companyDataByDomain: {
       options: {
