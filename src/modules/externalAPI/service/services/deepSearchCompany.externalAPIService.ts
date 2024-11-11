@@ -15,6 +15,7 @@ export async function deepSearchCompany(domain: string) {
   try {
     const response = await axios.get(`${externalAPIEndpoints.whois}${domain}`)
     const output = response.data
+    console.log('whois query: ', output)
     const { owner, ownerid, responsible } = output
   
     const documentType = isValidCNPJ(ownerid) ? 'cnpj' : 'cpf'
