@@ -12,7 +12,7 @@ export async function fetchBusinessEmail({
   name: string
   domain: string
 }) {
-  if (name.includes('LTDA') || name.includes('S/A') || name.includes('S.A') || name.includes('SA'))
+  if (name.includes('LTDA') || name.includes('S/A') || name.includes('S.A'))
     return new AppError({
       clientMessage: 'Email é apenas para pessoas'
     })
