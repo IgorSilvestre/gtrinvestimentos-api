@@ -11,6 +11,7 @@ export async function update(_id: string, data: {}): Promise<ZAsset | null> {
       )
       .populate('tags')
       .populate('zoning')
+      .populate('contact')
   } catch (err) {
     throw new Error(err as string)
   }
