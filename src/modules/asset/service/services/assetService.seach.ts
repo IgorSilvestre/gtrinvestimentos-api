@@ -1,24 +1,20 @@
 import { AppError } from '../../../../shared/AppError'
 import { errorMessageKeys } from '../../../../shared/keys/errorMessageKeys'
-import { ISearchParams } from '../../../../shared/interfaces/ISearchParams'
 import { IAssetPagination } from '../../interfaces-validation/IAssetDocument'
 import { AssetRepository } from '../../infra/mongo/repository/AssetRepository'
+import { CACHE } from '../../../../shared/cache'
+import { stringifyObjectWithRegex } from 'br-lib'
 
 export async function search(
-  searchParams: ISearchParams,
+  params: Record<string, any>
 ): Promise<IAssetPagination | AppError> {
-  if (searchParams?.page) {
-    searchParams.page = Number(searchParams.page)
-    searchParams.page < 1 ? delete searchParams.page : null
-  }
-  if (searchParams?.limit) {
-    searchParams.limit = Number(searchParams.limit)
-    searchParams.limit < 1 ? delete searchParams.limit : null
-  }
+  const key = `asset-search-${stringifyObjectWithRegex(params)}`
+  const cachedData = CACHE.get(key)
+  // if (cachedData) return cachedData as IAssetPagination
 
   try {
     const assets: IAssetPagination | null | Error =
-      await AssetRepository.search(searchParams)
+      await AssetRepository.search(params)
 
     if (assets === null)
       return new AppError(
@@ -35,6 +31,7 @@ export async function search(
         503,
       )
 
+    CACHE.set(key, assets, 300)
     return assets
   } catch (err) {
     return new AppError(
