@@ -43,6 +43,10 @@ export const errorMessageKeys = {
     notRemoved: 'Não foi possível remover zoneamento',
     failedToRebuildCache: 'Falha ao reconstruir cache de zoneamentos',
   },
+  user: {
+    notCreated: 'Não foi possível criar usuário',
+    notFound: 'Não foi possível encontrar usuário',
+  }, 
   asset: {
     cantGet: 'Não foi possível pegar registro de ativo',
     notCreated: 'Não foi possível criar ativo',
@@ -58,5 +62,10 @@ export const errorMessageKeys = {
         cantDelete: 'Não foi possível deletar arquivo do S3',
       },
     },
+  },
+  jwt: {
+    tokenExpiredNoRefresh: 'Token expirou e nenhum refresh-token foi enviado',
+    invalidRefreshToken: 'Refresh-token inválido',
+    noTokenProvided: 'Acesso negado, nenhum token fornecido',
   },
 }
