@@ -67,7 +67,7 @@ export async function search(
         searchParams.name = { $regex: regexForSearch(query) }
         return
       }
-      else searchParams.$text = { $search: query }
+      else searchParams.$text = { $search: query.trim().split(" ").map(term => `"${term}"`).join(" ") }
     })()
   }
 
