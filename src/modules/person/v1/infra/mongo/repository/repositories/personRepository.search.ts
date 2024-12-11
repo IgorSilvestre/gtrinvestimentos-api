@@ -12,7 +12,7 @@ export async function search(queryParams: ISearchParams, isFullMatch = false) {
     if (query)
       isFullMatch
         ? (searchParams.name = { $regex: regexForSearch(query, true) })
-        : (searchParams.$text = { $search: query })
+        : (searchParams.$text = { $search: query.trim().split(" ").map(term => `"${term}"`).join(" ") })
     // TODO add escapeRegex function to query PERSON
 
     const people = await personModel
