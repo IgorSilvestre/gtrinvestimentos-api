@@ -28,7 +28,7 @@
     "bcrypt": "^5.1.1",
     "br-lib": "git://github.com/IgorSilvestre/br-lib.git#main",
     "bun-types": "^1.1.29",
-    "cors": "^2.8.5",
+    "cookie-parser": "^1.4.7",
     "date-fns": "^2.30.0",
     "date-fns-tz": "^2.0.1",
     "dotenv": "^16.4.5",

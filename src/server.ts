@@ -1,6 +1,7 @@
 import express from 'express'
 import { router } from './http/router'
 import { connectToS3 } from './shared/database/s3/s3Connection'
+import CookieParser from 'cookie-parser'
 
 const app = express()
 
@@ -20,10 +21,12 @@ app.use((req, res, next) => {
   
   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
   res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.header('Access-Control-Allow-Credentials', 'true');
   next();
 });
 
 app.use(express.json())
+app.use(CookieParser())
 
 app.get('/', (_, res) => res.status(200).send('UP'))
 
