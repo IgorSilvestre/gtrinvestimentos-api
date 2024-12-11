@@ -23,7 +23,7 @@ export async function get(params: ISearchParams): Promise<IAssetDocument[] | num
         break
       case 'matchWord':
         searchParams.name = { $regex: regexForSearch(query, true) }
-      default: searchParams.$text = { $search: query.split(" ").map(term => `"${term}"`).join(" ") };
+      default: searchParams.$text = { $search: query.trim().split(" ").map(term => `"${term}"`).join(" ") };
     }
   }
   if (count) {
