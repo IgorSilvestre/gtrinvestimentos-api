@@ -10,18 +10,24 @@ const allowedDomains = [
   'http://localhost:5173'
 ];
 
+app.options('*', (req, res) => {
+  res.header('Access-Control-Allow-Origin', req.headers.origin);
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.header('Access-Control-Allow-Credentials', 'true');
+  res.sendStatus(204); // No content
+})
+
 app.use((req, res, next) => {
   const origin = req.headers.origin;
-  // @ts-ignore
-  if (allowedDomains.indexOf(origin) !== -1) {
-    res.header('Access-Control-Allow-Origin', origin); // Set the origin if it's allowed
-  } else {
-    res.header('Access-Control-Allow-Origin', '*'); // Alternatively, allow all (use with caution)
+
+  if (allowedDomains.includes(origin)) {
+    res.header('Access-Control-Allow-Origin', origin); // Set the origin
+    res.header('Access-Control-Allow-Credentials', 'true'); // Allow credentials (cookies)
   }
   
   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
   res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  res.header('Access-Control-Allow-Credentials', 'true');
   next();
 });
 
