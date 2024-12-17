@@ -1,6 +1,7 @@
 import express from 'express'
 import { router } from './http/router'
 import { connectToS3 } from './shared/database/s3/s3Connection'
+import CookieParser from 'cookie-parser'
 
 const app = express()
 
@@ -9,21 +10,33 @@ const allowedDomains = [
   'http://localhost:5173'
 ];
 
-app.use((req, res, next) => {
-  const origin = req.headers.origin;
-  // @ts-ignore
-  if (allowedDomains.indexOf(origin) !== -1) {
-    res.header('Access-Control-Allow-Origin', origin); // Set the origin if it's allowed
-  } else {
-    res.header('Access-Control-Allow-Origin', '*'); // Alternatively, allow all (use with caution)
-  }
-  
+app.options('*', (req, res) => {
+  res.header('Access-Control-Allow-Origin', req.headers.origin);
   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
   res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.header('Access-Control-Allow-Credentials', 'true');
+  res.sendStatus(204); // No content
+})
+
+app.use((req, res, next) => {
+  const origin = req.headers.origin;
+
+  if (origin && allowedDomains.includes(origin)) {
+    res.header('Access-Control-Allow-Origin', origin);
+    res.header('Access-Control-Allow-Credentials', 'true');
+  }
+
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+
+  if (req.method === 'OPTIONS') {
+    return res.sendStatus(204); // Respond to preflight OPTIONS requests
+  }
   next();
 });
 
 app.use(express.json())
+app.use(CookieParser())
 
 app.get('/', (_, res) => res.status(200).send('UP'))
 
